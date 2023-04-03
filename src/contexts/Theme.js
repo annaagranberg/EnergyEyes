@@ -23,9 +23,6 @@ const theme = createTheme({
             selectedOpacity: 1
         },
     },
-    hover:{
-        
-    }
   });
 
   export default theme

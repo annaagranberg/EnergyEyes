@@ -24,8 +24,8 @@ export default function BottomBar() {
                 onChange={(_event, newValue) => {
                 setClicked(newValue);
                 }}>
-                <BottomNavigationAction sx={{":hover":{color:'red'}}} label="Home" component={Link} to="/home"
-                    icon={location.pathname === '/home' ? <HomeIcon  style={{":hover":{color:'red'}}}  /> : <HomeOutlinedIcon sx={{":hover":{color:'red'}}}/>} />
+                <BottomNavigationAction label="Home" component={Link} to="/home"
+                    icon={location.pathname === '/home' ? <HomeIcon /> : <HomeOutlinedIcon/>} />
                 <BottomNavigationAction sx={{":hover":{color:'red'}}} label="Stat" component={Link} to="/stat"
                     icon={location.pathname === '/stat' ? <LeaderboardIcon  sx={{":hover":{color:'red'}}} /> : <LeaderboardOutlinedIcon sx={{":hover":{color:'red'}}}  />} />
                 <BottomNavigationAction sx={{":hover":{color:'red'}}} label="Profile" component={Link} to="/profile"
