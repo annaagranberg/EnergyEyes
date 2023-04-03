@@ -19,6 +19,9 @@ För att koppla upp till Firebase skapa en fil i energyeyes mapen som heter .env
 där klistrar ni in det som står i Notion under VIKTIGT/.env.local
 - Skapa helst inte massa nya konton, utan skapa ett som ni faktiskt kommer ihåg
 
+# Victory för grafer
+- npm install victory
+
 # Färgpalett
 - Mörkgrön: '#092A23'
 - Ljusgrön: '#ACD0C0'
