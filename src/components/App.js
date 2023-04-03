@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
+import Home from "./Home";
+import Stat from "./Stat";
 // import { ThemeProvider } from '@mui/material/styles';
 // import theme from '../contexts/Theme';
 
@@ -40,14 +42,14 @@ function App() {
 
             <Route path="/home" element = {
               <PrivateRoute>
-                <UpdateProfile/>
+                <Home/>
               </PrivateRoute>
             }
             ></Route>
 
             <Route path="/stat" element = {
               <PrivateRoute>
-                <UpdateProfile/>
+                <Stat/>
               </PrivateRoute>
             }
             ></Route>
