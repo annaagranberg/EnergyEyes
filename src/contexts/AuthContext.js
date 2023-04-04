@@ -50,10 +50,10 @@ export function AuthProvider({ children }) {
     }
 
     //Update name
-    async function updateName(name){
+    async function updateName(first, last){
         try {
             await db.collection("user_collection").doc(currentUser.uid).set({
-                name: { name },
+                name: { firstname: first, lastname: last },
             })
             console.log("Document successfully written!")
         } catch (error) {
