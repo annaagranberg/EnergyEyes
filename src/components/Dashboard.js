@@ -16,6 +16,10 @@ export default function Dashboard() {
     const navigate = useNavigate();
     const [fname, setFname] = useState("")
     const [lname, setLname] = useState("")
+    const [people, setPeople] = useState("")
+    const [area, setArea] = useState("")
+    const [profil, setProfil] = useState("")
+    const {updateProfil} = useAuth();
     
     const marks = [
     {
@@ -29,6 +33,12 @@ export default function Dashboard() {
         value: 100,
         label: 'Miljö',
     }]
+
+    const handleProfil = (event) => {
+        var s = marks[event.target.value / 50].label
+        setProfil(s);
+        updateProfil(s)
+    };
     
     async function handleLogout(){
         setError('')
@@ -48,6 +58,9 @@ export default function Dashboard() {
         if (doc.exists) {
             setFname(doc.get("name.firstname"))
             setLname(doc.get("name.lastname"))
+            setPeople(doc.get("antalPersoner"))
+            setArea(doc.get("boendeyta"))
+            setProfil(doc.get("profiltyp"))
         } else {
             console.log("No such document!");
         }
@@ -99,10 +112,10 @@ export default function Dashboard() {
                             {fname}
                         </Card>
                         <Card variant='outlined' sx={{border:'3px solid #ACD0C0', textAlign:'center', borderRadius:2, width:'30%'}}>
-                            va
+                            {area} kvm
                         </Card>
                         <Card variant='outlined' sx={{border:'3px solid #ACD0C0', textAlign:'center', borderRadius:2, width:'30%'}}>
-                            va
+                            {people}
                         </Card>
                     </Box>
                     <Box sx={{width:'100%'}} flexDirection='column' display='flex' justifyContent='space-evenly' alignItems='center'>
@@ -126,6 +139,7 @@ export default function Dashboard() {
                             track={false}
                             valueLabelDisplay="off"
                             marks={marks}
+                            onChange={handleProfil}
                         />
                     </Box>
                 </Box>
