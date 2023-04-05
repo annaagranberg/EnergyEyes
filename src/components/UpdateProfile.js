@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
-import { CardContent, FormControl, FormGroup, ThemeProvider, Button, Alert, TextField, InputAdornment, Typography } from '@mui/material'
+import { CardContent, FormControl, FormGroup, ThemeProvider, 
+    Button, Alert, TextField, InputAdornment, Typography, Select, MenuItem, InputLabel } from '@mui/material'
 import theme from '../contexts/Theme';
 import Card from '@mui/material/Card';
 import { Person, Password } from '@mui/icons-material';
@@ -14,10 +15,21 @@ export default function UpdateProfile() {
     const passwordConfirmRef = useRef()
     const firstRef = useRef()
     const lastRef = useRef()
+    const ytaRef = useRef()
     const { currentUser, updateEmail, updatePassword, updateName } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
+    const [area, setArea] = useState('');
+    const [people, setPeople] = useState('');
+
+
+    const handleArea = (event) => {
+        setArea(event.target.value);
+    };
+    const handlePeople = (event) => {;
+        setPeople(event.target.value);
+    };
 
     function handleSubmit(e){
         e.preventDefault()
@@ -115,6 +127,40 @@ export default function UpdateProfile() {
                                 ),
                             }}/>
                         </FormControl>
+                    </FormGroup>
+
+                    <FormGroup id="homesettings" sx={{flexDirection:'row', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
+                        <FormControl fullWidth sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }} variant='standard'>
+                            <InputLabel id="antalpersoner">Hushåll</InputLabel>
+                            <Select
+                            labelId="antalpersoner"
+                            id="antalpersoner"
+                            value={people}
+                            label="Hushåll"
+                            onChange={handlePeople}>
+                            <MenuItem value={1}>1 person</MenuItem>
+                            <MenuItem value={2}>2 personer</MenuItem>
+                            <MenuItem value={3}>3 personer</MenuItem>
+                            <MenuItem value={4}>4 personer</MenuItem>
+                            <MenuItem value={5}>övrigt antal</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <FormControl fullWidth sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }} variant='standard'>
+                            <InputLabel id="yta">Yta</InputLabel>
+                            <Select
+                            labelId="yta"
+                            id="yta"
+                            value={area}
+                            label="Yta"
+                            onChange={handleArea}>
+                            <MenuItem value={15}>15-20 kvm</MenuItem>
+                            <MenuItem value={20}>20-25 kvm</MenuItem>
+                            <MenuItem value={25}>25-30 kvm</MenuItem>
+                            <MenuItem value={30}>30-40 kvm</MenuItem>
+                            <MenuItem value={40}>40-100 kvm</MenuItem>
+                            </Select>
+                        </FormControl>
+                        
                     </FormGroup>
 
                     <Button disabled = {loading} variant="contained" type='submit' sx={{width:'100%'}}>Updatera</Button>

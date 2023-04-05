@@ -6,7 +6,7 @@
 
 # Material UI
 
-- npm install @mui/material @emotion/react @emotion/styledn
+- npm install @mui/material @emotion/react @emotion/styled
 - npm install @mui/styled-engine-sc styled-components
 - npm install @mui/icons-material
 
