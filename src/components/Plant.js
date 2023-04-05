@@ -1,25 +1,21 @@
-import React from "react";
-import img1 from "../Bilder/img1.jpg";
-import img2 from "../Bilder/img2.jpg";
-import img3 from "../Bilder/img3.jpg";
-import img4 from "../Bilder/img4.jpg";
-import img5 from "../Bilder/img5.jpg";
-import img6 from "../Bilder/img6.jpg";
+import img1 from '../images/flower1.PNG';
+import img2 from '../images/flower2.PNG';
+import img3 from '../images/flower3.PNG';
+import img4 from '../images/flower4.PNG';
+import img5 from '../images/flower5.PNG';
 
-function ImageComponent({ value }) {
+function Plant(value) {
   const images = [
-    { src: img1, min: 0, max: 10 },
-    { src: img2, min: 10, max: 20 },
-    { src: img3, min: 20, max: 30 },
-    { src: img4, min: 30, max: 40 },
-    { src: img5, min: 40, max: 50 },
-    { src: img6, min: 50, max: 60 },
+    { src: img1, min: 0, max: 10, text: "Your plant is feeling excelent" },
+    { src: img2, min: 10, max: 20, text: "Low" },
+    { src: img3, min: 20, max: 30, text: "Moderate" },
+    { src: img4, min: 30, max: 40, text: "High" },
+    { src: img5, min: 40, max: 50, text: "Your plant is almost dead" },
   ];
 
-  const { src } = images.find(({ min, max }) => value >= min && value < max) || { src: "" };
-  console.log(src);
+  const { src, text } = images.find(({ min, max }) => value >= min && value < max) || { src: '', text: 'Unknown' };
 
-  return <img src={src} alt={`Img not found, Value ${value}`} />;
+  return { src, text };
 }
 
-export default ImageComponent;
+export default Plant;
