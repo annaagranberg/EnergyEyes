@@ -6,23 +6,20 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Plant from './Plant';
 
-
-export default function ActionAreaCard() {
-  const value = 4;
-  const { src, text } = Plant(value);
+export default function PlantBox({ value }) {
+    const { src, text } = Plant(value);
 
   return (
-    <Box sx={{ width: '60%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center' }}>
-      <Card variant="outlined" sx={{ border: '3px solid #ACD0C0', textAlign: 'left', width: '95%', borderRadius: 2 }}>
-        <CardMedia component="img" height="flex" src={src} alt="flower" />
-        <CardContent>
-          <Typography gutterBottom variant="h10" component="div" sx={{ textAlign: "center" }}>
+    <Box sx={{height: '300px', width: '60%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center' }}>
+      <Card variant="outlined" sx={{ border: '3px solid #ACD0C0', textAlign: 'left', width: '95%', borderRadius: 2, p: 0.5, height: 250 }}>
+        <CardMedia component="img" height="150" src={src} alt="flower" sx={{ objectFit: 'contain' }} />
+        <CardContent sx={{ p: 0.5 }}>
+          <Typography gutterBottom variant="h10" component="div" sx={{ textAlign: 'center', mt: 1 }}>
             {text}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
           </Typography>
         </CardContent>
       </Card>
     </Box>
   );
 }
+

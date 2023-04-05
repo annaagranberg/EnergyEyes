@@ -7,9 +7,9 @@ import img5 from '../images/flower5.PNG';
 function Plant(value) {
   const images = [
     { src: img1, min: 0, max: 10, text: "Your plant is feeling excelent" },
-    { src: img2, min: 10, max: 20, text: "Low" },
-    { src: img3, min: 20, max: 30, text: "Moderate" },
-    { src: img4, min: 30, max: 40, text: "High" },
+    { src: img2, min: 10, max: 20, text: "Your plant is feeling good" },
+    { src: img3, min: 20, max: 30, text: "Take care of your plant" },
+    { src: img4, min: 30, max: 40, text: "Your plant is feeling unwell" },
     { src: img5, min: 40, max: 50, text: "Your plant is almost dead" },
   ];
 
