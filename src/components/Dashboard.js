@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
-import { CardContent, Alert, Button, CardHeader, Avatar, ThemeProvider, Typography } from '@mui/material'
+import { CardContent, Alert, Button, CardHeader, Avatar, ThemeProvider, Typography, Slider } from '@mui/material'
 import Card from '@mui/material/Card';
 //import { auth } from '../firebase'
 import theme from '../contexts/Theme';
@@ -14,7 +14,22 @@ export default function Dashboard() {
     const [error, setError] = useState("")
     const { currentUser, logout } = useAuth();
     const navigate = useNavigate();
-
+    const [fname, setFname] = useState("")
+    const [lname, setLname] = useState("")
+    
+    const marks = [
+    {
+        value: 0,
+        label: 'Sparsam',
+    }, {
+        value: 50,
+        label: 'Nyfiken',
+    }, 
+    {
+        value: 100,
+        label: 'Miljö',
+    }]
+    
     async function handleLogout(){
         setError('')
 
@@ -26,6 +41,19 @@ export default function Dashboard() {
         }
     }
 
+    var docRef = db.collection("user_collection").doc(currentUser.uid);
+
+    //Get db information
+    docRef.get("name.firstname").then((doc) => {
+        if (doc.exists) {
+            setFname(doc.get("name.firstname"))
+            setLname(doc.get("name.lastname"))
+        } else {
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
 
   return (
     <>
@@ -54,7 +82,7 @@ export default function Dashboard() {
                             <Avatar sx={{height: 80, width: 80, zIndex:3, bgcolor:'#D9B44A'}}/>
 
                             <Typography component='div' variant='h6' sx={{display: { xs: 'none', sm: 'block' }}}>
-                                {currentUser.email}
+                                {fname + " " +lname}
                             </Typography >
                             <Link to='/update-profile' style={{textDecoration:'none'}}>
                                 <Button variant='contained' sx={{borderRadius: 2}}>
@@ -65,10 +93,10 @@ export default function Dashboard() {
                     </CardContent>
                 </Box>
                 
-                <Box sx={{width:'100%'}} display='flex' flexDirection="column" alignItems='center'>
-                    <Box display='flex' flexDirection='row' justifyContent='space-between' sx={{width:'95%', mb:1}}>
+                <Box sx={{width:'100%', }} display='flex' flexDirection="column" alignItems='center'>
+                    <Box display='flex' flexDirection='row' justifyContent='space-between' sx={{width:'95%', mb:2}}>
                         <Card variant='outlined' sx={{border:'3px solid #ACD0C0', textAlign:'center', borderRadius:2, width:'30%'}}>
-                            va
+                            {fname}
                         </Card>
                         <Card variant='outlined' sx={{border:'3px solid #ACD0C0', textAlign:'center', borderRadius:2, width:'30%'}}>
                             va
@@ -88,6 +116,17 @@ export default function Dashboard() {
                                 </Typography>
                             </CardContent>
                         </Card>
+                    </Box>
+
+                    <Box sx={{ width: '80%', m:2 }}>
+                        <Slider
+                            aria-label="Custom marks"
+                            defaultValue={50}
+                            step={50}
+                            track={false}
+                            valueLabelDisplay="off"
+                            marks={marks}
+                        />
                     </Box>
                 </Box>
 
