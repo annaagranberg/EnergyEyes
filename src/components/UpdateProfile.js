@@ -5,14 +5,15 @@ import { CardContent, FormControl, FormGroup, ThemeProvider, Button, Alert, Text
 import theme from '../contexts/Theme';
 import Card from '@mui/material/Card';
 import { Person, Password } from '@mui/icons-material';
-
+import { db } from '../firebase'
 
 
 export default function UpdateProfile() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
-    const nameRef = useRef()
+    const firstRef = useRef()
+    const lastRef = useRef()
     const { currentUser, updateEmail, updatePassword, updateName } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
@@ -36,13 +37,13 @@ export default function UpdateProfile() {
         if(passwordRef.current.value){
             promises.push(updatePassword(passwordRef.current.value))
         }
-        if(typeof nameRef.current.value === 'string'){
-            promises.push(updateName(nameRef.current.value))
+        if(typeof firstRef.current.value === 'string' && typeof lastRef.current.value === 'string'){
+            promises.push(updateName(firstRef.current.value, lastRef.current.value ))
         }
         console.log(promises[0])
 
         Promise.all(promises).then(() => {
-            navigate('/')
+            navigate('/profile')
         }).catch(() => {
             setError('Failed to update account')
         }).finally(() => {
@@ -53,7 +54,7 @@ export default function UpdateProfile() {
   return (
     <>
     <ThemeProvider theme={theme}>
-        <Card sx={{ minWidth: 270, mt: '10vh'}} elevation={0}>
+        <Card sx={{ minWidth: 270, mt: '10vh', ml:1, mr:1}} elevation={0}>
             <CardContent>
                 <h2 className='text-center mb-4'>Uppdatera profil</h2>
                 {error && <Alert sx= {{mb:3}} severity = "error">{error}</Alert> }
@@ -97,7 +98,7 @@ export default function UpdateProfile() {
 
                     <FormGroup id="name" >
                         <FormControl sx={{flexDirection:'row', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
-                            <TextField variant="standard" label="Förnamn" type='name' inputRef={nameRef} placeholder={currentUser.email}
+                            <TextField variant="standard" label="Förnamn" type='name' inputRef={firstRef} placeholder='Efternamn'
                             sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }} InputProps={{
                                 startAdornment:(
                                     <InputAdornment position='start'>
@@ -105,7 +106,7 @@ export default function UpdateProfile() {
                                     </InputAdornment>
                                 ),
                             }}/>
-                            <TextField variant="standard" label="Efternamn" type='name' inputRef={nameRef} placeholder= {currentUser.email}
+                            <TextField variant="standard" label="Efternamn" type='name' inputRef={lastRef} placeholder= 'Förnamn'
                             sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }} InputProps={{
                                 startAdornment:(
                                     <InputAdornment position='start'>
