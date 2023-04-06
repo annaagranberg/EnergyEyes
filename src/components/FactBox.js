@@ -54,7 +54,7 @@ import Facts from './Facts';
 import refreshIcon from '../images/refresh.svg';
 
 
-export default function ActionAreaCard() {
+export default function FactBox() {
   // useState hook from React to create a state variable called which can update the state
   const [refreshKey, setRefreshKey] = React.useState(0);
 
