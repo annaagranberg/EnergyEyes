@@ -1,38 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { VictoryLine, VictoryChart, VictoryAxis } from 'victory';
+import { useState, useEffect } from "react";
+import { VictoryLine, VictoryChart } from "victory";
 
 function ElectricityPricesGraph() {
-  const [prices, setPrices] = useState([]);
-  const [interval, setInterval] = useState(1);
 
+  const [data, setData] = useState([]);
+  const [formattedData, setFormattedData] = useState([]);
+  const [date, setDate] = useState(["04-06"]);
+/*2023/04-06_SE4 */
   useEffect(() => {
     async function fetchPrices() {
+      setDate(date);
       const response = await fetch(
-        `https://www.elprisetjustnu.se/api/v1/prices/2023/04-06_SE3.json`
-      );
+        "https://www.elprisetjustnu.se/api/v1/prices/2023/" + date + "_SE3.json"
+        );
       const data = await response.json();
-      setPrices(data.prices);
-    }
+      setData(data);
+      const formattedData = data.map(item => ({
+        x: item.time_start,
+        y: item.SEK_per_kWh
+      }));
 
+      setFormattedData(formattedData);
+      console.log(formattedData);
+    }
     fetchPrices();
-  }, [interval]);
+  }, []);
 
   return (
     <div>
-      <label>
-        Select time interval (days):
-        <select value={interval} onChange={(e) => setInterval(e.target.value)}>
-          <option value={1}>1 day</option>
-          <option value={7}>1 week</option>
-          <option value={30}>1 month</option>
-        </select>
-      </label>
-      <VictoryChart>
-        <VictoryAxis />
-        <VictoryAxis dependentAxis />
-        <VictoryLine data={prices} x="time" y="value" />
-      </VictoryChart>
-    </div>
+<VictoryChart>
+  <VictoryLine
+    interpolation="natural"
+
+    data={formattedData}
+  />
+</VictoryChart>    </div>
   );
 }
 

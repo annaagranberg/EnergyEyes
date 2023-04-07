@@ -14,9 +14,10 @@ const Graph2 = () => {
   return (
     <div style={{ width: '400px', height: '300px' }}>
     <VictoryChart
+          interpolation="natural"
+
       domainPadding={{ x: 25 }}
       padding={{ left: 100, right: 50, top: 50, bottom: 50 }}
-      interpolation="natural"
     >
       <VictoryLegend
         x={50}

@@ -4,6 +4,7 @@ import BottomBar from './BottomBar'
 import Graph2 from './Graph2';
 import Graph3 from './Graph3';
 import ElectricityPricesGraph from './ElectricityPricesGraph';
+import StapelGraf from './StapelGraf';
 
 
 export default function Stat() {
@@ -13,6 +14,7 @@ export default function Stat() {
           <Graph2 />
           <Graph3 />
           <ElectricityPricesGraph />
+          <StapelGraf />
           <BottomBar sx={{ width: '100%' }} />
       </Box></>
   )
