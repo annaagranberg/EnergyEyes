@@ -13,7 +13,7 @@ import Badges from './Badges';
 //     const Component = type === 'plant' ? Plant : Money;
 //     const { src, text } = Component(value);
 
-export default function PlantBox({ value, type }) {
+export default function TypeBox({ value, type }) {
   let Component;
   switch (type) {
     case 'plant':
