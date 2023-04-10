@@ -20,6 +20,18 @@ export default function Dashboard() {
     const [area, setArea] = useState("")
     const [profil, setProfil] = useState("")
     const {updateProfil} = useAuth();
+
+      function stringAvatar(name) {
+        return {
+          sx: {
+            bgcolor: '#D9B44A',
+            height: 90,
+            width: 90,
+            fontSize: 35,
+          },
+          children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+        };
+      }
     
     const marks = [
     {
@@ -90,13 +102,14 @@ export default function Dashboard() {
 
                     </CardHeader>
 
-                    <CardContent sx={{ flex: '1 0 auto', padding:0 }}>
-                        <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent:'space-around', width:'100%', mt:-4}}>
-                            <Avatar sx={{height: 80, width: 80, zIndex:3, bgcolor:'#D9B44A'}}/>
+                    <CardContent sx={{ flex: '1 0 auto', padding:0 , mb: 2}}>
+                        <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent:'space-around', width:'90%', ml:'auto', mr:'auto', mt:-5}}>
+                            <Avatar {...stringAvatar(fname + " " + lname)} />
 
-                            <Typography component='div' variant='h6' sx={{display: { xs: 'none', sm: 'block' }}}>
+                            {/* <Typography component='div' variant='h5' sx={{display: { xs: 'none', sm: 'block' }}}>
                                 {fname + " " +lname}
-                            </Typography >
+                            </Typography > */}
+
                             <Link to='/update-profile' style={{textDecoration:'none'}}>
                                 <Button variant='contained' sx={{borderRadius: 2}}>
                                     Ändra
@@ -106,7 +119,7 @@ export default function Dashboard() {
                     </CardContent>
                 </Box>
                 
-                <Box sx={{width:'100%', }} display='flex' flexDirection="column" alignItems='center'>
+                <Box sx={{width:'90%', ml:'auto', mr:'auto' }} display='flex' flexDirection="column" alignItems='center'>
                     <Box display='flex' flexDirection='row' justifyContent='space-between' sx={{width:'95%', mb:2}}>
                         <Card variant='outlined' sx={{border:'3px solid #ACD0C0', textAlign:'center', borderRadius:2, width:'30%'}}>
                             {fname}

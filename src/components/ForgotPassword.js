@@ -7,6 +7,7 @@ import Card from '@mui/material/Card';
 import { Person } from '@mui/icons-material';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../contexts/Theme';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 export default function ForgotPassword() {
     const emailRef = useRef()
@@ -33,6 +34,9 @@ export default function ForgotPassword() {
   return (
     <>
     <ThemeProvider theme={theme}>
+        <Button component={Link} to="/login" sx={{padding:0, mt:2}}>
+          <ArrowBackIosIcon/>
+        </Button>
         <Card sx={{ minWidth: 270, mt: '28vh'}}  elevation={0}>
             <CardContent>
                 <h2 className='text-center mb-4'>Ändra lösenord</h2>
@@ -54,10 +58,6 @@ export default function ForgotPassword() {
                     </FormGroup>
                     <Button disabled = {loading} variant="contained"  type='submit' sx={{width:'100%'}}>Skicka mail</Button>
                 </form>
-
-                <Typography align='center' sx={{mt:3}}>
-                    <Link to="/login" style={{textDecoration:'none', color:'#ACD0C0'}}>Tillbaka</Link>
-                </Typography>
 
             </CardContent>
         </Card>

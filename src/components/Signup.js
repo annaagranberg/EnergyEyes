@@ -6,6 +6,7 @@ import Card from '@mui/material/Card';
 import { CardContent, Button, TextField, Alert, Typography, CardMedia, FormHelperText } from '@mui/material';
 import { FormGroup, FormControl, InputAdornment} from '@mui/material';
 import { Person, Password } from '@mui/icons-material';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../contexts/Theme';
 
@@ -43,7 +44,12 @@ export default function Signup() {
   return (
     <>
     <ThemeProvider theme={theme}>
-        <Card sx={{ minWidth: 270, mt: '8vh'}}  elevation={0}>
+        <Button component={Link} to="/" sx={{padding:0, mt:2}}>
+            <ArrowBackIosIcon/>
+        </Button>
+
+
+        <Card sx={{ minWidth: 270, mt: '6vh'}}  elevation={0}>
             <CardContent>
 
             <CardMedia
@@ -54,7 +60,7 @@ export default function Signup() {
                 src = {Logo}
                 alt="Logo"
             />
-                <h2 className='text-center mb-4'>EngergyEyes</h2>
+                <h2 className='text-center mb-4'>Skapa konto</h2>
                 {error && <Alert sx={{mb:3}} severity="error">{error}</Alert> }
 
                 <form onSubmit={handleSubmit}>
@@ -102,7 +108,7 @@ export default function Signup() {
                             </FormControl>
                     </FormGroup>
 
-                    <Button disabled = {loading} variant="contained" type='submit' sx={{width:'100%'}}>Registrera dig</Button>
+                    <Button disabled = {loading} variant="contained" type='submit' sx={{width:'100%'}}>Skapa konto</Button>
                 </form>
 
 
