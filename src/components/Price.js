@@ -35,12 +35,24 @@ function Price() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('https://www.elprisetjustnu.se/api/v1/prices/2023/04-10_SE3.json');
+      const response = await fetch('https://www.elprisetjustnu.se/api/v1/prices/2023/04-11_SE3.json');
       const jsonData = await response.json();
       setData(jsonData);
     }
+    // async function fetchData() {
+    //     const date = new Date();
+    //     const year = date.getFullYear() ;
+    //     const month = date.getMonth() + 1;
+    //     const day = date.getDate();
+    //     const dateString = `${year}/${month < 10 ? '0' : ''}${month}/${day < 10 ? '0' : ''}${day}`;
+    //     const response = await fetch(`https://www.elprisetjustnu.se/api/v1/prices/${dateString}_SE3.json`);
+    //     const jsonData = await response.json();
+    //     setData(jsonData);
+    //   }
     fetchData();
   }, []);
+
+  
 
   return (
     // Takes the chosen data from the JSON and sets it to an axis
