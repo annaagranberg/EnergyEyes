@@ -21,7 +21,6 @@ function ElectricityPricesGraph() {
       }));
 
       setFormattedData(formattedData);
-      console.log(formattedData);
     }
     fetchPrices();
   }, []);

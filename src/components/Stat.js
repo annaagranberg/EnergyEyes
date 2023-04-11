@@ -5,6 +5,7 @@ import Graph2 from './Graph2';
 import Graph3 from './Graph3';
 import ElectricityPricesGraph from './ElectricityPricesGraph';
 import StapelGraf from './StapelGraf';
+import Graph4 from './Graph4';
 
 
 export default function Stat() {

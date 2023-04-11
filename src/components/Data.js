@@ -13,5 +13,4 @@ const Data = () => {
   }
   return data;
 };
-console.log(Data());
 export default Data;
