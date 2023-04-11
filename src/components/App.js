@@ -11,6 +11,7 @@ import UpdateProfile from "./UpdateProfile";
 import Home from "./Home";
 import Stat from "./Stat";
 import Welcome from "./Welcome"
+import NewUser from "./NewUser";
 // import { ThemeProvider } from '@mui/material/styles';
 // import theme from '../contexts/Theme';
 
@@ -51,6 +52,13 @@ function App() {
             <Route path="/stat" element = {
               <PrivateRoute>
                 <Stat/>
+              </PrivateRoute>
+            }
+            ></Route>
+
+            <Route path="/newuser" element = {
+              <PrivateRoute>
+                <NewUser/>
               </PrivateRoute>
             }
             ></Route>
