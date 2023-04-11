@@ -13,7 +13,8 @@ import Badges from './Badges';
 //     const Component = type === 'plant' ? Plant : Money;
 //     const { src, text } = Component(value);
 
-export default function PlantBox({ value, type }) {
+// Takes in two arguments, one number value and a type value
+export default function TypeBox({ value, type }) {
   let Component;
   switch (type) {
     case 'plant':
