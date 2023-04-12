@@ -14,13 +14,13 @@ const theme = createTheme({
         },
         action:{
             active: '#D9B44A',
-            activeOpacity: 1,
-            hover: '#D9B44A',
-            hoverOpacity: 0.7,
-            focus: '#D9B44A',
-            focusOpacity: 1,
+            activeOpacity: 0.1,
+            hover: '#092A23',
+            hoverOpacity: 0.5,
+            focus: '#092A23',
+            focusOpacity: 0.5,
             selected: '#D9B44A',
-            selectedOpacity: 1
+            selectedOpacity: 0.1
         },
     },
     breakpoints:{

@@ -2,15 +2,16 @@ import React, { useRef, useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
 import { CardContent, FormControl, FormGroup, ThemeProvider, 
-    Button, Alert, TextField, InputAdornment, Typography, Select, MenuItem, InputLabel } from '@mui/material'
+    Button, Alert, TextField, InputAdornment, Typography, Select, MenuItem, InputLabel, ToggleButtonGroup, ToggleButton, FormControlLabel } from '@mui/material'
 import theme from '../contexts/Theme';
 import Card from '@mui/material/Card';
-import { Person, Password } from '@mui/icons-material';
+import { Person, Password, Nat } from '@mui/icons-material';
 import { db } from '../firebase'
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import NaturePeopleIcon from '@mui/icons-material/NaturePeople';
+import MoneyIcon from '@mui/icons-material/Money';
+import SearchIcon from '@mui/icons-material/Search';
 
-
-export default function UpdateProfile() {
+export default function NewUser() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
@@ -22,6 +23,7 @@ export default function UpdateProfile() {
     const navigate = useNavigate();
     const [area, setArea] = useState('');
     const [people, setPeople] = useState('');
+    const [profil, setProfil] = useState('');
 
 
     const handleArea = (event) => {
@@ -29,6 +31,9 @@ export default function UpdateProfile() {
     };
     const handlePeople = (event) => {;
         setPeople(event.target.value);
+    };
+    const handleProfil = (event, newProfil) => {
+        setProfil(newProfil);
     };
 
     function handleSubmit(e){
@@ -70,55 +75,17 @@ export default function UpdateProfile() {
   return (
     <>
     <ThemeProvider theme={theme}>
-        <Button component={Link} to="/profile" sx={{padding:0, mt:2}}>
-          <ArrowBackIosIcon/>
-        </Button>
-        <Card sx={{ minWidth: 270, mt: '10vh', ml:1, mr:1}} elevation={0}>
+        <Card sx={{ minWidth: 270, mt: '10vh', ml:1, mr:1, pl: 2, pr: 2}} elevation={0}>
             <CardContent>
-                <h2 className='text-center mb-4'>Uppdatera profil</h2>
+                <h1 className='text-center mb-4'>Inställningar</h1>
                 {error && <Alert sx= {{mb:3}} severity = "error">{error}</Alert> }
                 
                 <form onSubmit={handleSubmit}>
-                    <FormGroup id="email">
-                        <FormControl>
-                            <TextField variant="standard" label="email" type='email' inputRef={emailRef} required defaultValue={currentUser.email}
-                            sx={{mb:3}} InputProps={{
-                                startAdornment:(
-                                    <InputAdornment position='start'>
-                                        <Person />
-                                    </InputAdornment>
-                                ),
-                            }}/>
-                        </FormControl>
-                    </FormGroup>
 
-                    <FormGroup id="password">
-                        <FormControl/>
-                        <TextField variant='standard' label='lösenord' type='password' inputRef={passwordRef} placeholder='Lämna tom för samma'
-                        sx={{mb:3}} InputProps={{
-                            startAdornment:(
-                                <InputAdornment position='start'>
-                                    <Password />
-                                </InputAdornment>
-                            ),
-                        }}/>
-                    </FormGroup>
-
-                    <FormGroup id="password-confirm">
-                        <TextField variant="standard" label="bekräfta lösenord" type='password' inputRef={passwordConfirmRef} placeholder='Leave blank to keep the same'
-                            sx={{mb:3}} InputProps={{
-                                startAdornment:(
-                                    <InputAdornment position='start'>
-                                        <Password />
-                                    </InputAdornment>
-                                ),
-                            }}/>
-                    </FormGroup>
-
-                    <FormGroup id="name" >
-                        <FormControl sx={{flexDirection:'row', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
-                            <TextField variant="standard" label="Förnamn" type='name' inputRef={firstRef} placeholder='Efternamn'
-                            sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }} InputProps={{
+                    <FormGroup id="name" sx={{pt:3}}>
+                        <FormControl sx={{flexDirection:'column', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
+                            <TextField variant="standard" label="Förnamn" type='name' inputRef={firstRef} placeholder='För'
+                            sx={{ mb:3 }} InputProps={{
                                 startAdornment:(
                                     <InputAdornment position='start'>
                                         <Person />
@@ -126,7 +93,7 @@ export default function UpdateProfile() {
                                 ),
                             }}/>
                             <TextField variant="standard" label="Efternamn" type='name' inputRef={lastRef} placeholder= 'Förnamn'
-                            sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }} InputProps={{
+                            sx={{ mb:3 }} InputProps={{
                                 startAdornment:(
                                     <InputAdornment position='start'>
                                         <Person />
@@ -136,8 +103,8 @@ export default function UpdateProfile() {
                         </FormControl>
                     </FormGroup>
 
-                    <FormGroup id="homesettings" sx={{flexDirection:'row', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
-                        <FormControl fullWidth sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }} variant='standard'>
+                    <FormGroup id="homesettings" sx={{flexDirection:'column', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
+                        <FormControl fullWidth sx={{ mb:3 }} variant='standard'>
                             <InputLabel id="antalpersoner">Hushåll</InputLabel>
                             <Select
                             labelId="antalpersoner"
@@ -152,32 +119,51 @@ export default function UpdateProfile() {
                             <MenuItem value={5}>övrigt antal</MenuItem>
                             </Select>
                         </FormControl>
-                        <FormControl fullWidth sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }} variant='standard'>
+                        <FormControl fullWidth sx={{ mb:3 }} variant='standard'>
                             <InputLabel id="yta">Yta</InputLabel>
                             <Select
-                            labelId="yta"
+                            //labelId="yta"
                             id="yta"
                             value={area}
                             label="Yta"
                             onChange={handleArea}>
-                            <MenuItem value={15}>15-20 kvm</MenuItem>
+                            <MenuItem  value={15}>15-20 kvm</MenuItem>
                             <MenuItem value={20}>20-25 kvm</MenuItem>
                             <MenuItem value={25}>25-30 kvm</MenuItem>
                             <MenuItem value={30}>30-40 kvm</MenuItem>
                             <MenuItem value={40}>40-100 kvm</MenuItem>
                             </Select>
                         </FormControl>
-                        
+                        <FormControl>
+                            
+                        </FormControl>                   
                     </FormGroup>
+                    <ToggleButtonGroup 
+                            value={profil}
+                            exclusive
+                            onChange={handleProfil}
+                            fullWidth
+                            sx={{mb: 3}}
+                            >
+                                <ToggleButton value="Miljö" >
+                                    <NaturePeopleIcon/>
+                                    Miljö
+                                </ToggleButton>
+                                <ToggleButton value="Sparsam">
+                                    <MoneyIcon/>
+                                    Sparsam
+                                </ToggleButton>
+                                <ToggleButton value="Nyfiken">
+                                    <SearchIcon/>
+                                    Nyfiken
+                                </ToggleButton>
 
-                    <Button disabled = {loading} variant="contained" type='submit' sx={{width:'100%'}}>Updatera</Button>
+                    </ToggleButtonGroup>
+
+                    <Button disabled = {loading} variant="contained" type='submit' sx={{width:'100%'}}>Ställ in</Button>
                 </form>
             </CardContent>
         </Card>
-
-        <Typography align='center' sx={{mt:2}}>
-                    <Link to="/profile" style={{textDecoration:'none', color:'#ACD0C0'}}>Tillbaka</Link>
-        </Typography>
     </ThemeProvider>
     </>
   )
