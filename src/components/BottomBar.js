@@ -14,10 +14,12 @@ export default function BottomBar() {
     const [clicked, setClicked] = useState(false)
     const location = useLocation();
 
+
+
   return (
     <>
     <ThemeProvider theme={theme}>
-        <Box>
+        <Box sx={{borderTop: '1px solid #ACD0C0'}}>
             <BottomNavigation
                 showLabels
                 value={clicked}
@@ -25,11 +27,11 @@ export default function BottomBar() {
                 setClicked(newValue);
                 }}>
                 <BottomNavigationAction label="Home" component={Link} to="/home"
-                    icon={location.pathname === '/home' ? <HomeIcon /> : <HomeOutlinedIcon/>} />
-                <BottomNavigationAction sx={{":hover":{color:'red'}}} label="Stat" component={Link} to="/stat"
-                    icon={location.pathname === '/stat' ? <LeaderboardIcon  sx={{":hover":{color:'red'}}} /> : <LeaderboardOutlinedIcon sx={{":hover":{color:'red'}}}  />} />
-                <BottomNavigationAction sx={{":hover":{color:'red'}}} label="Profile" component={Link} to="/profile"
-                    icon={location.pathname === '/profile' ? <PersonIcon style={{":hover":{color:'red'}}}  /> : <PersonOutlineOutlinedIcon sx={{":hover":{color:'red'}}} />} />
+                    icon={location.pathname === '/home' ? <HomeIcon color='primary'/> : <HomeOutlinedIcon color='primary'/>} />
+                <BottomNavigationAction  label="Stat" component={Link} to="/stat"
+                    icon={location.pathname === '/stat' ? <LeaderboardIcon color='primary'/> : <LeaderboardOutlinedIcon color='primary'/>} />
+                <BottomNavigationAction  label="Profile" component={Link} to="/profile"
+                    icon={location.pathname === '/profile' ? <PersonIcon color='primary'/> : <PersonOutlineOutlinedIcon color='primary'/>} />
             </BottomNavigation>
         </Box>
     </ThemeProvider>

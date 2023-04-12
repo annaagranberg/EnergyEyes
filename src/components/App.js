@@ -10,6 +10,7 @@ import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
 import Home from "./Home";
 import Stat from "./Stat";
+import Welcome from "./Welcome"
 // import { ThemeProvider } from '@mui/material/styles';
 // import theme from '../contexts/Theme';
 
@@ -54,6 +55,7 @@ function App() {
             }
             ></Route>
 
+            <Route path="/" element={<Welcome />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />

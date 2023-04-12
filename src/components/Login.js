@@ -8,6 +8,7 @@ import { Person, Password } from '@mui/icons-material';
 import Logo from '../images/Logo5.png'
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../contexts/Theme';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 
 export default function Login() {
@@ -35,6 +36,10 @@ export default function Login() {
   return (
     <>
     <ThemeProvider theme={theme}>
+        <Button component={Link} to="/" sx={{padding:0, mt:2}}>
+          <ArrowBackIosIcon/>
+        </Button>
+
         <Card sx={{ minWidth: 270, mt: '8vh'}}  elevation={0}>
             <CardContent>
 

@@ -15,8 +15,7 @@ export default function UpdateProfile() {
     const passwordConfirmRef = useRef()
     const firstRef = useRef()
     const lastRef = useRef()
-    const ytaRef = useRef()
-    const { currentUser, updateEmail, updatePassword, updateName } = useAuth()
+    const { currentUser, updateEmail, updatePassword, updateName, updateArea, updatePeople } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
@@ -46,13 +45,17 @@ export default function UpdateProfile() {
             promises.push(updateEmail(emailRef.current.value))
         }
 
+        if(area !== '' && people !== ''){
+            promises.push(updateArea(area))
+            promises.push(updatePeople(people))
+        }
+
         if(passwordRef.current.value){
             promises.push(updatePassword(passwordRef.current.value))
         }
         if(typeof firstRef.current.value === 'string' && typeof lastRef.current.value === 'string'){
             promises.push(updateName(firstRef.current.value, lastRef.current.value ))
         }
-        console.log(promises[0])
 
         Promise.all(promises).then(() => {
             navigate('/profile')
