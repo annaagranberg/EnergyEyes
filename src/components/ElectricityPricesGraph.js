@@ -5,7 +5,8 @@ function ElectricityPricesGraph() {
 
   const [data, setData] = useState([]);
   const [formattedData, setFormattedData] = useState([]);
-  const [date, setDate] = useState(["04-06"]);
+  const [date, setDate] = useState([new Date().toLocaleDateString("en-US", { month: "2-digit", day: "2-digit" }).replace(/\//g, '-')]);
+
 /*2023/04-06_SE4 */
   useEffect(() => {
     async function fetchPrices() {
@@ -28,6 +29,7 @@ function ElectricityPricesGraph() {
   return (
     <div>
 <VictoryChart>
+  
   <VictoryLine
     interpolation="natural"
 

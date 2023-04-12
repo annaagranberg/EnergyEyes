@@ -6,6 +6,7 @@ import Graph3 from './Graph3';
 import ElectricityPricesGraph from './ElectricityPricesGraph';
 import StapelGraf from './StapelGraf';
 import Graph4 from './Graph4';
+import NewData from './NewData';
 
 
 export default function Stat() {
