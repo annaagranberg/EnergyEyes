@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
 import { CardContent, FormControl, FormGroup, ThemeProvider, 
-    Button, Alert, TextField, InputAdornment, Typography, Select, MenuItem, InputLabel, ToggleButtonGroup, ToggleButton, FormControlLabel } from '@mui/material'
+    Button, Alert, TextField, InputAdornment, Typography, Select, MenuItem, InputLabel, ToggleButtonGroup, ToggleButton, FormControlLabel, FormLabel } from '@mui/material'
 import theme from '../contexts/Theme';
 import Card from '@mui/material/Card';
 import { Person, Password, Nat } from '@mui/icons-material';
@@ -84,7 +84,7 @@ export default function NewUser() {
 
                     <FormGroup id="name" sx={{pt:3}}>
                         <FormControl sx={{flexDirection:'column', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
-                            <TextField variant="standard" label="Förnamn" type='name' inputRef={firstRef} placeholder='För'
+                            <TextField variant="standard" label="Förnamn" type='name' inputRef={firstRef} placeholder='För' required
                             sx={{ mb:3 }} InputProps={{
                                 startAdornment:(
                                     <InputAdornment position='start'>
@@ -92,7 +92,7 @@ export default function NewUser() {
                                     </InputAdornment>
                                 ),
                             }}/>
-                            <TextField variant="standard" label="Efternamn" type='name' inputRef={lastRef} placeholder= 'Förnamn'
+                            <TextField variant="standard" label="Efternamn" type='name' inputRef={lastRef} placeholder= 'Förnamn' required
                             sx={{ mb:3 }} InputProps={{
                                 startAdornment:(
                                     <InputAdornment position='start'>
@@ -138,6 +138,7 @@ export default function NewUser() {
                             
                         </FormControl>                   
                     </FormGroup>
+                    <FormLabel required>Profiltyp</FormLabel>
                     <ToggleButtonGroup 
                             value={profil}
                             exclusive

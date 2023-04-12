@@ -15,12 +15,12 @@ const theme = createTheme({
         action:{
             active: '#D9B44A',
             activeOpacity: 0.1,
-            hover: '#092A23',
+            hover: '#ACD0C0',
             hoverOpacity: 0.5,
             focus: '#092A23',
             focusOpacity: 0.5,
-            selected: '#D9B44A',
-            selectedOpacity: 0.1
+            selected: '#ACD0C0',
+            selectedOpacity: 0.1,
         },
     },
     breakpoints:{
