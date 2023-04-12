@@ -52,7 +52,7 @@ export function AuthProvider({ children }) {
     //Update name
     async function updateName(first, last){
         try {
-            await db.collection("user_collection").doc(currentUser.uid).set({
+            await db.collection("user_collection").doc(currentUser.uid).update({
                 name: { firstname: first, lastname: last },
             })
             console.log("Document successfully written!")
@@ -60,6 +60,41 @@ export function AuthProvider({ children }) {
             console.error("Error writing document: ", error)
         }
     }
+    //Update area
+    async function updateArea(area){
+        
+        try {
+            await db.collection("user_collection").doc(currentUser.uid).update({
+                boendeyta: area,
+            })
+            console.log(area)
+        } catch (error) {
+            console.error("Error writing document: ", error)
+        }
+    }
+    //Update people
+    async function updatePeople(people){
+        
+        try {
+            await db.collection("user_collection").doc(currentUser.uid).update({
+                antalPersoner: people,
+            })
+            console.log(people)
+        } catch (error) {
+            console.error("Error writing document: ", error)
+        }
+    }
+
+    async function updateProfil(profiltyp){
+        try {
+            await db.collection("user_collection").doc(currentUser.uid).update({
+                profiltyp: profiltyp,
+            })
+        } catch (error) {
+            console.error("Error writing document: ", error)
+        }
+    }
+
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
@@ -78,6 +113,9 @@ export function AuthProvider({ children }) {
         resetPassword,
         updateEmail,
         updateName,
+        updateArea,
+        updatePeople,
+        updateProfil,
         updatePassword
     }
 
