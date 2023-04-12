@@ -1,23 +1,11 @@
-
-import Box from '@mui/material/Box';
-import {ThemeProvider} from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-
-import Button from '@mui/material/Button';
+import * as React from "react";
+import Drawer from "@mui/material/Drawer";
+import Button from "@mui/material/Button";
+import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from '@mui/icons-material/Menu';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import CardMedia from '@mui/material/CardMedia';
-import Logo5 from "../images/Logo5.png";
-import React, {useState} from 'react'
-import theme from '../contexts/Theme';
-import { createTheme } from '@mui/material/styles';
-
+import { CardMedia, Box, AppBar, Toolbar, ListItemText, Link} from "@mui/material";
+import Logo from '../images/Logo5.png';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 const themes = createTheme({
     palette:{
         primary:{
@@ -27,81 +15,77 @@ const themes = createTheme({
     },
   });
 export default function Topbar() {
-     const [state, setState] = useState({
-      top: false,
-    });
-   
-  
-    const toggleDrawer = (anchor, open) => (event) => {
-      if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-        return;
-      }
-  
-      setState({ ...state, [anchor]: open });
-    };
-  
-    const list = (anchor) => (
-      <ThemeProvider>
-          <Box
-            sx={{ width: anchor === 'top'}}
-            role="presentation"
-            onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
-          >
-            <List>
-              {['Om energi', 'om oss', 'hejhej'].map((text, index) => (
-                <ListItem key={text} disablePadding>
-                  <ListItemButton href='/profile'>
-                    <ListItemText primary={text} style={{textAlign:'center'}} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-            <Divider />
-          </Box>
-      </ThemeProvider>
-    );
 
-   
+ 
+  const [open, setOpen] = React.useState(false);
+  
+  function handleOpen() {
+      setOpen(!open);
+  }
+
+  function handleClose() {
+      setOpen(false);
+  }
+  const [isActive, setIsActive] = React.useState(false);
+
+  function aktiv(){
+      setIsActive(!isActive);
+  }
+
   return (
-    <ThemeProvider  theme={themes}>
-        <Box sx={{flexGrow:1, backgroundColor:'white'}}>
-      <AppBar position="static">
-        <Toolbar>
-          <Box sx={{width: 30, height: 40,}}>
-            <CardMedia
-              component="img"
-              sx={{ width: "100&", height: "100%"}}
-              src ={Logo5}
-              alt="Logga"
-            />
-          </Box>
+<ThemeProvider theme={themes}>
+<Box sx={{flexGrow:1}}>
+<AppBar position="static">
+<Toolbar>
+  <Box sx={{width: 30, height: 40,}}>
+    <CardMedia
+      component="img"
+      sx={{ width: "100&", height: "100%"}}
+      src ={Vector}
+      alt="Logga"
+    />
+  </Box>
 
-          <Box sx={{marginLeft: 25}}>
-              {['top'].map((anchor) => (
-                <React.Fragment key={anchor}>
-                  <Button onClick={toggleDrawer(anchor, true)} >
-                  <MenuIcon sx={{color: '#092A23',}}/>
-                  </Button>
-                  <ThemeProvider theme={theme}>
-                  <Drawer
-                    anchor={anchor}
-                    open={state[anchor]}
-                    onClose={toggleDrawer(anchor, false)}
-                  >
-                    {list(anchor)}
-                    
-                  </Drawer>
-                  </ThemeProvider>
-                </React.Fragment>
-              ))}
-           
-         </Box>
+  <Box sx={{marginLeft: 'auto'}}>
+  <Button onClick={handleOpen} 
+            color="success"
+            >
+               <MenuIcon sx={{color: 'black',marginLeft: 'auto'}}/>
+          </Button>
+          
+          <Drawer anchor={"top"} open={open} 
+              onClose={handleClose}>
+              
             
-        </Toolbar>
+                      <MenuItem sx={{alignContent:'center' ,backgroundColor:'#092A23'}}>
+       
+                              <ListItemText style={{textAlign:'center', color:'white'}}>
+                              Info
+                              </ListItemText> 
+                             
+                     
+                      </MenuItem>
+                      
+              <MenuItem sx={{alignContent:'center',backgroundColor:'#092A23'}}>
+                  <ListItemText style={{textAlign:'center', color: 'white'}}>
+                  Om oss
+                  </ListItemText>
+              </MenuItem>
+              <MenuItem sx={{alignContent:'center',backgroundColor:'#092A23'}}>
+                  <ListItemText style={{textAlign:'center', color: 'white'}}>
+                  Hejhej
+                  </ListItemText>
+              </MenuItem>
+          </Drawer>
         
-      </AppBar>
-    </Box>
-    </ThemeProvider>
-  )
+   
+ </Box>
+
+</Toolbar>
+
+</AppBar>
+</Box>
+</ThemeProvider>
+
+  );
 };
