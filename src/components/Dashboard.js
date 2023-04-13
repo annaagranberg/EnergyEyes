@@ -11,6 +11,7 @@ import BottomBar from './BottomBar'
 import NaturePeopleIcon from '@mui/icons-material/NaturePeople';
 import MoneyIcon from '@mui/icons-material/Money';
 import SearchIcon from '@mui/icons-material/Search';
+import Topbar from './Topbar';
 
 export default function Dashboard() {
 
@@ -88,9 +89,15 @@ export default function Dashboard() {
 
   return (
     <>
+
+    <Box sx={{position: 'fixed', top: 0, left: 0, right: 0 }}>
+                <Topbar sx={{width:'100%'}}/>
+    </Box>
+
     <ThemeProvider theme={theme}>
-        <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll', mb:7}}>
-            <Card sx={{ minWidth: 270, mt: '5vh' }} elevation={0}>
+    
+        <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll'}}>
+            <Card sx={{ minWidth: 270 }} elevation={0}>
                 <CardContent>
                     {error && <Alert varient = "danger">{error}</Alert> }
 
@@ -104,7 +111,7 @@ export default function Dashboard() {
 
             <Card sx={{ /*display: 'flex',*/ borderRadius:0}} elevation={0}>
                 <Box  sx={{ display: 'flex', flexDirection: 'column', width:'100%', overflowY:'scroll'}}>
-                    <CardHeader sx={{ height:'15vh', bgcolor:'#092A23'}}>
+                    <CardHeader sx={{ height:'18vh', bgcolor:'#092A23'}}>
 
                     </CardHeader>
 
