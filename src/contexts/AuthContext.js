@@ -95,6 +95,23 @@ export function AuthProvider({ children }) {
         }
     }
 
+    async function setNewUser(fname,lname, area, people, profiltyp, dusch, kok, disk, tvatt){
+        try {
+            await db.collection("user_collection").doc(currentUser.uid).set({
+                name: { firstname: fname, lastname: lname },
+                boendeyta: area,
+                antalPersoner: people,
+                profiltyp: profiltyp,
+                duschparametrar: {antal: dusch[0], tid: dusch[1]},
+                kokparametrar: {antal: kok},
+                diskparametrar: {antal: disk},
+                tvattparametrar: {antal: tvatt},
+            })
+        } catch (error) {
+            console.error("Error writing document: ", error)
+        }
+    }
+
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
@@ -116,7 +133,8 @@ export function AuthProvider({ children }) {
         updateArea,
         updatePeople,
         updateProfil,
-        updatePassword
+        updatePassword,
+        setNewUser,
     }
 
   return (

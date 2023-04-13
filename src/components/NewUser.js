@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
 import { CardContent, FormControl, FormGroup, ThemeProvider, 
-    Button, Alert, TextField, InputAdornment, Typography, Select, MenuItem, InputLabel, ToggleButtonGroup, ToggleButton, FormControlLabel, FormLabel } from '@mui/material'
+    Button, Alert, TextField, InputAdornment, Typography, Select, MenuItem, InputLabel, ToggleButtonGroup, ToggleButton, FormControlLabel, FormLabel, Box } from '@mui/material'
 import theme from '../contexts/Theme';
 import Card from '@mui/material/Card';
 import { Person, Password, Nat } from '@mui/icons-material';
@@ -12,12 +12,9 @@ import MoneyIcon from '@mui/icons-material/Money';
 import SearchIcon from '@mui/icons-material/Search';
 
 export default function NewUser() {
-    const emailRef = useRef()
-    const passwordRef = useRef()
-    const passwordConfirmRef = useRef()
     const firstRef = useRef()
     const lastRef = useRef()
-    const { currentUser, updateEmail, updatePassword, updateName, updateArea, updatePeople } = useAuth()
+    const { currentUser, updateName, updateArea, updatePeople } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
@@ -39,26 +36,15 @@ export default function NewUser() {
     function handleSubmit(e){
         e.preventDefault()
 
-        if(passwordRef.current.value !== passwordConfirmRef.current.value){
-            return setError("Passwords do not match")
-        }
-
         const promises = []
         setLoading(true)
         setError('')
-
-        if(emailRef.current.value !== currentUser.email){
-            promises.push(updateEmail(emailRef.current.value))
-        }
 
         if(area !== '' && people !== ''){
             promises.push(updateArea(area))
             promises.push(updatePeople(people))
         }
 
-        if(passwordRef.current.value){
-            promises.push(updatePassword(passwordRef.current.value))
-        }
         if(typeof firstRef.current.value === 'string' && typeof lastRef.current.value === 'string'){
             promises.push(updateName(firstRef.current.value, lastRef.current.value ))
         }
@@ -66,7 +52,7 @@ export default function NewUser() {
         Promise.all(promises).then(() => {
             navigate('/profile')
         }).catch(() => {
-            setError('Failed to update account')
+            setError('Failed to set account')
         }).finally(() => {
             setLoading(false)
         })
@@ -80,11 +66,12 @@ export default function NewUser() {
                 <h1 className='text-center mb-4'>Inställningar</h1>
                 {error && <Alert sx= {{mb:3}} severity = "error">{error}</Alert> }
                 
+                <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll', mb:7}}>
                 <form onSubmit={handleSubmit}>
 
                     <FormGroup id="name" sx={{pt:3}}>
                         <FormControl sx={{flexDirection:'column', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
-                            <TextField variant="standard" label="Förnamn" type='name' inputRef={firstRef} placeholder='För' required
+                            <TextField variant="standard" label="Förnamn" type='name' inputRef={firstRef} placeholder='Förnamn' required
                             sx={{ mb:3 }} InputProps={{
                                 startAdornment:(
                                     <InputAdornment position='start'>
@@ -163,6 +150,7 @@ export default function NewUser() {
 
                     <Button disabled = {loading} variant="contained" type='submit' sx={{width:'100%'}}>Ställ in</Button>
                 </form>
+                </Box>
             </CardContent>
         </Card>
     </ThemeProvider>

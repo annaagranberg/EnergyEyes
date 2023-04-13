@@ -117,7 +117,7 @@ export default function UpdateProfile() {
 
                     <FormGroup id="name" >
                         <FormControl sx={{flexDirection:'row', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
-                            <TextField variant="standard" label="Förnamn" type='name' inputRef={firstRef} placeholder='Efternamn'
+                            <TextField variant="standard" label="Förnamn" type='name' inputRef={firstRef} placeholder='För'
                             sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }} InputProps={{
                                 startAdornment:(
                                     <InputAdornment position='start'>
