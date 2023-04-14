@@ -1,8 +1,8 @@
-import img1 from '../images/flower1.PNG';
-import img2 from '../images/flower2.PNG';
-import img3 from '../images/flower3.PNG';
-import img4 from '../images/flower4.PNG';
-import img5 from '../images/flower5.PNG';
+import img1 from '../images/money1.PNG';
+import img2 from '../images/money2.PNG';
+import img3 from '../images/money3.PNG';
+import img4 from '../images/money4.PNG';
+import img5 from '../images/money5.PNG';
 
 // Takes one argument and depending on the value returns an image
 function Money(value) {

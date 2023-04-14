@@ -1,85 +1,85 @@
-import React, { useState, useEffect } from 'react';
-
-function Price() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('https://www.elprisetjustnu.se/api/v1/prices/2023/04-10_SE3.json');
-      const jsonData = await response.json();
-      setData(jsonData);
-    }
-    fetchData();
-  }, []);
-
-  return (
-    <div>
-      {data ? (
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
-}
-
-export default Price;
-
-// --------------------------------------------------------------------------------------------------
-
 // import React, { useState, useEffect } from 'react';
-// import { VictoryChart, VictoryLine, VictoryAxis, VictoryTooltip } from 'victory';
 
 // function Price() {
-//   const [data, setData] = useState([]);
+//   const [data, setData] = useState(null);
 
 //   useEffect(() => {
 //     async function fetchData() {
-//       const response = await fetch('https://www.elprisetjustnu.se/api/v1/prices/2023/04-11_SE3.json');
+//       const response = await fetch('https://www.elprisetjustnu.se/api/v1/prices/2023/04-10_SE3.json');
 //       const jsonData = await response.json();
 //       setData(jsonData);
 //     }
-//     // async function fetchData() {
-//     //     const date = new Date();
-//     //     const year = date.getFullYear() ;
-//     //     const month = date.getMonth() + 1;
-//     //     const day = date.getDate();
-//     //     const dateString = `${year}/${month < 10 ? '0' : ''}${month}/${day < 10 ? '0' : ''}${day}`;
-//     //     const response = await fetch(`https://www.elprisetjustnu.se/api/v1/prices/${dateString}_SE3.json`);
-//     //     const jsonData = await response.json();
-//     //     setData(jsonData);
-//     //   }
 //     fetchData();
 //   }, []);
 
-  
-
 //   return (
-//     // Takes the chosen data from the JSON and sets it to an axis
 //     <div>
-//         <VictoryChart>
-//         <VictoryAxis
-//             label="Time"
-//             tickFormat={(time) => new Date(time).toLocaleTimeString([], { hour: '2-digit' })}
-//             style={{ tickLabels: { angle: -90 } }}
-//         />
-//         <VictoryAxis
-//             label="Price (SEK/kWh)"
-//             dependentAxis 
-//         />
-//         <VictoryLine
-//             data={data}
-//             x="time_start"
-//             y="SEK_per_kWh"
-//             labelComponent={<VictoryTooltip />}
-//         />
-//         </VictoryChart>
-
+//       {data ? (
+//         <pre>{JSON.stringify(data, null, 2)}</pre>
+//       ) : (
+//         <p>Loading...</p>
+//       )}
 //     </div>
 //   );
 // }
 
 // export default Price;
+
+// --------------------------------------------------------------------------------------------------
+
+import React, { useState, useEffect } from 'react';
+import { VictoryChart, VictoryLine, VictoryAxis, VictoryTooltip } from 'victory';
+
+function Price() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('https://www.elprisetjustnu.se/api/v1/prices/2023/04-12_SE3.json');
+      const jsonData = await response.json();
+      setData(jsonData);
+    }
+    // async function fetchData() {
+    //     const date = new Date();
+    //     const year = date.getFullYear() ;
+    //     const month = date.getMonth() + 1;
+    //     const day = date.getDate();
+    //     const dateString = `${year}/${month < 10 ? '0' : ''}${month}/${day < 10 ? '0' : ''}${day}`;
+    //     const response = await fetch(`https://www.elprisetjustnu.se/api/v1/prices/${dateString}_SE3.json`);
+    //     const jsonData = await response.json();
+    //     setData(jsonData);
+    //   }
+    fetchData();
+  }, []);
+
+  
+
+  return (
+    // Takes the chosen data from the JSON and sets it to an axis
+    <div>
+        <VictoryChart>
+        <VictoryAxis
+            label="Time"
+            tickFormat={(time) => new Date(time).toLocaleTimeString([], { hour: '2-digit' })}
+            style={{ tickLabels: { angle: -90 } }}
+        />
+        <VictoryAxis
+            label="Price (SEK/kWh)"
+            dependentAxis 
+        />
+        <VictoryLine
+            data={data}
+            x="time_start"
+            y="SEK_per_kWh"
+            labelComponent={<VictoryTooltip />}
+        />
+        </VictoryChart>
+
+    </div>
+  );
+}
+
+export default Price;
 
 
 // --------------------------------------------------------------------------------------------------
