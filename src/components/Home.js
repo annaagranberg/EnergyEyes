@@ -7,6 +7,7 @@ import PriceBox from'./PriceBox'
 import Topbar from './Topbar'
 import theme from '../contexts/Theme'
 
+
 //   <TypeBox value={42} type="plant" />
 export default function Home() {
   return (
@@ -26,6 +27,5 @@ export default function Home() {
       
     </ThemeProvider>
     </>
-
   )
 }
