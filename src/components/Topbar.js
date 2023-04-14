@@ -3,17 +3,11 @@ import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from '@mui/icons-material/Menu';
-import { CardMedia, Box, AppBar, Toolbar, ListItemText, Link} from "@mui/material";
+import { CardMedia, Box, AppBar, Toolbar, ListItemText} from "@mui/material";
 import Logo from '../images/Logo5.png';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-const themes = createTheme({
-    palette:{
-        primary:{
-            main: '#fff',
-        }
-            
-    },
-  });
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import theme from "../contexts/Theme";
+  
 export default function Topbar() {
 
  
@@ -33,59 +27,50 @@ export default function Topbar() {
   }
 
   return (
-<ThemeProvider theme={themes}>
-<Box sx={{flexGrow:1}}>
-<AppBar position="static">
-<Toolbar>
-  <Box sx={{width: 30, height: 40,}}>
-    <CardMedia
-      component="img"
-      sx={{ width: "100&", height: "100%"}}
-      src ={Logo}
-      alt="Logga"
-    />
-  </Box>
 
-  <Box sx={{marginLeft: 'auto'}}>
-  <Button onClick={handleOpen} 
-            color="success"
-            >
-               <MenuIcon sx={{color: 'black',marginLeft: 'auto'}}/>
-          </Button>
-          
-          <Drawer anchor={"top"} open={open} 
-              onClose={handleClose}>
-              
-            
-                      <MenuItem sx={{alignContent:'center' ,backgroundColor:'#092A23'}}>
-       
-                              <ListItemText style={{textAlign:'center', color:'white'}}>
-                              Info
-                              </ListItemText> 
-                             
-                     
-                      </MenuItem>
-                      
-              <MenuItem sx={{alignContent:'center',backgroundColor:'#092A23'}}>
+  <ThemeProvider theme={theme}>
+    <Box sx={{flexGrow:1}}>
+      <AppBar position="static" color='background'>
+        <Toolbar>
+          <Box sx={{width: 30, height: 40,}}>
+              <CardMedia
+                component="img"
+                sx={{ width: "100&", height: "100%"}}
+                src ={Logo}
+                alt="Logga"
+              />
+          </Box>
+
+          <Box sx={{marginLeft: 'auto'}}>
+            <Button onClick={handleOpen} color="success">
+                <MenuIcon sx={{color: 'black',marginLeft: 'auto'}}/>
+            </Button>
+                    
+            <Drawer anchor={"top"} open={open} onClose={handleClose}>
+                        
+              <MenuItem sx={{alignContent:'center' ,backgroundColor:'#092A23', p:2}}>
+                
+                <ListItemText style={{textAlign:'center', color:'white'}}>
+                   Info
+                </ListItemText> 
+                                      
+              </MenuItem>
+                                
+              <MenuItem sx={{alignContent:'center',backgroundColor:'#092A23', p:2}}>
                   <ListItemText style={{textAlign:'center', color: 'white'}}>
                   Om oss
                   </ListItemText>
               </MenuItem>
-              <MenuItem sx={{alignContent:'center',backgroundColor:'#092A23'}}>
+              <MenuItem sx={{alignContent:'center',backgroundColor:'#092A23', p:2}}>
                   <ListItemText style={{textAlign:'center', color: 'white'}}>
                   Hejhej
                   </ListItemText>
               </MenuItem>
-          </Drawer>
-        
-   
- </Box>
-
-</Toolbar>
-
-</AppBar>
-</Box>
-</ThemeProvider>
-
+            </Drawer>
+         </Box>
+        </Toolbar>
+      </AppBar>
+    </Box>
+  </ThemeProvider>
   );
 };

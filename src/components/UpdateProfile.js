@@ -7,6 +7,7 @@ import theme from '../contexts/Theme';
 import Card from '@mui/material/Card';
 import { Person, Password } from '@mui/icons-material';
 import { db } from '../firebase'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 
 export default function UpdateProfile() {
@@ -69,6 +70,9 @@ export default function UpdateProfile() {
   return (
     <>
     <ThemeProvider theme={theme}>
+        <Button component={Link} to="/profile" sx={{padding:0, mt:2}}>
+          <ArrowBackIosIcon/>
+        </Button>
         <Card sx={{ minWidth: 270, mt: '10vh', ml:1, mr:1}} elevation={0}>
             <CardContent>
                 <h2 className='text-center mb-4'>Uppdatera profil</h2>
@@ -113,7 +117,7 @@ export default function UpdateProfile() {
 
                     <FormGroup id="name" >
                         <FormControl sx={{flexDirection:'row', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
-                            <TextField variant="standard" label="Förnamn" type='name' inputRef={firstRef} placeholder='Efternamn'
+                            <TextField variant="standard" label="Förnamn" type='name' inputRef={firstRef} placeholder='För'
                             sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }} InputProps={{
                                 startAdornment:(
                                     <InputAdornment position='start'>
