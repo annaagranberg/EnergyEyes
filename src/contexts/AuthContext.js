@@ -15,9 +15,9 @@ export function AuthProvider({ children }) {
 
     function signup(email, password){
         
-        // db.collection("user_collection").doc(setCurrentUser.uid).set({
-        //     email: {email},
-        //     password: {password}
+        // db.collection("user_collection").doc("hej").set({
+        //     email: email,
+        //     password: password
         // })
         // .then((docRef) => {
         //     console.log("Document written with ID: ", docRef.id);
@@ -95,6 +95,23 @@ export function AuthProvider({ children }) {
         }
     }
 
+    async function setNewUser(fname,lname, area, people, profiltyp, dusch, kok, disk, tvatt){
+        try {
+            await db.collection("user_collection").doc(currentUser.uid).set({
+                name: { firstname: fname, lastname: lname },
+                boendeyta: area,
+                antalPersoner: people,
+                profiltyp: profiltyp,
+                duschparametrar: dusch[0],
+                kokparametrar: {antal: kok},
+                diskparametrar: {antal: disk},
+                tvattparametrar: {antal: tvatt},
+            })
+        } catch (error) {
+            console.error("Error adding document: ", error)
+        }
+    }
+
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
@@ -116,7 +133,8 @@ export function AuthProvider({ children }) {
         updateArea,
         updatePeople,
         updateProfil,
-        updatePassword
+        updatePassword,
+        setNewUser,
     }
 
   return (

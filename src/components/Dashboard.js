@@ -1,13 +1,17 @@
 import React, {useState} from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
-import { CardContent, Alert, Button, CardHeader, Avatar, ThemeProvider, Typography, Slider } from '@mui/material'
+import { CardContent, Alert, Button, CardHeader, Avatar, ThemeProvider, Typography, Slider, ToggleButtonGroup, ToggleButton } from '@mui/material'
 import Card from '@mui/material/Card';
 //import { auth } from '../firebase'
 import theme from '../contexts/Theme';
 import Box from '@mui/material/Box';
 import { db } from '../firebase'
 import BottomBar from './BottomBar'
+import NaturePeopleIcon from '@mui/icons-material/NaturePeople';
+import MoneyIcon from '@mui/icons-material/Money';
+import SearchIcon from '@mui/icons-material/Search';
+import Topbar from './Topbar';
 
 export default function Dashboard() {
 
@@ -21,7 +25,7 @@ export default function Dashboard() {
     const [profil, setProfil] = useState("")
     const {updateProfil} = useAuth();
 
-      function stringAvatar(name) {
+    function stringAvatar(name) {
         return {
           sx: {
             bgcolor: '#D9B44A',
@@ -31,7 +35,11 @@ export default function Dashboard() {
           },
           children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
         };
-      }
+    }
+    
+      const handleProfil = (event, newProfil) => {
+        setProfil(newProfil);
+    };
     
     const marks = [
     {
@@ -46,11 +54,11 @@ export default function Dashboard() {
         label: 'Miljö',
     }]
 
-    const handleProfil = (event) => {
-        var s = marks[event.target.value / 50].label
-        setProfil(s);
-        updateProfil(s)
-    };
+    // const handleProfil = (event) => {
+    //     var s = marks[event.target.value / 50].label
+    //     setProfil(s);
+    //     updateProfil(s)
+    // };
     
     async function handleLogout(){
         setError('')
@@ -72,7 +80,6 @@ export default function Dashboard() {
             setLname(doc.get("name.lastname"))
             setPeople(doc.get("antalPersoner"))
             setArea(doc.get("boendeyta"))
-            setProfil(doc.get("profiltyp"))
         } else {
             console.log("No such document!");
         }
@@ -82,9 +89,15 @@ export default function Dashboard() {
 
   return (
     <>
+
+    <Box sx={{position: 'fixed', top: 0, left: 0, right: 0 }}>
+                <Topbar sx={{width:'100%'}}/>
+    </Box>
+
     <ThemeProvider theme={theme}>
-        <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll', mb:7}}>
-            <Card sx={{ minWidth: 270, mt: '5vh' }} elevation={0}>
+    
+        <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll'}}>
+            <Card sx={{ minWidth: 270 }} elevation={0}>
                 <CardContent>
                     {error && <Alert varient = "danger">{error}</Alert> }
 
@@ -98,7 +111,7 @@ export default function Dashboard() {
 
             <Card sx={{ /*display: 'flex',*/ borderRadius:0}} elevation={0}>
                 <Box  sx={{ display: 'flex', flexDirection: 'column', width:'100%', overflowY:'scroll'}}>
-                    <CardHeader sx={{ height:'15vh', bgcolor:'#092A23'}}>
+                    <CardHeader sx={{ height:'18vh', bgcolor:'#092A23'}}>
 
                     </CardHeader>
 
@@ -144,17 +157,27 @@ export default function Dashboard() {
                         </Card>
                     </Box>
 
-                    <Box sx={{ width: '80%', m:2 }}>
-                        <Slider
-                            aria-label="Custom marks"
-                            defaultValue={50}
-                            step={50}
-                            track={false}
-                            valueLabelDisplay="off"
-                            marks={marks}
+                    <ToggleButtonGroup 
+                            value={profil}
+                            exclusive
                             onChange={handleProfil}
-                        />
-                    </Box>
+                            //width='100%'
+                            sx={{mt: 3, ml:'auto', mr:'auto', width:'100%', justifyContent:'center'}}
+                            >
+                                <ToggleButton value="Miljö" >
+                                    <NaturePeopleIcon/>
+                                    Miljö
+                                </ToggleButton>
+                                <ToggleButton value="Sparsam">
+                                    <MoneyIcon/>
+                                    Sparsam
+                                </ToggleButton>
+                                <ToggleButton value="Nyfiken">
+                                    <SearchIcon/>
+                                    Nyfiken
+                                </ToggleButton>
+
+                    </ToggleButtonGroup>
                 </Box>
 
             
