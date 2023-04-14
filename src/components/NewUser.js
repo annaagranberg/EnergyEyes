@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
 import { CardContent, FormControl, FormGroup, ThemeProvider, 
-    Button, Alert, TextField, InputAdornment, Typography, Select, MenuItem, InputLabel, ToggleButtonGroup, ToggleButton, FormControlLabel, FormLabel, Box } from '@mui/material'
+    Button, Alert, TextField, InputAdornment, Typography, Select, MenuItem, InputLabel, ToggleButtonGroup, ToggleButton, FormControlLabel, FormLabel, Box, Stack, Pagination } from '@mui/material'
 import theme from '../contexts/Theme';
 import Card from '@mui/material/Card';
 import { Person, Password, Nat } from '@mui/icons-material';
@@ -14,13 +14,14 @@ import SearchIcon from '@mui/icons-material/Search';
 export default function NewUser() {
     const firstRef = useRef()
     const lastRef = useRef()
-    const { currentUser, updateName, updateArea, updatePeople } = useAuth()
+    const { currentUser, updateName, updateArea, updatePeople, setNewUser } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     const [area, setArea] = useState('');
     const [people, setPeople] = useState('');
     const [profil, setProfil] = useState('');
+    const [dusch, setDusch] = useState([{antal:0, tid:0}]);
 
 
     const handleArea = (event) => {
@@ -32,30 +33,47 @@ export default function NewUser() {
     const handleProfil = (event, newProfil) => {
         setProfil(newProfil);
     };
+    const handleDuschAntal = (event, value) => {
+        let index=0
+        let newVal=dusch[index]
+        newVal["antal"]=value;
+        dusch[index]=newVal;
+        setDusch([...dusch])
+        console.log(dusch)
+    };
+    const handleDuschTid = (event, value) => {
+        let index=0
+        let newVal=dusch[index]
+        newVal["tid"]=value;
+        dusch[index]=newVal;
+        setDusch([...dusch])
 
-    function handleSubmit(e){
+        console.log(dusch)
+    };
+
+    async function handleSubmit(e){
         e.preventDefault()
 
         const promises = []
         setLoading(true)
         setError('')
 
-        if(area !== '' && people !== ''){
-            promises.push(updateArea(area))
-            promises.push(updatePeople(people))
+        if(area === '' && people === ''){
+            return setError("Area not bra")
         }
 
-        if(typeof firstRef.current.value === 'string' && typeof lastRef.current.value === 'string'){
-            promises.push(updateName(firstRef.current.value, lastRef.current.value ))
+        if(typeof firstRef.current.value !== 'string' && typeof lastRef.current.value !== 'string'){
+            return setError("Not a name")
         }
 
-        Promise.all(promises).then(() => {
+        try{
+            setError('')
+            setLoading(true)
+            await setNewUser(firstRef.current.value,lastRef.current.value,area,people,profil, dusch, 1, 1,1);
             navigate('/profile')
-        }).catch(() => {
-            setError('Failed to set account')
-        }).finally(() => {
-            setLoading(false)
-        })
+        } catch{
+            setError("Failed to create an account")
+        }
     }
 
   return (
@@ -145,8 +163,19 @@ export default function NewUser() {
                                     <SearchIcon/>
                                     Nyfiken
                                 </ToggleButton>
-
                     </ToggleButtonGroup>
+
+                    <Box>
+                        <Stack>
+                            <FormLabel required>Antal duschar i veckan:</FormLabel>
+                            <Pagination sx={{ml:'auto', mr:'auto', mb:2, alignContent:'space-between'}} size='large' count={10} siblingCount={0} onChange={handleDuschAntal} />
+                        </Stack>
+                        <Stack>
+                            <FormLabel required>Tid i dusch: :</FormLabel>
+                            <Pagination sx={{ml:'auto', mr:'auto', mb:2, alignContent:'space-between'}} size='large' count={10} siblingCount={0} onChange={handleDuschTid} />
+                        </Stack>
+                    </Box>
+
 
                     <Button disabled = {loading} variant="contained" type='submit' sx={{width:'100%'}}>Ställ in</Button>
                 </form>

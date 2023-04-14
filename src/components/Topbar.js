@@ -47,7 +47,7 @@ export default function Topbar() {
                     
             <Drawer anchor={"top"} open={open} onClose={handleClose}>
                         
-              <MenuItem sx={{alignContent:'center' ,backgroundColor:'#092A23'}}>
+              <MenuItem sx={{alignContent:'center' ,backgroundColor:'#092A23', p:2}}>
                 
                 <ListItemText style={{textAlign:'center', color:'white'}}>
                    Info
@@ -55,18 +55,18 @@ export default function Topbar() {
                                       
               </MenuItem>
                                 
-              <MenuItem sx={{alignContent:'center',backgroundColor:'#092A23'}}>
+              <MenuItem sx={{alignContent:'center',backgroundColor:'#092A23', p:2}}>
                   <ListItemText style={{textAlign:'center', color: 'white'}}>
                   Om oss
                   </ListItemText>
               </MenuItem>
-              <MenuItem sx={{alignContent:'center',backgroundColor:'#092A23'}}>
+              <MenuItem sx={{alignContent:'center',backgroundColor:'#092A23', p:2}}>
                   <ListItemText style={{textAlign:'center', color: 'white'}}>
                   Hejhej
                   </ListItemText>
               </MenuItem>
             </Drawer>
- ¨        </Box>
+         </Box>
         </Toolbar>
       </AppBar>
     </Box>
