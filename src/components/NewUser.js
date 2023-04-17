@@ -14,41 +14,33 @@ import SearchIcon from '@mui/icons-material/Search';
 export default function NewUser() {
     const firstRef = useRef()
     const lastRef = useRef()
+    const area = useRef()
     const { currentUser, updateName, updateArea, updatePeople, setNewUser } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
-    const [area, setArea] = useState('');
     const [people, setPeople] = useState('');
     const [profil, setProfil] = useState('');
+    const [tvatt, setTvatt] = useState('');
+    const [disk, setDisk] = useState('');
+    const [kok, setKok] = useState('');
     const [dusch, setDusch] = useState([{antal:0, tid:0}]);
 
-
-    const handleArea = (event) => {
-        setArea(event.target.value);
-    };
     const handlePeople = (event) => {;
         setPeople(event.target.value);
     };
     const handleProfil = (event, newProfil) => {
         setProfil(newProfil);
     };
-    const handleDuschAntal = (event, value) => {
-        let index=0
-        let newVal=dusch[index]
-        newVal["antal"]=value;
-        dusch[index]=newVal;
-        setDusch([...dusch])
-        console.log(dusch)
+    const handleKokAntal = (event, value) => {
+        setKok(value)
     };
-    const handleDuschTid = (event, value) => {
-        let index=0
-        let newVal=dusch[index]
-        newVal["tid"]=value;
-        dusch[index]=newVal;
-        setDusch([...dusch])
-
-        console.log(dusch)
+    const handleDiskAntal = (event, value) => {
+        setDisk(value)
+        console.log(value)
+    };
+    const handleTvattAntal = (event, value) => {
+        setTvatt(value)
     };
 
     async function handleSubmit(e){
@@ -79,7 +71,7 @@ export default function NewUser() {
   return (
     <>
     <ThemeProvider theme={theme}>
-        <Card sx={{ minWidth: 270, mt: '10vh', ml:1, mr:1, pl: 2, pr: 2}} elevation={0}>
+        <Card sx={{ minWidth: 270, mt: '10vh', ml:1, mr:1, mb:0, pl: 2, pr: 2}} elevation={0}>
             <CardContent>
                 <h1 className='text-center mb-4'>Inställningar</h1>
                 {error && <Alert sx= {{mb:3}} severity = "error">{error}</Alert> }
@@ -108,41 +100,32 @@ export default function NewUser() {
                         </FormControl>
                     </FormGroup>
 
-                    <FormGroup id="homesettings" sx={{flexDirection:'column', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
-                        <FormControl fullWidth sx={{ mb:3 }} variant='standard'>
+                    <FormGroup id="homesettings" sx={{flexDirection:'row', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
+                        <FormControl variant='standard'  sx={{ mb:3, width:'49%', minWidth:'140px' }}>
                             <InputLabel id="antalpersoner">Hushåll</InputLabel>
                             <Select
                             labelId="antalpersoner"
                             id="antalpersoner"
                             value={people}
                             label="Hushåll"
-                            onChange={handlePeople}>
+                            onChange={handlePeople}
+                            >
                             <MenuItem value={1}>1 person</MenuItem>
                             <MenuItem value={2}>2 personer</MenuItem>
                             <MenuItem value={3}>3 personer</MenuItem>
                             <MenuItem value={4}>4 personer</MenuItem>
-                            <MenuItem value={5}>övrigt antal</MenuItem>
+                            <MenuItem value={5}>5 personer</MenuItem>
+                            <MenuItem value={6}>6 personer</MenuItem>
+                            <MenuItem value={7}>övrigt antal</MenuItem>
+
                             </Select>
                         </FormControl>
-                        <FormControl fullWidth sx={{ mb:3 }} variant='standard'>
-                            <InputLabel id="yta">Yta</InputLabel>
-                            <Select
-                            //labelId="yta"
-                            id="yta"
-                            value={area}
-                            label="Yta"
-                            onChange={handleArea}>
-                            <MenuItem  value={15}>15-20 kvm</MenuItem>
-                            <MenuItem value={20}>20-25 kvm</MenuItem>
-                            <MenuItem value={25}>25-30 kvm</MenuItem>
-                            <MenuItem value={30}>30-40 kvm</MenuItem>
-                            <MenuItem value={40}>40-100 kvm</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <FormControl>
-                            
-                        </FormControl>                   
+                        <FormControl  variant='standard' sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }}>
+                            <TextField variant="standard" label="Area" type='number' inputRef={area} placeholder='Area'
+                            InputProps={{ inputProps: { min: 10, max: 200 } }} />
+                        </FormControl>                  
                     </FormGroup>
+
                     <FormLabel required>Profiltyp</FormLabel>
                     <ToggleButtonGroup 
                             value={profil}
@@ -165,14 +148,30 @@ export default function NewUser() {
                                 </ToggleButton>
                     </ToggleButtonGroup>
 
+                    <FormLabel>Dusch</FormLabel>
+                    <FormGroup id="name" >
+                        <FormControl sx={{flexDirection:'row', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
+                            <TextField variant="standard" label="Antal" type='number' placeholder='Antal i veckan'
+                            InputProps={{ inputProps: { min: 1, max: 15 } }}
+                            sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }}/>
+                            <TextField variant="standard" label="Tid" type='number' placeholder= 'Tid i dusch'
+                            InputProps={{ inputProps: { min: 1, max: 60 } }}
+                            sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }}/>
+                        </FormControl>
+                    </FormGroup>
+
                     <Box>
                         <Stack>
-                            <FormLabel required>Antal duschar i veckan:</FormLabel>
-                            <Pagination sx={{ml:'auto', mr:'auto', mb:2, alignContent:'space-between'}} size='large' count={10} siblingCount={0} onChange={handleDuschAntal} />
+                            <FormLabel required>Hur ofta i veckan lagar du mat?</FormLabel>
+                            <Pagination sx={{ml:'auto', mr:'auto', mb:2, alignContent:'space-between'}} size='large' count={10} siblingCount={0} onChange={handleKokAntal} />
                         </Stack>
                         <Stack>
-                            <FormLabel required>Tid i dusch: :</FormLabel>
-                            <Pagination sx={{ml:'auto', mr:'auto', mb:2, alignContent:'space-between'}} size='large' count={10} siblingCount={0} onChange={handleDuschTid} />
+                            <FormLabel required>Hur ofta i veckan diskar du?</FormLabel>
+                            <Pagination sx={{ml:'auto', mr:'auto', mb:2, alignContent:'space-between'}} size='large' count={10} siblingCount={0} onChange={handleDiskAntal} />
+                        </Stack>
+                        <Stack>
+                            <FormLabel required>Hur många gånger i månaden tvättar du?</FormLabel>
+                            <Pagination sx={{ml:'auto', mr:'auto', mb:2, alignContent:'space-between'}} size='large' count={15} siblingCount={0} onChange={handleTvattAntal}  />
                         </Stack>
                     </Box>
 
