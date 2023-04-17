@@ -15,7 +15,9 @@ export default function NewUser() {
     const firstRef = useRef()
     const lastRef = useRef()
     const area = useRef()
-    const { currentUser, updateName, updateArea, updatePeople, setNewUser } = useAuth()
+    const duschAntal = useRef()
+    const duschTid = useRef()
+    const { setNewUser } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
@@ -24,7 +26,6 @@ export default function NewUser() {
     const [tvatt, setTvatt] = useState('');
     const [disk, setDisk] = useState('');
     const [kok, setKok] = useState('');
-    const [dusch, setDusch] = useState([{antal:0, tid:0}]);
 
     const handlePeople = (event) => {;
         setPeople(event.target.value);
@@ -37,7 +38,7 @@ export default function NewUser() {
     };
     const handleDiskAntal = (event, value) => {
         setDisk(value)
-        console.log(value)
+        console.log(duschAntal.current.value)
     };
     const handleTvattAntal = (event, value) => {
         setTvatt(value)
@@ -46,22 +47,29 @@ export default function NewUser() {
     async function handleSubmit(e){
         e.preventDefault()
 
-        const promises = []
         setLoading(true)
         setError('')
 
         if(area === '' && people === ''){
-            return setError("Area not bra")
+            return setError("Field can't be empty")
+        }
+
+        if(!isNaN(area) && !isNaN(duschAntal) && !isNaN(duschTid)){
+            return setError("Not a valid number")
         }
 
         if(typeof firstRef.current.value !== 'string' && typeof lastRef.current.value !== 'string'){
             return setError("Not a name")
         }
+        if(profil === ''){
+            return setError("Please set a profiltyp")
+        }
 
         try{
             setError('')
             setLoading(true)
-            await setNewUser(firstRef.current.value,lastRef.current.value,area,people,profil, dusch, 1, 1,1);
+            await setNewUser(firstRef.current.value, lastRef.current.value, area.current.value ,people,profil, duschAntal.current.value
+                , duschTid.current.value, kok, disk, tvatt);
             navigate('/profile')
         } catch{
             setError("Failed to create an account")
@@ -101,7 +109,7 @@ export default function NewUser() {
                     </FormGroup>
 
                     <FormGroup id="homesettings" sx={{flexDirection:'row', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
-                        <FormControl variant='standard'  sx={{ mb:3, width:'49%', minWidth:'140px' }}>
+                        <FormControl variant='standard'  sx={{ mb:3, width:'49%', maxWidth:'50%', minWidth:'140px' }}>
                             <InputLabel id="antalpersoner">Hushåll</InputLabel>
                             <Select
                             labelId="antalpersoner"
@@ -120,13 +128,13 @@ export default function NewUser() {
 
                             </Select>
                         </FormControl>
-                        <FormControl  variant='standard' sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }}>
+                        <FormControl  variant='standard' sx={{ mb:3, width:'49%', maxWidth:'50%', minWidth:'140px' }}>
                             <TextField variant="standard" label="Area" type='number' inputRef={area} placeholder='Area'
                             InputProps={{ inputProps: { min: 10, max: 200 } }} />
                         </FormControl>                  
                     </FormGroup>
 
-                    <FormLabel required>Profiltyp</FormLabel>
+                    <FormLabel sx={{mb:1}} required>Profiltyp</FormLabel>
                     <ToggleButtonGroup 
                             value={profil}
                             exclusive
@@ -148,33 +156,33 @@ export default function NewUser() {
                                 </ToggleButton>
                     </ToggleButtonGroup>
 
-                    <FormLabel>Dusch</FormLabel>
+                    <FormLabel sx={{mb:1}}>Dusch</FormLabel>
                     <FormGroup id="name" >
                         <FormControl sx={{flexDirection:'row', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
-                            <TextField variant="standard" label="Antal" type='number' placeholder='Antal i veckan'
-                            InputProps={{ inputProps: { min: 1, max: 15 } }}
-                            sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }}/>
-                            <TextField variant="standard" label="Tid" type='number' placeholder= 'Tid i dusch'
+                            <TextField variant="standard" label="Antal i veckan" type='number' placeholder='Antal i veckan' inputRef={duschAntal} 
+                            sx={{width:'49%',maxWidth:'100%', minWidth:'140px'}}
+                            InputProps={{ inputProps: { min: 1, max: 15 } }}/>
+
+                            <TextField variant="standard" label="Tid per dusch" type='number' placeholder= 'Tid per dusch'  inputRef={duschTid}
                             InputProps={{ inputProps: { min: 1, max: 60 } }}
-                            sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }}/>
+                            sx={{ mb:3, width: '49%',maxWidth:'100%', minWidth:'140px' }}/>
                         </FormControl>
                     </FormGroup>
 
                     <Box>
                         <Stack>
-                            <FormLabel required>Hur ofta i veckan lagar du mat?</FormLabel>
-                            <Pagination sx={{ml:'auto', mr:'auto', mb:2, alignContent:'space-between'}} size='large' count={10} siblingCount={0} onChange={handleKokAntal} />
+                            <FormLabel sx={{mb:1}} required>Hur ofta i veckan lagar du mat?</FormLabel>
+                            <Pagination sx={{ml:'auto', mr:'auto', mb:3, alignContent:'space-between'}}  count={10} siblingCount={0} onChange={handleKokAntal} />
                         </Stack>
                         <Stack>
-                            <FormLabel required>Hur ofta i veckan diskar du?</FormLabel>
-                            <Pagination sx={{ml:'auto', mr:'auto', mb:2, alignContent:'space-between'}} size='large' count={10} siblingCount={0} onChange={handleDiskAntal} />
+                            <FormLabel sx={{mb:1}} required>Hur ofta i veckan diskar du?</FormLabel>
+                            <Pagination sx={{ml:'auto', mr:'auto', mb:3, alignContent:'space-between'}}  count={10} siblingCount={0} onChange={handleDiskAntal} />
                         </Stack>
                         <Stack>
-                            <FormLabel required>Hur många gånger i månaden tvättar du?</FormLabel>
-                            <Pagination sx={{ml:'auto', mr:'auto', mb:2, alignContent:'space-between'}} size='large' count={15} siblingCount={0} onChange={handleTvattAntal}  />
+                            <FormLabel sx={{mb:1}} required>Hur många gånger i månaden tvättar du?</FormLabel>
+                            <Pagination sx={{ml:'auto', mr:'auto', mb:3, alignContent:'space-between'}} count={15} siblingCount={0} onChange={handleTvattAntal}  />
                         </Stack>
                     </Box>
-
 
                     <Button disabled = {loading} variant="contained" type='submit' sx={{width:'100%'}}>Ställ in</Button>
                 </form>

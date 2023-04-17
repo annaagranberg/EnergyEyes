@@ -95,14 +95,14 @@ export function AuthProvider({ children }) {
         }
     }
 
-    async function setNewUser(fname,lname, area, people, profiltyp, dusch, kok, disk, tvatt){
+    async function setNewUser(fname,lname, area, people, profiltyp, duschAntal, duschTid, kok, disk, tvatt){
         try {
             await db.collection("user_collection").doc(currentUser.uid).set({
                 name: { firstname: fname, lastname: lname },
                 boendeyta: area,
                 antalPersoner: people,
                 profiltyp: profiltyp,
-                duschparametrar: dusch[0],
+                duschparametrar: {antal: duschAntal, tid: duschTid},
                 kokparametrar: {antal: kok},
                 diskparametrar: {antal: disk},
                 tvattparametrar: {antal: tvatt},

@@ -18,12 +18,16 @@ export default function Dashboard() {
     const [error, setError] = useState("")
     const { currentUser, logout } = useAuth();
     const navigate = useNavigate();
+
     const [fname, setFname] = useState("")
     const [lname, setLname] = useState("")
     const [people, setPeople] = useState("")
     const [area, setArea] = useState("")
     const [profil, setProfil] = useState("")
-    const {updateProfil} = useAuth();
+    const [dusch, setDusch] = useState([])
+    const [disk, setDisk] = useState("")
+    const [kok, setKok] = useState("")
+    const [tvatt, setTvatt] = useState("")
 
     function stringAvatar(name) {
         return {
@@ -80,6 +84,11 @@ export default function Dashboard() {
             setLname(doc.get("name.lastname"))
             setPeople(doc.get("antalPersoner"))
             setArea(doc.get("boendeyta"))
+            setProfil(doc.get("profiltyp"))
+            setDusch(doc.get("duschparametrar"))
+            setDisk(doc.get("diskparametrar.antal"))
+            setKok(doc.get("kokparametrar.antal"))
+            setTvatt(doc.get("tvattparametrar.antal"))
         } else {
             console.log("No such document!");
         }
@@ -119,10 +128,6 @@ export default function Dashboard() {
                         <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent:'space-around', width:'90%', ml:'auto', mr:'auto', mt:-5}}>
                             <Avatar {...stringAvatar(fname + " " + lname)} />
 
-                            {/* <Typography component='div' variant='h5' sx={{display: { xs: 'none', sm: 'block' }}}>
-                                {fname + " " +lname}
-                            </Typography > */}
-
                             <Link to='/update-profile' style={{textDecoration:'none'}}>
                                 <Button variant='contained' sx={{borderRadius: 2}}>
                                     Ändra
@@ -134,25 +139,40 @@ export default function Dashboard() {
                 
                 <Box sx={{width:'90%', ml:'auto', mr:'auto' }} display='flex' flexDirection="column" alignItems='center'>
                     <Box display='flex' flexDirection='row' justifyContent='space-between' sx={{width:'95%', mb:2}}>
-                        <Card variant='outlined' sx={{border:'3px solid #ACD0C0', textAlign:'center', borderRadius:2, width:'30%'}}>
-                            {fname}
+                        <Card variant='outlined' sx={{border:'3px solid #ACD0C0', textAlign:'center',  borderRadius: 3, width:'30%'}}>
+                            <Typography variant='h6' >{fname} {lname}</Typography>
                         </Card>
-                        <Card variant='outlined' sx={{border:'3px solid #ACD0C0', textAlign:'center', borderRadius:2, width:'30%'}}>
-                            {area} kvm
+                        <Card variant='outlined' component='div' sx={{border:'3px solid #ACD0C0', textAlign:'center', borderRadius: 3, width:'30%'}}>
+                            <Typography variant='h6'>{area} kvm</Typography>
                         </Card>
-                        <Card variant='outlined' sx={{border:'3px solid #ACD0C0', textAlign:'center', borderRadius:2, width:'30%'}}>
-                            {people}
+                        <Card variant='outlined' sx={{border:'3px solid #ACD0C0', textAlign:'center', borderRadius: 3, width:'30%'}}>
+                            <Typography variant='h6'>{people} i bostad</Typography>
                         </Card>
                     </Box>
-                    <Box sx={{width:'100%'}} flexDirection='column' display='flex' justifyContent='space-evenly' alignItems='center'>
-                        <Card variant='outlined' sx={{border:'3px solid #ACD0C0', textAlign:'left', width:'95%', borderRadius:2}}>
+
+                    <Box sx={{width:'95%',  border:'3px solid #ACD0C0', borderRadius: 3 }} flexWrap='wrap' flexDirection='row' display='flex' alignItems='center'>
+                        <Card  sx={{ textAlign:'left', width:'45%', m:1}} elevation={0}>
                             <CardContent>
-                                <Typography variant='h5'>
-                                    Hej
-                                </Typography>
-                                <Typography>
-                                    Hej
-                                </Typography>
+                                <Box sx={{mb:2}}>
+                                    <Typography variant='h6' fontWeight ='520' >Dusch: {dusch['tid']} min</Typography>
+                                    <Typography  variant='h8' >per dusch</Typography>
+                                </Box>
+                                <Box>
+                                    <Typography variant='h6' fontWeight ='520'  >Diskning: {disk}</Typography>
+                                    <Typography variant='h8' >i veckan</Typography>
+                                </Box>
+                            </CardContent>
+                        </Card>
+                        <Card  sx={{ textAlign:'left', width:'45%', m:1}} elevation={0} >
+                            <CardContent>
+                                <Box sx={{mb:2}}>
+                                    <Typography variant='h6' fontWeight ='520' >Spis: {kok}</Typography>
+                                    <Typography variant='h8' >i veckan</Typography>
+                                </Box>
+                                <Box>
+                                    <Typography variant='h6' fontWeight ='520' >Tvättar: {tvatt}</Typography>
+                                    <Typography variant='h8' >i månaden</Typography>
+                                </Box>
                             </CardContent>
                         </Card>
                     </Box>
@@ -161,8 +181,7 @@ export default function Dashboard() {
                             value={profil}
                             exclusive
                             onChange={handleProfil}
-                            //width='100%'
-                            sx={{mt: 3, ml:'auto', mr:'auto', width:'100%', justifyContent:'center'}}
+                            sx={{mt: 3, width:'100%',ml:'auto', mr:'auto', justifyItems:'stretch' }}
                             >
                                 <ToggleButton value="Miljö" >
                                     <NaturePeopleIcon/>
@@ -176,17 +195,15 @@ export default function Dashboard() {
                                     <SearchIcon/>
                                     Nyfiken
                                 </ToggleButton>
-
                     </ToggleButtonGroup>
                 </Box>
 
             
 
                 <div className='w-100 text-center mt-2'>
-                    <Button variant="contained" onClick={handleLogout} sx={{borderRadius:2, pl:5,pr:5, mt:1, mb:1}}>  
+                    <Button variant="contained" onClick={handleLogout} sx={{borderRadius:2, pl:5,pr:5, mt:1, mb:3}}>  
                         Logga ut
                     </Button>
-                    
                 </div>
                 
         </Card>
