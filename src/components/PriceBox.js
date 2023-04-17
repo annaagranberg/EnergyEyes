@@ -4,7 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Price from './Price';
-import TestGraphs from './TestGraphs';
+//import TestGraphs from './TestGraphs';
 
 export default function FactBox() {
   return (
