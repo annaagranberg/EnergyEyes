@@ -75,6 +75,5 @@ export default function Topbar() {
 </AppBar>
 </Box>
 </ThemeProvider>
-
   );
 };
