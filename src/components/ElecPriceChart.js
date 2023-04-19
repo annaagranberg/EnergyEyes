@@ -6,11 +6,17 @@ import { VictoryArea, VictoryChart, VictoryLine, VictoryScatter, VictoryAxis,  }
 function ElecPriceChart() {
     const [data, setData] = useState([]);
   
+    // Updates todays date and concatinate the adress to get a JSON file for the electric price of the day
     useEffect(() => {
       async function fetchData() {
-        const response = await fetch('https://www.elprisetjustnu.se/api/v1/prices/2023/04-14_SE3.json');
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const endpoint = `https://www.elprisetjustnu.se/api/v1/prices/${year}/${month}-${day}_SE3.json`;
+        const response = await fetch(endpoint);
         const jsonData = await response.json();
-  
+    
         // Format data as an array of { x, y } objects
         const formattedData = jsonData.map((item) => ({
           x: new Date(item.time_start).getTime(),
@@ -19,10 +25,12 @@ function ElecPriceChart() {
         
         setData(formattedData);
       }
-  
+    
       fetchData();
     }, []);
+    
 
+    // Plottining tha values in a Vicotry graph
     return (
       <VictoryChart>
         <VictoryAxis
@@ -30,13 +38,13 @@ function ElecPriceChart() {
           tickFormat = {["06:00", "12:00", "18:00", "00:00"]}
           style = {{
             grid: { stroke: "grey", strokeDasharray: "4" },
-            tickLabels: { fontSize: 8, padding: 5 }
+            tickLabels: { fontSize: 16, padding: 5 }
           }}
         />
       <VictoryAxis dependentAxis
         style = {{
           grid: { stroke: "grey", strokeDasharray: "4" },
-          tickLabels: { fontSize: 8, padding: 5 }
+          tickLabels: { fontSize: 16, padding: 5 }
         }}
           />
       <VictoryLine 
