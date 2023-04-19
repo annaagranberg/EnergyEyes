@@ -18,8 +18,8 @@ export default function Home() {
         <Topbar sx={{width:'100%'}} />
       </Box>
       <Box sx={{overflowX:'hidden', overflowY:'scroll',  mt: '10vh' }}>
-          <FactBox/>
-          <PriceBox/>
+          <TypeBox value={5} type="curious" />
+          <FactBox/> 
       </Box>
       <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}>
             <BottomBar sx={{ width: '100%' }} />
