@@ -3,10 +3,13 @@ import React from 'react'
 import BottomBar from './BottomBar'
 import Topbar from './Topbar'
 import Progressbar from './ProgressBar'
+import NewData from './NewData'
 import PriceBox from './PriceBox'
 import PieBox from './PieBox'
 import WeekBox from './WeekBox'
 import ElecPriceChart from './ElecPriceChart'
+
+
 
 
 //<Progressbar spendingAmount={70} total={100} goalAmount={80} timeUnit='dag' />
@@ -16,7 +19,7 @@ import ElecPriceChart from './ElecPriceChart'
 export default function Stat() {
   return (
     <>
-
+    <NewData/>
     <Box sx={{position: 'fixed', top: 0, left: 0, right: 0, }}>
         <Topbar sx={{width:'100%'}} />
     </Box>
