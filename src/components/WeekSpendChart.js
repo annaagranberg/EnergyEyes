@@ -37,17 +37,23 @@ function WeekSpendChart() {
                     tickLabels: {fontSize: 25}
                 }}
             />
+
             <VictoryBar
-                data={sampleData}
-                x="days"
-                y="spendings"
-                style={{
+                    data={sampleData.map(({ days, spendings }) => ({
+                    days,
+                    spendings,
+                    color: spendings > 15000 ? "#D9B44A" : "#125447"
+                    }))}
+                    x="days"
+                    y="spendings"
+                    style={{
                     data: {
-                        fill: "#D9B44A" // set the fill color to orange
+                        fill: (d) => d.datum.color,
+                        width: 20 // Increase the width of the bars for better visibility
                     }
-                }}
-            />
-        </VictoryChart>
+                    }}
+                />
+                </VictoryChart>
     )
 }
 

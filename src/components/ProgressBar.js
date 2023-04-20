@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // Create the container
 const Container = styled.div`
   border-radius: 12px;
-  border: 2px solid #ACD0C0 ;
+  border: 2px solid gray ;
   height: 80vh;
   max-height: 250pt;
   width: 60px;
