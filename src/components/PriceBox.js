@@ -10,10 +10,10 @@ export default function PriceBox() {
 
     <Box sx={{width:'100%'}} flexDirection='column' display='flex' justifyContent='space-evenly' alignItems='center'>
     <Card variant='outlined' sx={{boxShadow: '1px 1px 7px grey', textAlign:'left', width:'95%', borderRadius:2}}>
-            <Typography variant='h5'>
+        <Typography variant='h5' ml='1'>
               Elpris
-            </Typography>
-              <ElecPriceChart />
+         </Typography>
+         <ElecPriceChart />
     </Card>
     </Box>
   );

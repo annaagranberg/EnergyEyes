@@ -32,7 +32,7 @@ function ElecPriceChart() {
 
     // Plottining tha values in a Vicotry graph
     return (
-      <VictoryChart>
+      <VictoryChart height={250} width={500}>
         <VictoryAxis
           tickValues = {data.length > 0 ? [data[5].x, data[11].x, data[17].x, data[23].x] : []}
           tickFormat = {["06:00", "12:00", "18:00", "00:00"]}
@@ -41,7 +41,7 @@ function ElecPriceChart() {
             tickLabels: { fontSize: 16, padding: 5 }
           }}
         />
-      <VictoryAxis dependentAxis
+        <VictoryAxis dependentAxis
         style = {{
           grid: { stroke: "grey", strokeDasharray: "4" },
           tickLabels: { fontSize: 16, padding: 5 }

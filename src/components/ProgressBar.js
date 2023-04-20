@@ -4,9 +4,9 @@ import styled from 'styled-components';
 // Create the container
 const Container = styled.div`
   border-radius: 12px;
-  border: 2px solid gray ;
+  box-shadow: 1px 1px 7px grey;
   height: 80vh;
-  max-height: 250pt;
+  max-height: 254pt;
   width: 60px;
   overflow: hidden;
   position: relative;

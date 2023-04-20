@@ -15,9 +15,11 @@ function AppliancePie() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <VictoryPie
-        innerRadius={100}
+        innerRadius={70}
         colorScale={myColorScale}
         data={sampleData}
+        width={200}
+        height={150}
       />
       {/* <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', marginTop: '1rem' }}>
         {sampleData.map((datum, index) => (

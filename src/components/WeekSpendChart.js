@@ -19,7 +19,7 @@ function WeekSpendChart() {
             theme={VictoryTheme.material}
             domainPadding={20}
             height={400} 
-            width={600} 
+            width={600}
         >
             <VictoryAxis
                 tickValues={[1, 2, 3, 4, 5, 6, 7]}
