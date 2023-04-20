@@ -14,17 +14,6 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true)
 
     function signup(email, password){
-        
-        // db.collection("user_collection").doc("hej").set({
-        //     email: email,
-        //     password: password
-        // })
-        // .then((docRef) => {
-        //     console.log("Document written with ID: ", docRef.id);
-        // })
-        // .catch((error) => {
-        //     console.error("Error adding document: ", error);
-        // });
 
        return auth.createUserWithEmailAndPassword(email, password)
     }
