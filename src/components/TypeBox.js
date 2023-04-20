@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Plant from './Plant';
 import Money from './Money';
-import Badges from './Badges';
+import Curious from './Curious';
 
 // Calls on different component depending on which type is selected
 // export default function PlantBox({ value, type }) {
@@ -23,8 +23,8 @@ export default function TypeBox({ value, type }) {
     case 'money':
       Component = Money;
       break;
-    case 'badges':
-      Component = Badges;
+    case 'curious':
+      Component = Curious;
       break;
     default:
       Component = Plant;
@@ -33,20 +33,13 @@ export default function TypeBox({ value, type }) {
 
   const { src, text } = Component(value);
 
-if(type === "badges") {
-    return (
-      <Box sx={{height: '300px', width: '60%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center' }}>
-      </Box>
-      );
-}
-
 return (
-  <Box sx={{height: '300px', width: '60%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center' }}>
-    <Card variant="outlined" sx={{ border: '3px solid #ACD0C0', textAlign: 'left', width: '95%', borderRadius: 2, p: 0.5, height: 250 }}>
-      <CardMedia component="img" height="150" src={src} alt="flower" sx={{ objectFit: 'contain' }} />
-      <CardContent sx={{ p: 0.5 }}>
-        <Typography gutterBottom variant="h10" component="div" sx={{ textAlign: 'center', mt: 1 }}>
-          {text}
+  <Box sx={{height: '400px', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center' }}>
+    <Card variant="outlined" sx={{ boxShadow: '1px 1px 7px grey', textAlign: 'left', width: '95%', borderRadius: 2, p: 0.5, height: 350, backgroundColor: '#FEF5F0' }}>
+      <CardMedia component="img" height="250" src={src} alt="flower" sx={{ objectFit: 'contain' }} />
+      <CardContent sx={{ p: 0.5, mt: 4 }}>
+        <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'center' }}>
+        {text}
         </Typography>
       </CardContent>
     </Card>

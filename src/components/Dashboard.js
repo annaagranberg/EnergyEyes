@@ -12,18 +12,26 @@ import NaturePeopleIcon from '@mui/icons-material/NaturePeople';
 import MoneyIcon from '@mui/icons-material/Money';
 import SearchIcon from '@mui/icons-material/Search';
 import Topbar from './Topbar';
+import ShowerIcon from '@mui/icons-material/Shower';
+import WashIcon from '@mui/icons-material/Wash';
+import LocalLaundryServiceIcon from '@mui/icons-material/LocalLaundryService';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
 
 export default function Dashboard() {
 
     const [error, setError] = useState("")
     const { currentUser, logout } = useAuth();
     const navigate = useNavigate();
+
     const [fname, setFname] = useState("")
     const [lname, setLname] = useState("")
     const [people, setPeople] = useState("")
     const [area, setArea] = useState("")
     const [profil, setProfil] = useState("")
-    const {updateProfil} = useAuth();
+    const [dusch, setDusch] = useState([])
+    const [disk, setDisk] = useState("")
+    const [kok, setKok] = useState("")
+    const [tvatt, setTvatt] = useState("")
 
     function stringAvatar(name) {
         return {
@@ -37,22 +45,9 @@ export default function Dashboard() {
         };
     }
     
-      const handleProfil = (event, newProfil) => {
+    const handleProfil = (event, newProfil) => {
         setProfil(newProfil);
     };
-    
-    const marks = [
-    {
-        value: 0,
-        label: 'Sparsam',
-    }, {
-        value: 50,
-        label: 'Nyfiken',
-    }, 
-    {
-        value: 100,
-        label: 'Miljö',
-    }]
 
     // const handleProfil = (event) => {
     //     var s = marks[event.target.value / 50].label
@@ -80,6 +75,11 @@ export default function Dashboard() {
             setLname(doc.get("name.lastname"))
             setPeople(doc.get("antalPersoner"))
             setArea(doc.get("boendeyta"))
+            setProfil(doc.get("profiltyp"))
+            setDusch(doc.get("duschparametrar"))
+            setDisk(doc.get("diskparametrar.antal"))
+            setKok(doc.get("kokparametrar.antal"))
+            setTvatt(doc.get("tvattparametrar.antal"))
         } else {
             console.log("No such document!");
         }
@@ -96,7 +96,7 @@ export default function Dashboard() {
 
     <ThemeProvider theme={theme}>
     
-        <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll'}}>
+        <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll', mb:7}}>
             <Card sx={{ minWidth: 270 }} elevation={0}>
                 <CardContent>
                     {error && <Alert varient = "danger">{error}</Alert> }
@@ -115,13 +115,9 @@ export default function Dashboard() {
 
                     </CardHeader>
 
-                    <CardContent sx={{ flex: '1 0 auto', padding:0 , mb: 2}}>
+                    <CardContent sx={{ flex: '1 0 auto', padding:0 , mb: 1}}>
                         <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent:'space-around', width:'90%', ml:'auto', mr:'auto', mt:-5}}>
                             <Avatar {...stringAvatar(fname + " " + lname)} />
-
-                            {/* <Typography component='div' variant='h5' sx={{display: { xs: 'none', sm: 'block' }}}>
-                                {fname + " " +lname}
-                            </Typography > */}
 
                             <Link to='/update-profile' style={{textDecoration:'none'}}>
                                 <Button variant='contained' sx={{borderRadius: 2}}>
@@ -133,60 +129,78 @@ export default function Dashboard() {
                 </Box>
                 
                 <Box sx={{width:'90%', ml:'auto', mr:'auto' }} display='flex' flexDirection="column" alignItems='center'>
-                    <Box display='flex' flexDirection='row' justifyContent='space-between' sx={{width:'95%', mb:2}}>
-                        <Card variant='outlined' sx={{border:'3px solid #ACD0C0', textAlign:'center', borderRadius:2, width:'30%'}}>
-                            {fname}
+                    <Box display='flex' flexDirection='row' justifyContent='space-between' sx={{width:'95%', mb:3}}>
+                        <Card variant='outlined' sx={{ textAlign:'center', boxShadow: '1px 1px 7px grey',  borderRadius: 3, width:'30%'}}>
+                            <Typography  variant='h6' >{fname}<br/>{lname}</Typography>
                         </Card>
-                        <Card variant='outlined' sx={{border:'3px solid #ACD0C0', textAlign:'center', borderRadius:2, width:'30%'}}>
-                            {area} kvm
+                        <Card justify='center' variant='outlined' component='div' sx={{boxShadow: '1px 1px 7px grey', textAlign:'center', borderRadius: 3, width:'30%'}}>
+                            <Typography mt='15%' variant='h6'>{area} kvm</Typography>
                         </Card>
-                        <Card variant='outlined' sx={{border:'3px solid #ACD0C0', textAlign:'center', borderRadius:2, width:'30%'}}>
-                            {people}
+                        <Card variant='outlined' sx={{boxShadow: '1px 1px 7px grey', textAlign:'center', borderRadius: 3, width:'30%' }}>
+                            <Typography mt='15%' variant='h6'>{people} i bostad</Typography>
                         </Card>
                     </Box>
-                    <Box sx={{width:'100%'}} flexDirection='column' display='flex' justifyContent='space-evenly' alignItems='center'>
-                        <Card variant='outlined' sx={{border:'3px solid #ACD0C0', textAlign:'left', width:'95%', borderRadius:2}}>
+
+                    <Box sx={{width:'95%', borderRadius: 3, boxShadow: '1px 1px 7px grey'}} flexWrap='wrap' flexDirection='row' display='flex' alignItems='center'>
+                        <Card  sx={{ textAlign:'left', width:'45%', m:1}} elevation={0}>
                             <CardContent>
-                                <Typography variant='h5'>
-                                    Hej
-                                </Typography>
-                                <Typography>
-                                    Hej
-                                </Typography>
+                                <Box sx={{mb:2}}>
+                                    <Typography variant='h6' fontWeight ='520'>
+                                    <ShowerIcon/> {dusch['tid']}</Typography>
+                                    <Typography  variant='h8' >min per dusch</Typography>
+                                </Box>
+                                <Box>
+                                    <Typography variant='h6' fontWeight ='520'>
+                                    <WashIcon/> {disk}</Typography>
+                                    <Typography variant='h8' >per vecka</Typography>
+                                </Box>
+                            </CardContent>
+                        </Card>
+                        <Card  sx={{ textAlign:'left', width:'45%', m:1}} elevation={0} >
+                            <CardContent>
+                                <Box sx={{mb:2}}>
+                                    <Typography variant='h6' fontWeight ='520' >
+                                        <RestaurantIcon/> {kok}</Typography>
+                                    <Typography variant='h8' >per vecka</Typography>
+                                </Box>
+                                <Box>
+                                    <Typography variant='h6' fontWeight ='520'>
+                                        <LocalLaundryServiceIcon/> {tvatt}</Typography>
+                                    <Typography variant='h8' >per månad</Typography>
+                                </Box>
                             </CardContent>
                         </Card>
                     </Box>
-
-                    <ToggleButtonGroup 
-                            value={profil}
-                            exclusive
-                            onChange={handleProfil}
-                            //width='100%'
-                            sx={{mt: 3, ml:'auto', mr:'auto', width:'100%', justifyContent:'center'}}
-                            >
-                                <ToggleButton value="Miljö" >
-                                    <NaturePeopleIcon/>
-                                    Miljö
-                                </ToggleButton>
-                                <ToggleButton value="Sparsam">
-                                    <MoneyIcon/>
-                                    Sparsam
-                                </ToggleButton>
-                                <ToggleButton value="Nyfiken">
-                                    <SearchIcon/>
-                                    Nyfiken
-                                </ToggleButton>
-
-                    </ToggleButtonGroup>
+                    <Box sx={{width:'95%'}}>
+                        <ToggleButtonGroup 
+                                value={profil}
+                                exclusive
+                                onChange={handleProfil}
+                                fullWidth
+                                sx={{mt: 3, justifyItems:'stretch', boxShadow: '1px 1px 7px grey' }}
+                                >
+                                    <ToggleButton value="Miljö" >
+                                        <NaturePeopleIcon/>
+                                        Miljö
+                                    </ToggleButton>
+                                    <ToggleButton value="Sparsam">
+                                        <MoneyIcon/>
+                                        Sparsam
+                                    </ToggleButton>
+                                    <ToggleButton value="Nyfiken">
+                                        <SearchIcon/>
+                                        Nyfiken
+                                    </ToggleButton>
+                        </ToggleButtonGroup>
+                    </Box>
                 </Box>
 
             
 
                 <div className='w-100 text-center mt-2'>
-                    <Button variant="contained" onClick={handleLogout} sx={{borderRadius:2, pl:5,pr:5, mt:1, mb:1}}>  
+                    <Button variant="contained" onClick={handleLogout} sx={{borderRadius:2, pl:5,pr:5, mt:2, mb:3}}>  
                         Logga ut
                     </Button>
-                    
                 </div>
                 
         </Card>

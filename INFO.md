@@ -34,3 +34,5 @@ där klistrar ni in det som står i Notion under VIKTIGT/.env.local
 - Mörkgrön: '#092A23'
 - Ljusgrön: '#ACD0C0'
 - Senapsgul: '#D9B44A'
+
+npm install -g firebase-tools

@@ -24,3 +24,5 @@ yarn-error.log*
 
 TestGraphs.js
 package-lock.json
+package.json
+
