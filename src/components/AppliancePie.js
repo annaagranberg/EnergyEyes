@@ -1,9 +1,9 @@
 import { VictoryPie } from 'victory';
 
 const sampleData = [
-  { x: 'Dusch', y: 7 },
-  { x: 'Diska', y: 4 },
   { x: 'Mat', y: 4 },
+  { x: 'Diska', y: 4 },
+  { x: 'Duscha', y: 7 },
   { x: 'Tvätta', y: 1 },
 ];
 const myColorScale = ["#092A23", "#D9B44A", "#125447", "#C4D4D4"];
@@ -19,14 +19,14 @@ function AppliancePie() {
         colorScale={myColorScale}
         data={sampleData}
       />
-      <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', marginTop: '1rem' }}>
+      {/* <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', marginTop: '1rem' }}>
         {sampleData.map((datum, index) => (
           <div key={index} style={{ display: 'flex', alignItems: 'center', margin: '0.5rem' }}>
             <div style={{ width: '1rem', height: '1rem', backgroundColor: myColorScale[index], marginRight: '0.5rem' }} />
             <div style={{ fontSize: '0.6rem' }}>{datum.x}</div>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
