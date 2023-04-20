@@ -7,7 +7,7 @@ import img5 from '../images/flower5.PNG';
 // Takes one argument and depending on the value returns an image
 function Plant(value) {
   const images = [
-    { src: img1, min: 0, max: 10, text: "Your plant is feeling excelent" },
+    { src: img1, min: 0, max: 10, text: "Your plant is feeling excellent" },
     { src: img2, min: 10, max: 20, text: "Your plant is feeling good" },
     { src: img3, min: 20, max: 30, text: "Take care of your plant" },
     { src: img4, min: 30, max: 40, text: "Your plant is feeling unwell" },
