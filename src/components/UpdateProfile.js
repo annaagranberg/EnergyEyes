@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
 import { CardContent, FormControl, FormGroup, ThemeProvider, 
@@ -29,33 +29,53 @@ export default function UpdateProfile() {
     const [disk, setDisk] = useState(0)
     const [kok, setKok] = useState(0)
     const [tvatt, setTvatt] = useState(0)
-    const [runner, setRunner] = useState(true)
 
-
-    if(runner) {
-        var docRef = db.collection("user_collection").doc(currentUser.uid);
-        //Get db information
-        docRef.get("name.firstname").then((doc) => {
-            if (doc.exists) {
-                firstRef.current = doc.get("name.firstname")
-                lastRef.current = doc.get("name.lastname")
-                setPeople(doc.get("antalPersoner"))
-                setArea(doc.get("boendeyta"))
-                setProfil(doc.get("profiltyp"))
-                setDuschTid(doc.get("duschparametrar.tid"))
-                setDuschAntal(doc.get("duschparametrar.antal"))
-                setDisk(doc.get("diskparametrar.antal"))
-                setKok(doc.get("kokparametrar.antal"))
-                setTvatt(doc.get("tvattparametrar.antal"))
-                setRunner(false)
-
-            } else {
-                console.log("No such document!");
-            }
+    useEffect(() => {
+        //const db = firebase.firestore();
+        const docRef = db.collection("user_collection").doc(currentUser.uid);
+        docRef.get().then((doc) => {
+          if (doc.exists) {
+            const data = doc.data();
+            firstRef.current = data.name.firstname;
+            lastRef.current = data.name.lastname;
+            setPeople(data.antalPersoner);
+            setArea(data.boendeyta);
+            setProfil(data.profiltyp);
+            setDuschTid(data.duschparametrar.tid);
+            setDuschAntal(data.duschparametrar.antal);
+            setDisk(data.diskparametrar.antal);
+            setKok(data.kokparametrar.antal);
+            setTvatt(data.tvattparametrar.antal);
+            console.log(lastRef.current)
+          } else {
+            console.log("No such document!");
+          }
         }).catch((error) => {
-            console.log("Error getting document:", error);
+          console.log("Error getting document:", error);
         });
-    }
+      }, [currentUser.uid]);
+    
+        // var docRef = db.collection("user_collection").doc(currentUser.uid);
+        // //Get db information
+        // docRef.get("name.firstname").then((doc) => {
+        //     if (doc.exists) {
+        //         firstRef.current = doc.get("name.firstname")
+        //         lastRef.current = doc.get("name.lastname")
+        //         setPeople(doc.get("antalPersoner"))
+        //         setArea(doc.get("boendeyta"))
+        //         setProfil(doc.get("profiltyp"))
+        //         setDuschTid(doc.get("duschparametrar.tid"))
+        //         setDuschAntal(doc.get("duschparametrar.antal"))
+        //         setDisk(doc.get("diskparametrar.antal"))
+        //         setKok(doc.get("kokparametrar.antal"))
+        //         setTvatt(doc.get("tvattparametrar.antal"))
+        //     } else {
+        //         console.log("No such document!");
+        //     }
+        // }).catch((error) => {
+        //     console.log("Error getting document:", error);
+        // });
+    
 
     const handleArea = (event) => {
         setArea(event.target.value);
@@ -65,6 +85,7 @@ export default function UpdateProfile() {
     };
     const handleKokAntal = (event, value) => {
         setKok(value)
+        console.log(value)
     };
     const handleDiskAntal = (event, value) => {
         setDisk(value)
@@ -97,11 +118,10 @@ export default function UpdateProfile() {
             promises.push(updatePassword(passwordRef.current.value))
         }
 
-        promises.push(updateName(firstRef.current, lastRef.current))
+        
 
         Promise.all(promises).then(() => {
             navigate('/profile')
-            setRunner(true)
         }).catch(() => {
             setError('Failed to update account')
         }).finally(() => {
@@ -167,7 +187,7 @@ export default function UpdateProfile() {
                                     </InputAdornment>
                                 ),
                             }}/>
-                            <TextField variant="standard" label="Efternamn" type='name' inputRef={lastRef} placeholder={lastRef.current}
+                            <TextField variant="standard" label="Efternamn" type='name'  
                             sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }} InputProps={{
                                 startAdornment:(
                                     <InputAdornment position='start'>
