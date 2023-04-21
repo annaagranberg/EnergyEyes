@@ -14,13 +14,13 @@ export default function UpdateProfile() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
-    const firstRef = useRef()
-    const lastRef = useRef()
     const { currentUser, updateEmail, updatePassword, updateName, updateArea, updatePeople } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     
+    const firstRef = useRef()
+    const lastRef = useRef()
     const [area, setArea] = useState('');
     const [people, setPeople] = useState('');
     const [profil, setProfil] = useState("")
@@ -29,30 +29,33 @@ export default function UpdateProfile() {
     const [disk, setDisk] = useState(0)
     const [kok, setKok] = useState(0)
     const [tvatt, setTvatt] = useState(0)
+    const [runner, setRunner] = useState(true)
 
 
-    var docRef = db.collection("user_collection").doc(currentUser.uid);
-    //Get db information
-    docRef.get("name.firstname").then((doc) => {
-        if (doc.exists) {
-            firstRef.current = doc.get("name.firstname")
-            lastRef.current = doc.get("name.lastname")
-            setPeople(doc.get("antalPersoner"))
-            setArea(doc.get("boendeyta"))
-            setProfil(doc.get("profiltyp"))
-            setDuschTid(doc.get("duschparametrar.tid"))
-            setDuschAntal(doc.get("duschparametrar.antal"))
-            setDisk(doc.get("diskparametrar.antal"))
-            setKok(doc.get("kokparametrar.antal"))
-            setTvatt(doc.get("tvattparametrar.antal"))
+    if(runner) {
+        var docRef = db.collection("user_collection").doc(currentUser.uid);
+        //Get db information
+        docRef.get("name.firstname").then((doc) => {
+            if (doc.exists) {
+                firstRef.current = doc.get("name.firstname")
+                lastRef.current = doc.get("name.lastname")
+                setPeople(doc.get("antalPersoner"))
+                setArea(doc.get("boendeyta"))
+                setProfil(doc.get("profiltyp"))
+                setDuschTid(doc.get("duschparametrar.tid"))
+                setDuschAntal(doc.get("duschparametrar.antal"))
+                setDisk(doc.get("diskparametrar.antal"))
+                setKok(doc.get("kokparametrar.antal"))
+                setTvatt(doc.get("tvattparametrar.antal"))
+                setRunner(false)
 
-        } else {
-            console.log("No such document!");
-        }
-    }).catch((error) => {
-        console.log("Error getting document:", error);
-    });
-
+            } else {
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+    }
 
     const handleArea = (event) => {
         setArea(event.target.value);
@@ -65,7 +68,6 @@ export default function UpdateProfile() {
     };
     const handleDiskAntal = (event, value) => {
         setDisk(value)
-        console.log(disk)
     };
     const handleTvattAntal = (event, value) => {
         setTvatt(value)
@@ -94,12 +96,12 @@ export default function UpdateProfile() {
         if(passwordRef.current.value){
             promises.push(updatePassword(passwordRef.current.value))
         }
-        if(typeof firstRef.current.value === 'string' && typeof lastRef.current.value === 'string'){
-            promises.push(updateName(firstRef.current.value, lastRef.current.value ))
-        }
+
+        promises.push(updateName(firstRef.current, lastRef.current))
 
         Promise.all(promises).then(() => {
             navigate('/profile')
+            setRunner(true)
         }).catch(() => {
             setError('Failed to update account')
         }).finally(() => {
@@ -121,7 +123,7 @@ export default function UpdateProfile() {
                 <form onSubmit={handleSubmit}>
                     <FormGroup id="email">
                         <FormControl>
-                            <TextField variant="standard" label="email" type='email' inputRef={emailRef} required defaultValue={currentUser.email}
+                            <TextField variant="standard" label="email" type='email' inputRef={emailRef} autoComplete='username' defaultValue={currentUser.email}
                             sx={{mb:3}} InputProps={{
                                 startAdornment:(
                                     <InputAdornment position='start'>
@@ -134,7 +136,7 @@ export default function UpdateProfile() {
 
                     <FormGroup id="password">
                         <FormControl/>
-                        <TextField variant='standard' label='lösenord' type='password' inputRef={passwordRef} placeholder='********'
+                        <TextField variant='standard' label='lösenord' type='password' inputRef={passwordRef} autoComplete='new-password' placeholder='******'
                         sx={{mb:3}} InputProps={{
                             startAdornment:(
                                 <InputAdornment position='start'>
@@ -145,7 +147,7 @@ export default function UpdateProfile() {
                     </FormGroup>
 
                     <FormGroup id="password-confirm">
-                        <TextField variant="standard" label="bekräfta lösenord" type='password' inputRef={passwordConfirmRef} placeholder='********'
+                        <TextField variant="standard" label="bekräfta lösenord" type='password' inputRef={passwordConfirmRef} autoComplete='new-password' placeholder='******'
                             sx={{mb:3}} InputProps={{
                                 startAdornment:(
                                     <InputAdornment position='start'>

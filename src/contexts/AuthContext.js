@@ -48,27 +48,24 @@ export function AuthProvider({ children }) {
         } catch (error) {
             console.error("Error writing document: ", error)
         }
+        console.log(first)
     }
     //Update area
     async function updateArea(area){
-        
         try {
             await db.collection("user_collection").doc(currentUser.uid).update({
                 boendeyta: area,
             })
-            console.log(area)
         } catch (error) {
             console.error("Error writing document: ", error)
         }
     }
     //Update people
     async function updatePeople(people){
-        
         try {
             await db.collection("user_collection").doc(currentUser.uid).update({
                 antalPersoner: people,
             })
-            console.log(people)
         } catch (error) {
             console.error("Error writing document: ", error)
         }
@@ -100,7 +97,6 @@ export function AuthProvider({ children }) {
             console.error("Error adding document: ", error)
         }
     }
-
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {

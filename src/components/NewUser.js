@@ -68,7 +68,7 @@ export default function NewUser() {
         try{
             setError('')
             setLoading(true)
-            await setNewUser(firstRef.current.value, lastRef.current.value, area.current.value ,people,profil, duschAntal.current.value
+            await setNewUser(firstRef.current, lastRef.current, area.current.value ,people,profil, duschAntal.current.value
                 , duschTid.current.value, kok, disk, tvatt);
             navigate('/profile')
         } catch{

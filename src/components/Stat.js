@@ -25,7 +25,7 @@ export default function Stat() {
     </Box>
 
 
-    <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll', mb:1, mt:9}}>
+    <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll', mb:8, mt:9}}>
       <PriceBox mb={2} />
 
       <Box sx={{ display: 'flex', mt:2, mb:1, width: '100%', flexDirection:'row', justifyContent: 'space-around', alignItems: 'center', zIndex:0 }} >

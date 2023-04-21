@@ -16,11 +16,12 @@ import ShowerIcon from '@mui/icons-material/Shower';
 import WashIcon from '@mui/icons-material/Wash';
 import LocalLaundryServiceIcon from '@mui/icons-material/LocalLaundryService';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
+import { Update } from '@mui/icons-material';
 
 export default function Dashboard() {
 
     const [error, setError] = useState("")
-    const { currentUser, logout } = useAuth();
+    const { currentUser, logout, updateProfil } = useAuth();
     const navigate = useNavigate();
 
     const [fname, setFname] = useState("")
@@ -32,6 +33,7 @@ export default function Dashboard() {
     const [disk, setDisk] = useState("")
     const [kok, setKok] = useState("")
     const [tvatt, setTvatt] = useState("")
+    const [runner, setRunner] = useState(true)
 
     function stringAvatar(name) {
         return {
@@ -47,6 +49,7 @@ export default function Dashboard() {
     
     const handleProfil = (event, newProfil) => {
         setProfil(newProfil);
+        updateProfil(newProfil)
     };
 
     // const handleProfil = (event) => {
@@ -66,27 +69,29 @@ export default function Dashboard() {
         }
     }
 
-    var docRef = db.collection("user_collection").doc(currentUser.uid);
-
-    //Get db information
-    docRef.get("name.firstname").then((doc) => {
-        if (doc.exists) {
-            setFname(doc.get("name.firstname"))
-            setLname(doc.get("name.lastname"))
-            setPeople(doc.get("antalPersoner"))
-            setArea(doc.get("boendeyta"))
-            setProfil(doc.get("profiltyp"))
-            setDusch(doc.get("duschparametrar"))
-            setDisk(doc.get("diskparametrar.antal"))
-            setKok(doc.get("kokparametrar.antal"))
-            setTvatt(doc.get("tvattparametrar.antal"))
-        } else {
-            console.log("No such document!");
-        }
-    }).catch((error) => {
-        console.log("Error getting document:", error);
-    });
-
+    if(runner){
+        var docRef = db.collection("user_collection").doc(currentUser.uid);
+        
+        //Get db information
+        docRef.get("name.firstname").then((doc) => {
+            if (doc.exists) {
+                setFname(doc.get("name.firstname"))
+                setLname(doc.get("name.lastname"))
+                setPeople(doc.get("antalPersoner"))
+                setArea(doc.get("boendeyta"))
+                setProfil(doc.get("profiltyp"))
+                setDusch(doc.get("duschparametrar"))
+                setDisk(doc.get("diskparametrar.antal"))
+                setKok(doc.get("kokparametrar.antal"))
+                setTvatt(doc.get("tvattparametrar.antal"))
+                setRunner(false)
+            } else {
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+    }
   return (
     <>
 
@@ -96,7 +101,7 @@ export default function Dashboard() {
 
     <ThemeProvider theme={theme}>
     
-        <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll', mb:7}}>
+        <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll', mb:6}}>
             <Card sx={{ minWidth: 270 }} elevation={0}>
                 <CardContent>
                     {error && <Alert varient = "danger">{error}</Alert> }
@@ -146,12 +151,12 @@ export default function Dashboard() {
                             <CardContent>
                                 <Box sx={{mb:2}}>
                                     <Typography variant='h6' fontWeight ='520'>
-                                    <ShowerIcon/> {dusch['tid']}</Typography>
+                                    <ShowerIcon color='secondary'/> {dusch['tid']}</Typography>
                                     <Typography  variant='h8' >min per dusch</Typography>
                                 </Box>
                                 <Box>
                                     <Typography variant='h6' fontWeight ='520'>
-                                    <WashIcon/> {disk}</Typography>
+                                    <WashIcon color='secondary'/> {disk}</Typography>
                                     <Typography variant='h8' >per vecka</Typography>
                                 </Box>
                             </CardContent>
@@ -160,12 +165,12 @@ export default function Dashboard() {
                             <CardContent>
                                 <Box sx={{mb:2}}>
                                     <Typography variant='h6' fontWeight ='520' >
-                                        <RestaurantIcon/> {kok}</Typography>
+                                        <RestaurantIcon color='secondary'/> {kok}</Typography>
                                     <Typography variant='h8' >per vecka</Typography>
                                 </Box>
                                 <Box>
                                     <Typography variant='h6' fontWeight ='520'>
-                                        <LocalLaundryServiceIcon/> {tvatt}</Typography>
+                                        <LocalLaundryServiceIcon color='secondary'/> {tvatt}</Typography>
                                     <Typography variant='h8' >per månad</Typography>
                                 </Box>
                             </CardContent>
