@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react'
 import styled from 'styled-components';
+import {Dialog, DialogTitle, DialogContent,DialogContentText} from "@mui/material";
 
 // Create the container
 const Container = styled.div`
@@ -20,7 +21,7 @@ const ProgressBar = styled.div`
   left: 0;
   width: 100%;
   height: ${props => props.percentageDiff}%;
-  background-color: ${props => props.isPastGoal ? '#C54507' : '#125447'};
+  background-color: ${props => props.isPastGoal ? '#D9B44A' : '#125447'};
   transition: height 0.8s ease;
   
 `;
@@ -54,13 +55,22 @@ const Progressbar = ({ spendingAmount, total, goalAmount, timeUnit }) => {
   const isPastGoal = percentageDiff >= goalAmountPercentage;
 
 
+  const [open, setOpen] = useState(false);
+  
+  function handleOpen() {
+      setOpen(!open);
+  }
+
+  function handleClose() {
+      setOpen(false);
+  }
 // Returns a progressBar, swithces the label depending on input
 // example for input
 //<Progressbar spendingAmount={50} total={100} goalAmount={80} timeUnit='vecka' /> 
   return (
     <div>
      
-      <Container>
+      <Container onClick={handleOpen}>
         <ProgressBar
           percentageDiff={percentageDiff}
           isPastGoal={isPastGoal}
@@ -68,6 +78,19 @@ const Progressbar = ({ spendingAmount, total, goalAmount, timeUnit }) => {
           <DayLabel>{timeUnit === 'dag' ? 'Dag' : 'Vecka'}</DayLabel>
         </ProgressBar>
         <LimitLine goalAmountPercentage={goalAmountPercentage} />
+
+        <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+            >
+            <DialogContent sx={{backgroundColor:'#ffff', color:'white'}}>
+                <DialogContentText id="alert-dialog-description" sx={{backgroundColor:'#ffff', color:'black'}}> 
+              hej hej hej
+                </DialogContentText>
+            </DialogContent>
+      </Dialog>
       </Container>
     </div>
   );

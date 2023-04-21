@@ -9,8 +9,6 @@ import PieBox from './PieBox'
 import WeekBox from './WeekBox'
 import ElecPriceChart from './ElecPriceChart'
 
-
- 
 {/* 
         
         <Progressbar spendingAmount={70} total={100} goalAmount={80} timeUnit='dag' />  */}
@@ -35,7 +33,7 @@ export default function Stat() {
         </Box>
 
         <Box sx={{ display: 'flex', width: '40%',  flexDirection:'row', justifyContent: 'space-around', alignItems: 'center', zIndex:0 }} >
-          <Progressbar spendingAmount={70} total={100} goalAmount={80} timeUnit='dag' />
+          <Progressbar spendingAmount={55} total={100} goalAmount={80} timeUnit='dag' />
           <Progressbar spendingAmount={50} total={100} goalAmount={80} timeUnit='vecka' /> 
         </Box>
 
