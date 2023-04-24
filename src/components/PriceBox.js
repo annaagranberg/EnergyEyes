@@ -21,8 +21,8 @@ export default function PriceBox() {
   return (
 
     <Box sx={{width:'100%'}} flexDirection='column' display='flex' justifyContent='space-evenly' alignItems='center'>
-    <Card onClick={handleOpen} variant='outlined' sx={{boxShadow: '1px 1px 7px grey', textAlign:'left', width:'95%', borderRadius:2}}>
-        <Typography variant='h5' ml='1'>
+    <Card onClick={handleOpen} variant='outlined' sx={{boxShadow: '1px 1px 7px grey', textAlign:'left', width:'95%', borderRadius:2, marginTop: 1}}>
+        <Typography variant='h5' ml={1.5} mt={1.5} >
               Elpris
          </Typography>
          <ElecPriceChart />
@@ -34,8 +34,13 @@ export default function PriceBox() {
             aria-describedby="alert-dialog-description"
             >
             <DialogContent sx={{backgroundColor:'#ffff', color:'white'}}>
+              
                 <DialogContentText id="alert-dialog-description" sx={{backgroundColor:'#ffff', color:'black'}}> 
-              hej hej hej
+                  <Typography variant='h5' sx={{textAlign: 'center'}} >
+                    Elpris
+                  </Typography>
+                  <ElecPriceChart />
+                    Denna graf visar elpriset under dygnet och uppdateras varje dag. Så du enkelt kan se när det är billigare att använda el.
                 </DialogContentText>
             </DialogContent>
       </Dialog>
