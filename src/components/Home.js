@@ -39,11 +39,11 @@ export default function Home() {
         <Topbar sx={{width:'100%'}} />
       </Box>
 
-      <Box sx={{overflowX:'hidden', overflowY:'scroll',  mt: '10vh' }}>
+      <Box sx={{overflowX:'hidden', overflowY:'scroll',  mt: '7vh' }}>
           <TypeBox value={5} type={profil} />
 
             <Box sx={{flexDirection:'column', display:'flex', width: '95%', marginLeft:'auto', marginRight:'auto'}}>  
-              <Button component={Link} to='/update-profile' variant='contained' sx={{mb:2, borderRadius: 2}}>
+              <Button component={Link} to='/update-profile' variant='contained' sx={{mb:3, borderRadius: 2}}>
                   Ändra Vanor
               </Button>
             </Box>
@@ -59,5 +59,4 @@ export default function Home() {
     </>
   )
 
-  
 }

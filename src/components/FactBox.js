@@ -65,7 +65,7 @@ export default function FactBox() {
 
   // MUI component, the card will return the energy fact. CardContent will display "Energy fact" and a refresh button
   return (
-    <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', mb: 2 }}>
+    <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', mb: 1 }}>
       <Card variant='outlined' sx={{boxShadow: '1px 1px 7px grey', textAlign: 'left', width: '95%', borderRadius: 2 }}>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

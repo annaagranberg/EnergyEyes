@@ -29,6 +29,8 @@ export default function UpdateProfile() {
     const [disk, setDisk] = useState(0)
     const [kok, setKok] = useState(0)
     const [tvatt, setTvatt] = useState(0)
+    const [dagligt, setDagligt] = useState();
+    const [veckovis, setVeckovis] = useState();
  
 
     useEffect(() => {
@@ -47,6 +49,8 @@ export default function UpdateProfile() {
             setDisk(data.diskparametrar.antal);
             setKok(data.kokparametrar.antal);
             setTvatt(data.tvattparametrar.antal);
+            setDagligt(data.mål.dagligt)
+            setVeckovis(data.mål.veckovis)
 
           } else {
             console.log("No such document!");
@@ -91,7 +95,7 @@ export default function UpdateProfile() {
 
         console.log(area)
 
-        promises.push(updateUser(first, last, area, people, profil, duschAntal, duschTid, kok, disk, tvatt))
+        promises.push(updateUser(first, last, area, people, profil, duschAntal, duschTid, kok, disk, tvatt, dagligt,veckovis))
 
         Promise.all(promises).then(() => {
             navigate('/profile')
@@ -233,6 +237,25 @@ export default function UpdateProfile() {
                             <Pagination sx={{ml:'auto', mr:'auto', mb:3, alignContent:'space-between'}} page={tvatt} count={15} siblingCount={0} onChange={handleTvattAntal}/>
                         </Stack>
                     </Box>
+
+                    <FormLabel sx={{mb:1}}>Energimål</FormLabel>
+                    <FormGroup id="goal" >
+                        <FormControl sx={{flexDirection:'row', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
+                            <TextField variant="standard" label="Dagligt mål" type='number' placeholder={dagligt + ' kWh'}  onChange={(e)=> setDagligt(e.target.value)}
+                            sx={{width:'49%',maxWidth:'100%', minWidth:'140px'}}
+                            InputProps={{ inputProps: { min: 1, max: 40 }, startAdornment:(
+                                <InputAdornment position='start'>
+                                </InputAdornment>
+                            ) } }/>
+
+                            <TextField variant="standard" label="Veckomål" type='number' placeholder={veckovis + ' kWh'}  onChange={(e)=> setVeckovis(e.target.value)}
+                            InputProps={{ inputProps: { min: 5, max: 150 }, startAdornment:(
+                                <InputAdornment position='start'>
+                                </InputAdornment>
+                            ) }}
+                            sx={{ mb:3, width: '49%',maxWidth:'100%', minWidth:'140px' }}/>
+                        </FormControl>
+                    </FormGroup>
 
                     <Button disabled = {loading} variant="contained" type='submit' sx={{width:'100%'}}>Updatera</Button>
                 </form>
