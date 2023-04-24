@@ -1,11 +1,13 @@
 import { Box } from '@mui/material'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import BottomBar from './BottomBar'
 import Topbar from './Topbar'
 import Progressbar from './ProgressBar'
 import PriceBox from './PriceBox'
 import PieBox from './PieBox'
 import WeekBox from './WeekBox'
+import { useAuth } from '../contexts/AuthContext'
+import { db } from '../firebase'
 
 
 /*<Progressbar spendingAmount={70} total={100} goalAmount={80} timeUnit='dag' />  */
@@ -14,6 +16,28 @@ import WeekBox from './WeekBox'
 
 
 export default function Stat() {
+
+  const [dagligt, setDagligt] = useState('0')
+  const [veckovis, setVeckovis] = useState('0')
+  const { currentUser } = useAuth();
+
+  useEffect(() => {
+    const docRef = db.collection("user_collection").doc(currentUser.uid);
+    docRef.get().then((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+        setDagligt(data.mål.dagligt)
+        setVeckovis(data.mål.veckovis)
+
+      } else {
+        console.log("No such document!");
+      }
+    }).catch((error) => {
+      console.log("Error getting document:", error);
+    });
+  }, [currentUser.uid]);
+
+
   return (
     <>
     {/* <ElecPriceChart/> */}
@@ -35,8 +59,8 @@ export default function Stat() {
         </Box>
 
         <Box sx={{ display: 'flex', width: '40%',  flexDirection:'row', justifyContent: 'space-around', alignItems: 'center', zIndex:0 }} >
-          <Progressbar spendingAmount={85} total={100} goalAmount={80} timeUnit='dag' />
-          <Progressbar spendingAmount={50} total={100} goalAmount={80} timeUnit='vecka' /> 
+          <Progressbar spendingAmount={4} total={15} goalAmount={dagligt} timeUnit='dag' />
+          <Progressbar spendingAmount={30} total={50} goalAmount={veckovis} timeUnit='vecka' /> 
         </Box>
       </Box>
 

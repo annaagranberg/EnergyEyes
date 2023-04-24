@@ -17,6 +17,8 @@ export default function NewUser() {
     const area = useRef()
     const duschAntal = useRef()
     const duschTid = useRef()
+    const dag = useRef()
+    const vecka = useRef();
     const { setNewUser } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
@@ -26,6 +28,7 @@ export default function NewUser() {
     const [tvatt, setTvatt] = useState('');
     const [disk, setDisk] = useState('');
     const [kok, setKok] = useState('');
+   
 
     const handlePeople = (event) => {;
         setPeople(event.target.value);
@@ -68,8 +71,8 @@ export default function NewUser() {
         try{
             setError('')
             setLoading(true)
-            await setNewUser(firstRef.current, lastRef.current, area.current.value ,people,profil, duschAntal.current.value
-                , duschTid.current.value, kok, disk, tvatt);
+            await setNewUser(firstRef.current.value, lastRef.current.value, area.current.value ,people,profil, duschAntal.current.value
+                , duschTid.current.value, kok, disk, tvatt, dag.current.value, vecka.current.value);
             navigate('/profile')
         } catch{
             setError("Failed to create an account")
@@ -183,6 +186,19 @@ export default function NewUser() {
                             <Pagination sx={{ml:'auto', mr:'auto', mb:3, alignContent:'space-between'}} count={15} siblingCount={0} onChange={handleTvattAntal}  />
                         </Stack>
                     </Box>
+
+                    <FormLabel sx={{mb:1}}>Energimål</FormLabel>
+                    <FormGroup id="goal" >
+                        <FormControl sx={{flexDirection:'row', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
+                            <TextField variant="standard" label="Dagligt mål" type='number' placeholder='kWh' inputRef={dag} 
+                            sx={{width:'49%',maxWidth:'100%', minWidth:'140px'}}
+                            InputProps={{ inputProps: { min: 1, max: 40 } }}/>
+
+                            <TextField variant="standard" label="Veckomål" type='number' placeholder= 'kWh'  inputRef={vecka}
+                            InputProps={{ inputProps: { min: 5, max: 150 } }}
+                            sx={{ mb:3, width: '49%',maxWidth:'100%', minWidth:'140px' }}/>
+                        </FormControl>
+                    </FormGroup>
 
                     <Button disabled = {loading} variant="contained" type='submit' sx={{width:'100%'}}>Ställ in</Button>
                 </form>
