@@ -7,11 +7,11 @@ import img5 from '../images/flower5.PNG';
 // Takes one argument and depending on the value returns an image
 function Plant(value) {
   const images = [
-    { src: img1, min: 0, max: 10, text: "Your plant is feeling excellent" },
-    { src: img2, min: 10, max: 20, text: "Your plant is feeling good" },
-    { src: img3, min: 20, max: 30, text: "Take care of your plant" },
-    { src: img4, min: 30, max: 40, text: "Your plant is feeling unwell" },
-    { src: img5, min: 40, max: 50, text: "Your plant is almost dead" },
+    { src: img1, min: 0, max: 10, text: "Din blomma mår fantastiskt" },
+    { src: img2, min: 10, max: 20, text: "Din blomma mår bra" },
+    { src: img3, min: 20, max: 30, text: "Ta hand om din blomma" },
+    { src: img4, min: 30, max: 40, text: "Din blomma mår inte så bra" },
+    { src: img5, min: 40, max: 50, text: "Din planta är nära att dö" },
   ];
 
   const { src, text } = images.find(({ min, max }) => value >= min && value < max) || { src: '', text: 'Unknown' };

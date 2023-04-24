@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import ElecPriceChart from './ElecPriceChart';
-import {Dialog, DialogTitle, DialogContent,DialogContentText} from "@mui/material";
+import {Dialog, DialogContent,DialogContentText} from "@mui/material";
 
 
 // MUI comp that shows the ElecPriceChart graph

@@ -1,31 +1,34 @@
 {
     "facts": [
       {
-        "fact": "The energy released by the sun in just one second is equivalent to the energy that would be produced by detonating a billion atomic bombs."
+        "fact": "Energin som frigörs av solen på bara en sekund motsvarar lika mycket energi som skulle produceras genom att detonera en miljard atombomber."
       },
       {
-        "fact": "A bolt of lightning carries enough energy to power a 100-watt light bulb for more than three months."
+        "fact": "En blixt bär tillräckligt med energi för att driva en 100-watts glödlampa i mer än tre månader."
       },
       {
-        "fact": "The tallest wind turbine in the world is located in Germany and stands 246 meters (807 feet) tall. That's taller than the Great Pyramid of Giza!"
+        "fact": "Det högsta vindkraftverket i världen ligger i Tyskland och är 246 meter högt. Det är högre än den största pyramiden i Giza!"
       },
       {
-        "fact": "The first hydroelectric power plant in the United States began operation in Wisconsin in 1882."
+        "fact": "Sverige är ett av världens ledande länder inom förnybar energi, med cirka 50 % av sin energi kommer från förnybara källor som vattenkraft, vindkraft och biomassa."
       },
       {
-        "fact": "The average microwave oven uses more energy in one hour than a refrigerator does in an entire day."
+        "fact": "En vanlig mikrovågsugn använder mer energi på en timme än vad ett kylskåp gör på en hel dag."
       },
       {
-        "fact": "A gallon of gasoline contains about 31,000 calories of energy."
+        "fact": "En liter bensin innehåller cirka 8000 kalorier energi."
       },
       {
-        "fact": "The world's largest solar power plant is located in the Mojave Desert in California and covers more than 5 square miles."
+        "fact": "Världens största solkraftverk ligger i Mojaveöknen i Kalifornien och täcker mer än 5 kvadratkilometer."
       },
       {
-        "fact": "In 2019, wind power generated more electricity than hydroelectric power for the first time ever in the United States."
+        "fact": "Världens första vindkraftspark byggdes i Sverige 1980. Parken bestod av 20 turbiner och hade en kapacitet på 30 megawatt."
       },
       {
-        "fact": "The amount of energy in the world's oceans could power the world for millions of years if it could be harnessed effectively."
+        "fact": "Mängden energi i världshaven skulle kunna driva världen i miljontals år om den kunde utnyttjas effektivt."
+      },
+      {
+        "fact": "Världens första vindkraftspark byggdes i Sverige 1980. Parken bestod av 20 turbiner och hade en kapacitet på 30 megawatt."
       }
     ]
   }
