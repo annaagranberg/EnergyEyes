@@ -86,12 +86,18 @@ const Progressbar = ({ spendingAmount, total, goalAmount, timeUnit }) => {
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
             >
+<<<<<<< HEAD
             <DialogTitle id="alert-dialog-title"sx={{backgroundColor:'white', color:'black'}}>
                  {timeUnit === 'dag' ? 'Daglig energiförbrukning' : 'Veckovis energiförbrukning'}
             </DialogTitle>
             <DialogContent sx={{backgroundColor:'#ffff', color:'white'}}>
                 <DialogContentText id="alert-dialog-description" sx={{backgroundColor:'#ffff', color:'black'}}> 
                 Denna graf visar det dagliga eller veckovisa energiförbrukningen av ditt hushåll. Om grafens färg ändrar färg från grön till gul så betyder det att du använt mer energi än det målet du angett.
+=======
+            <DialogContent sx={{backgroundColor:'#ffff', color:'white'}}>
+                <DialogContentText id="alert-dialog-description" sx={{backgroundColor:'#ffff', color:'black'}}> 
+              hej hej hej
+>>>>>>> 2822285ab22d23fb68504dee4fbc3f5cce274f7b
                 </DialogContentText>
             </DialogContent>
       </Dialog>

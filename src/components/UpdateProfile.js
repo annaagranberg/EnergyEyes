@@ -29,29 +29,46 @@ export default function UpdateProfile() {
     const [disk, setDisk] = useState(0)
     const [kok, setKok] = useState(0)
     const [tvatt, setTvatt] = useState(0)
+<<<<<<< HEAD
     const [dagligt, setDagligt] = useState();
     const [veckovis, setVeckovis] = useState();
  
 
     useEffect(() => {
+=======
+
+    useEffect(() => {
+        //const db = firebase.firestore();
+>>>>>>> 2822285ab22d23fb68504dee4fbc3f5cce274f7b
         const docRef = db.collection("user_collection").doc(currentUser.uid);
         docRef.get().then((doc) => {
           if (doc.exists) {
             const data = doc.data();
+<<<<<<< HEAD
 
             setFirst(data.name.firstname)
             setLast(data.name.lastname)
             setArea(data.boendeyta)
             setPeople(data.antalPersoner);
+=======
+            firstRef.current = data.name.firstname;
+            lastRef.current = data.name.lastname;
+            setPeople(data.antalPersoner);
+            setArea(data.boendeyta);
+>>>>>>> 2822285ab22d23fb68504dee4fbc3f5cce274f7b
             setProfil(data.profiltyp);
             setDuschTid(data.duschparametrar.tid);
             setDuschAntal(data.duschparametrar.antal);
             setDisk(data.diskparametrar.antal);
             setKok(data.kokparametrar.antal);
             setTvatt(data.tvattparametrar.antal);
+<<<<<<< HEAD
             setDagligt(data.mål.dagligt)
             setVeckovis(data.mål.veckovis)
 
+=======
+            console.log(lastRef.current)
+>>>>>>> 2822285ab22d23fb68504dee4fbc3f5cce274f7b
           } else {
             console.log("No such document!");
           }
@@ -60,6 +77,34 @@ export default function UpdateProfile() {
         });
       }, [currentUser.uid]);
     
+<<<<<<< HEAD
+=======
+        // var docRef = db.collection("user_collection").doc(currentUser.uid);
+        // //Get db information
+        // docRef.get("name.firstname").then((doc) => {
+        //     if (doc.exists) {
+        //         firstRef.current = doc.get("name.firstname")
+        //         lastRef.current = doc.get("name.lastname")
+        //         setPeople(doc.get("antalPersoner"))
+        //         setArea(doc.get("boendeyta"))
+        //         setProfil(doc.get("profiltyp"))
+        //         setDuschTid(doc.get("duschparametrar.tid"))
+        //         setDuschAntal(doc.get("duschparametrar.antal"))
+        //         setDisk(doc.get("diskparametrar.antal"))
+        //         setKok(doc.get("kokparametrar.antal"))
+        //         setTvatt(doc.get("tvattparametrar.antal"))
+        //     } else {
+        //         console.log("No such document!");
+        //     }
+        // }).catch((error) => {
+        //     console.log("Error getting document:", error);
+        // });
+    
+
+    const handleArea = (event) => {
+        setArea(event.target.value);
+    };
+>>>>>>> 2822285ab22d23fb68504dee4fbc3f5cce274f7b
     const handlePeople = (event) => {;
         setPeople(event.target.value);
     };
@@ -93,9 +138,13 @@ export default function UpdateProfile() {
             promises.push(updatePassword(passwordRef.current.value))
         }
 
+<<<<<<< HEAD
         console.log(area)
 
         promises.push(updateUser(first, last, area, people, profil, duschAntal, duschTid, kok, disk, tvatt, dagligt,veckovis))
+=======
+        
+>>>>>>> 2822285ab22d23fb68504dee4fbc3f5cce274f7b
 
         Promise.all(promises).then(() => {
             navigate('/profile')
@@ -164,7 +213,11 @@ export default function UpdateProfile() {
                                     </InputAdornment>
                                 ),
                             }}/>
+<<<<<<< HEAD
                             <TextField variant="standard" label="Efternamn" type='name'  placeholder={last} onChange={(e)=> setLast(e.target.value)}
+=======
+                            <TextField variant="standard" label="Efternamn" type='name'  
+>>>>>>> 2822285ab22d23fb68504dee4fbc3f5cce274f7b
                             sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }} InputProps={{
                                 startAdornment:(
                                     <InputAdornment position='start'>

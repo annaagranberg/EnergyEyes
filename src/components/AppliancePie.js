@@ -31,6 +31,7 @@ const AppliancePie = () => {
         data={sampleData}
         width={200}
         height={150}
+<<<<<<< HEAD
         labelComponent={<MyLabel />}
         labels={() => null}
       /> 
@@ -50,9 +51,26 @@ const Pietext = () =>{
           </div>
         ))}
       </div>
+=======
+      /> 
+    
+>>>>>>> 2822285ab22d23fb68504dee4fbc3f5cce274f7b
     </div>
 
+<<<<<<< HEAD
   
+=======
+const Pietext = () =>{
+  return(
+  <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', marginTop: '1rem' }}>
+  {sampleData.map((datum, index) => (
+    <div key={index} style={{ display: 'flex', alignItems: 'center', margin: '0.5rem' }}>
+      <div style={{ width: '1rem', height: '1rem', backgroundColor: myColorScale[index], marginRight: '0.5rem' }} />
+      <div style={{ fontSize: '0.6rem' }}>{datum.x}</div>
+    </div>
+  ))}
+</div>
+>>>>>>> 2822285ab22d23fb68504dee4fbc3f5cce274f7b
   )
 
 }

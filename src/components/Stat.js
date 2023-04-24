@@ -13,7 +13,13 @@ import { db } from '../firebase'
 /*<Progressbar spendingAmount={70} total={100} goalAmount={80} timeUnit='dag' />  */
 
 
+<<<<<<< HEAD
 
+=======
+{/* 
+        
+        <Progressbar spendingAmount={70} total={100} goalAmount={80} timeUnit='dag' />  */}
+>>>>>>> 2822285ab22d23fb68504dee4fbc3f5cce274f7b
 
 export default function Stat() {
 
@@ -59,8 +65,13 @@ export default function Stat() {
         </Box>
 
         <Box sx={{ display: 'flex', width: '40%',  flexDirection:'row', justifyContent: 'space-around', alignItems: 'center', zIndex:0 }} >
+<<<<<<< HEAD
           <Progressbar spendingAmount={4} total={15} goalAmount={dagligt} timeUnit='dag' />
           <Progressbar spendingAmount={30} total={50} goalAmount={veckovis} timeUnit='vecka' /> 
+=======
+          <Progressbar spendingAmount={55} total={100} goalAmount={80} timeUnit='dag' />
+          <Progressbar spendingAmount={50} total={100} goalAmount={80} timeUnit='vecka' /> 
+>>>>>>> 2822285ab22d23fb68504dee4fbc3f5cce274f7b
         </Box>
       </Box>
 
