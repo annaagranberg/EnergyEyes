@@ -31,7 +31,7 @@ function WeekSpendChart() {
             />
             <VictoryAxis
                 dependentAxis
-                tickFormat={(x) => (`$${x / 100}`)}
+                tickFormat={(x) => (`${x / 1000}`)}
                 style={{
                     axisLabel: {fontSize: 16},
                     tickLabels: {fontSize: 25}
