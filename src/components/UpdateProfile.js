@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
 import { CardContent, FormControl, FormGroup, ThemeProvider, 
-    Button, Alert, TextField, InputAdornment, Typography, Select, MenuItem, InputLabel, FormLabel, Stack, Box, Pagination } from '@mui/material'
+    Button, Alert, TextField, InputAdornment, Select, MenuItem, InputLabel, FormLabel, Stack, Box, Pagination } from '@mui/material'
 import theme from '../contexts/Theme';
 import Card from '@mui/material/Card';
 import { Person, Password } from '@mui/icons-material';
@@ -14,39 +14,40 @@ export default function UpdateProfile() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
-    const { currentUser, updateEmail, updatePassword, updateName, updateArea, updatePeople } = useAuth()
+    const { currentUser, updateEmail, updatePassword, updateArea, updateUser } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     
-    const firstRef = useRef()
-    const lastRef = useRef()
-    const [area, setArea] = useState('');
+    const [first, setFirst] = useState();
+    const [last, setLast] = useState();
+    const [area, setArea] = useState();
     const [people, setPeople] = useState('');
-    const [profil, setProfil] = useState("")
+    const [profil, setProfil] = useState('')
     const [duschTid, setDuschTid] = useState('')
     const [duschAntal, setDuschAntal] = useState('')
     const [disk, setDisk] = useState(0)
     const [kok, setKok] = useState(0)
     const [tvatt, setTvatt] = useState(0)
+ 
 
     useEffect(() => {
-        //const db = firebase.firestore();
         const docRef = db.collection("user_collection").doc(currentUser.uid);
         docRef.get().then((doc) => {
           if (doc.exists) {
             const data = doc.data();
-            firstRef.current = data.name.firstname;
-            lastRef.current = data.name.lastname;
+
+            setFirst(data.name.firstname)
+            setLast(data.name.lastname)
+            setArea(data.boendeyta)
             setPeople(data.antalPersoner);
-            setArea(data.boendeyta);
             setProfil(data.profiltyp);
             setDuschTid(data.duschparametrar.tid);
             setDuschAntal(data.duschparametrar.antal);
             setDisk(data.diskparametrar.antal);
             setKok(data.kokparametrar.antal);
             setTvatt(data.tvattparametrar.antal);
-            console.log(lastRef.current)
+
           } else {
             console.log("No such document!");
           }
@@ -55,31 +56,6 @@ export default function UpdateProfile() {
         });
       }, [currentUser.uid]);
     
-        // var docRef = db.collection("user_collection").doc(currentUser.uid);
-        // //Get db information
-        // docRef.get("name.firstname").then((doc) => {
-        //     if (doc.exists) {
-        //         firstRef.current = doc.get("name.firstname")
-        //         lastRef.current = doc.get("name.lastname")
-        //         setPeople(doc.get("antalPersoner"))
-        //         setArea(doc.get("boendeyta"))
-        //         setProfil(doc.get("profiltyp"))
-        //         setDuschTid(doc.get("duschparametrar.tid"))
-        //         setDuschAntal(doc.get("duschparametrar.antal"))
-        //         setDisk(doc.get("diskparametrar.antal"))
-        //         setKok(doc.get("kokparametrar.antal"))
-        //         setTvatt(doc.get("tvattparametrar.antal"))
-        //     } else {
-        //         console.log("No such document!");
-        //     }
-        // }).catch((error) => {
-        //     console.log("Error getting document:", error);
-        // });
-    
-
-    const handleArea = (event) => {
-        setArea(event.target.value);
-    };
     const handlePeople = (event) => {;
         setPeople(event.target.value);
     };
@@ -111,14 +87,16 @@ export default function UpdateProfile() {
 
         if(area !== '' && people !== ''){
             promises.push(updateArea(area))
-            promises.push(updatePeople(people))
+            // promises.push(updatePeople(people))
         }
 
         if(passwordRef.current.value){
             promises.push(updatePassword(passwordRef.current.value))
         }
 
-        
+        console.log(area)
+
+        promises.push(updateUser(first, last, area, people, profil, duschAntal, duschTid, kok, disk, tvatt))
 
         Promise.all(promises).then(() => {
             navigate('/profile')
@@ -179,7 +157,7 @@ export default function UpdateProfile() {
 
                     <FormGroup id="name" >
                         <FormControl sx={{flexDirection:'row', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
-                            <TextField variant="standard" label="Förnamn" type='name' inputRef={firstRef} placeholder={firstRef.current}
+                            <TextField variant="standard" label="Förnamn" type='name'  placeholder={first} onChange={(e)=> setFirst(e.target.value)}
                             sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }} InputProps={{
                                 startAdornment:(
                                     <InputAdornment position='start'>
@@ -187,7 +165,7 @@ export default function UpdateProfile() {
                                     </InputAdornment>
                                 ),
                             }}/>
-                            <TextField variant="standard" label="Efternamn" type='name'  
+                            <TextField variant="standard" label="Efternamn" type='name'  placeholder={last} onChange={(e)=> setLast(e.target.value)}
                             sx={{ mb:3, maxWidth:'49%', minWidth:'140px' }} InputProps={{
                                 startAdornment:(
                                     <InputAdornment position='start'>
@@ -215,8 +193,14 @@ export default function UpdateProfile() {
                             </Select>
                         </FormControl>
                         <FormControl  variant='standard' sx={{ mb:3, width:'49%', maxWidth:'50%', minWidth:'140px' }}>
-                            <TextField variant="standard" label='Area' value={area} type='number' placeholder={area}
-                            InputProps={{ inputProps: { min: 10, max: 200 } }} />
+                            <TextField variant="standard" label="Area" type='number' placeholder={area + ' kvm'} onChange={(e)=> setArea(e.target.value)}
+                                 InputProps={{ inputMode: 'numeric',
+                                    startAdornment:(
+                                        <InputAdornment position='start'>
+                                        </InputAdornment>
+                                    ),
+                                    inputProps: {max: 150, min: 9}
+                                }}/>
                         </FormControl>
                     </FormGroup>
 

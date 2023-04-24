@@ -1,4 +1,4 @@
-import { Box, Card } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
 import BottomBar from './BottomBar'
 import Topbar from './Topbar'
@@ -9,9 +9,7 @@ import PieBox from './PieBox'
 import WeekBox from './WeekBox'
 import ElecPriceChart from './ElecPriceChart'
 
-{/* 
-        
-        <Progressbar spendingAmount={70} total={100} goalAmount={80} timeUnit='dag' />  */}
+/*<Progressbar spendingAmount={70} total={100} goalAmount={80} timeUnit='dag' />  */
 
 export default function Stat() {
   return (
@@ -38,9 +36,7 @@ export default function Stat() {
         </Box>
 
       </Box>
-
-
-
+      
       <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}>
             <BottomBar sx={{ width: '100%', zIndex: 10 }} />
       </Box>

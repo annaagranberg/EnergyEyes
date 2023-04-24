@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
-import { CardContent, Alert, Button, CardHeader, Avatar, ThemeProvider, Typography, Slider, ToggleButtonGroup, ToggleButton } from '@mui/material'
+import { CardContent, Alert, Button, CardHeader, Avatar, ThemeProvider, Typography, ToggleButtonGroup, ToggleButton } from '@mui/material'
 import Card from '@mui/material/Card';
 //import { auth } from '../firebase'
 import theme from '../contexts/Theme';
@@ -16,7 +16,6 @@ import ShowerIcon from '@mui/icons-material/Shower';
 import WashIcon from '@mui/icons-material/Wash';
 import LocalLaundryServiceIcon from '@mui/icons-material/LocalLaundryService';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
-import { Update } from '@mui/icons-material';
 
 export default function Dashboard() {
 
@@ -33,7 +32,6 @@ export default function Dashboard() {
     const [disk, setDisk] = useState("")
     const [kok, setKok] = useState("")
     const [tvatt, setTvatt] = useState("")
-    const [runner, setRunner] = useState(true)
 
     function stringAvatar(name) {
         return {
@@ -51,12 +49,6 @@ export default function Dashboard() {
         setProfil(newProfil);
         updateProfil(newProfil)
     };
-
-    // const handleProfil = (event) => {
-    //     var s = marks[event.target.value / 50].label
-    //     setProfil(s);
-    //     updateProfil(s)
-    // };
     
     async function handleLogout(){
         setError('')
@@ -69,29 +61,31 @@ export default function Dashboard() {
         }
     }
 
-    if(runner){
-        var docRef = db.collection("user_collection").doc(currentUser.uid);
-        
-        //Get db information
-        docRef.get("name.firstname").then((doc) => {
-            if (doc.exists) {
-                setFname(doc.get("name.firstname"))
-                setLname(doc.get("name.lastname"))
-                setPeople(doc.get("antalPersoner"))
-                setArea(doc.get("boendeyta"))
-                setProfil(doc.get("profiltyp"))
-                setDusch(doc.get("duschparametrar"))
-                setDisk(doc.get("diskparametrar.antal"))
-                setKok(doc.get("kokparametrar.antal"))
-                setTvatt(doc.get("tvattparametrar.antal"))
-                setRunner(false)
-            } else {
-                console.log("No such document!");
-            }
+    useEffect(() => {
+        const docRef = db.collection("user_collection").doc(currentUser.uid);
+        docRef.get().then((doc) => {
+          if (doc.exists) {
+            const data = doc.data();
+
+            setFname(data.name.firstname)
+            setLname(data.name.lastname)
+            setArea(data.boendeyta)
+            setPeople(data.antalPersoner);
+            setProfil(data.profiltyp);
+            setDusch({antal: data.duschparametrar.antal, tid: data.duschparametrar.tid})
+            setDisk(data.diskparametrar.antal);
+            setKok(data.kokparametrar.antal);
+            setTvatt(data.tvattparametrar.antal);
+            console.log('hej')
+
+          } else {
+            console.log("No such document!");
+          }
         }).catch((error) => {
-            console.log("Error getting document:", error);
+          console.log("Error getting document:", error);
         });
-    }
+      }, [currentUser.uid]);
+
   return (
     <>
 
@@ -180,6 +174,7 @@ export default function Dashboard() {
                         <ToggleButtonGroup 
                                 value={profil}
                                 exclusive
+                                variant='standard'
                                 onChange={handleProfil}
                                 fullWidth
                                 sx={{mt: 3, justifyItems:'stretch', boxShadow: '1px 1px 7px grey' }}

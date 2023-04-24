@@ -17,18 +17,17 @@ import Curious from './Curious';
 export default function TypeBox({ value, type }) {
   let Component;
   switch (type) {
-    case 'plant':
+    case 'Miljö':
       Component = Plant;
       break;
-    case 'money':
+    case 'Sparsam':
       Component = Money;
       break;
-    case 'curious':
+    case 'Nyfiken':
       Component = Curious;
       break;
     default:
-      Component = Plant;
-      break;
+      return <div />
   }
 
   const { src, text } = Component(value);
