@@ -6,12 +6,13 @@ import {Dialog, DialogTitle, DialogContent,DialogContentText} from "@mui/materia
 const Container = styled.div`
   border-radius: 12px;
   box-shadow: 1px 1px 7px grey;
-  height: 80vh;
-  max-height: 254pt;
+  height: 53vh;
+  max-height: 65vh;
   width: 60px;
   overflow: hidden;
   position: relative;
   z-index: 1;
+
 `;
 
 // Create a bar that moves
@@ -85,9 +86,12 @@ const Progressbar = ({ spendingAmount, total, goalAmount, timeUnit }) => {
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
             >
+            <DialogTitle id="alert-dialog-title"sx={{backgroundColor:'white', color:'black'}}>
+                 {timeUnit === 'dag' ? 'Daglig energiförbrukning' : 'Veckovis energiförbrukning'}
+            </DialogTitle>
             <DialogContent sx={{backgroundColor:'#ffff', color:'white'}}>
                 <DialogContentText id="alert-dialog-description" sx={{backgroundColor:'#ffff', color:'black'}}> 
-              hej hej hej
+                Denna graf visar det dagliga eller veckovisa energiförbrukningen av ditt hushåll. Om grafens färg ändrar färg från grön till gul så betyder det att du använt mer energi än det målet du angett.
                 </DialogContentText>
             </DialogContent>
       </Dialog>
