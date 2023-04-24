@@ -14,7 +14,7 @@ export default function UpdateProfile() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
-    const { currentUser, updateEmail, updatePassword, updateArea, updateUser } = useAuth()
+    const { currentUser, updateEmail, updatePassword, updateUser } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
@@ -83,11 +83,6 @@ export default function UpdateProfile() {
 
         if(emailRef.current.value !== currentUser.email){
             promises.push(updateEmail(emailRef.current.value))
-        }
-
-        if(area !== '' && people !== ''){
-            promises.push(updateArea(area))
-            // promises.push(updatePeople(people))
         }
 
         if(passwordRef.current.value){
@@ -199,8 +194,28 @@ export default function UpdateProfile() {
                                         <InputAdornment position='start'>
                                         </InputAdornment>
                                     ),
-                                    inputProps: {max: 150, min: 9}
+                                    inputProps:({ min: 10, max: 150 })
                                 }}/>
+                        </FormControl>
+                    </FormGroup>
+                    <FormLabel sx={{mb:1}}>Uppdatera dusch</FormLabel>
+                    <FormGroup id="name" >
+                        <FormControl sx={{flexDirection:'row', flexWrap:'wrap', width:'100%', justifyContent:'space-between'}}>
+                            <TextField variant="standard" label="Antal i veckan" type='number' placeholder={duschAntal} onChange={(e)=> setDuschAntal(e.target.value)}
+                            sx={{width:'49%',maxWidth:'100%', minWidth:'140px'}}
+                            InputProps={{ inputMode: 'numeric',
+                            startAdornment:(
+                                <InputAdornment position='start'>
+                                </InputAdornment>
+                            ),inputProps: { min: 1, max: 15 } }}/>
+
+                            <TextField variant="standard" label="Tid per dusch" type='number' placeholder= {duschTid} onChange={(e)=> setDuschTid(e.target.value)}
+                            InputProps={{ inputMode: 'numeric',
+                            startAdornment:(
+                                <InputAdornment position='start'>
+                                </InputAdornment>
+                            ),inputProps: { min: 1, max: 60 } }}
+                            sx={{ mb:3, width: '49%',maxWidth:'100%', minWidth:'140px' }}/>
                         </FormControl>
                     </FormGroup>
 
