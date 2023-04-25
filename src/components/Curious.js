@@ -7,11 +7,11 @@ import img5 from '../images/smiley5.PNG';
 // Takes one argument and depending on the value returns an image
 function Curious(value) {
   const images = [
-    { src: img1, min: 0, max: 10, text: "Excited" },
-    { src: img2, min: 10, max: 20, text: "Happy" },
+    { src: img1, min: 0, max: 10, text: "Förväntansfull" },
+    { src: img2, min: 10, max: 20, text: "Glad" },
     { src: img3, min: 20, max: 30, text: "Neutral" },
-    { src: img4, min: 30, max: 40, text: "Irritated" },
-    { src: img5, min: 40, max: 50, text: "Mad" },
+    { src: img4, min: 30, max: 40, text: "Uppretad" },
+    { src: img5, min: 40, max: 50, text: "Arg" },
   ];
 
   const { src, text } = images.find(({ min, max }) => value >= min && value < max) || { src: '', text: 'Unknown' };
