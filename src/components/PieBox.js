@@ -25,7 +25,7 @@ export default function PieBox() {
               Uppdelning 
          </Typography>
             <AppliancePie/>
-            <Pietext/>
+            
 
       <Dialog
             open={open}
@@ -42,7 +42,6 @@ export default function PieBox() {
                     Uppdelning av elförbrukning
                 </Typography>
               <AppliancePie/>
-                 <Pietext/>
                   Detta cirkeldiagram visar uppdelning av din energiförbrukning mellan olika syslor.
                 </DialogContentText>
             </DialogContent>
