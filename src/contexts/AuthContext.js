@@ -86,13 +86,13 @@ export function AuthProvider({ children }) {
         try {
             await db.collection("user_collection").doc(currentUser.uid).set({
                 name: { firstname: fname, lastname: lname },
-                boendeyta: area,
-                antalPersoner: people,
+                boendeyta: parseInt(area) ,
+                antalPersoner:  parseInt(people),
                 profiltyp: profiltyp,
-                duschparametrar: {antal: duschAntal, tid: duschTid},
-                kokparametrar: {antal: kok},
-                diskparametrar: {antal: disk},
-                tvattparametrar: {antal: tvatt},
+                duschparametrar: {antal:  parseInt(duschAntal), tid:  parseInt(duschTid)},
+                kokparametrar: {antal:  parseInt(kok)},
+                diskparametrar: {antal:  parseInt(disk)},
+                tvattparametrar: {antal:  parseInt(tvatt)},
             })
         } catch (error) {
             console.error("Error adding document: ", error)
@@ -104,13 +104,13 @@ export function AuthProvider({ children }) {
         try {
             await db.collection("user_collection").doc(currentUser.uid).update({
                 name: { firstname: fname, lastname: lname },
-                boendeyta: area, 
-                antalPersoner: people,
+                boendeyta: parseInt(area), 
+                antalPersoner: parseInt(people),
                 profiltyp: profiltyp,
-                duschparametrar: {antal: duschAntal, tid: duschTid},
-                kokparametrar: {antal: kok},
-                diskparametrar: {antal: disk},
-                tvattparametrar: {antal: tvatt},
+                duschparametrar: {antal: parseInt(duschAntal), tid: parseInt(duschTid) },
+                kokparametrar: {antal: parseInt(kok)},
+                diskparametrar: {antal: parseInt(disk)},
+                tvattparametrar: {antal: parseInt(tvatt)},
             })
         } catch (error) {
             console.error("Error adding document: ", error)

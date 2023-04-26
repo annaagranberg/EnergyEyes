@@ -5,13 +5,14 @@ import {Dialog, DialogTitle, DialogContent,DialogContentText} from "@mui/materia
 // Create the container
 const Container = styled.div`
   border-radius: 12px;
-  box-shadow: 1px 1px 7px grey;
+  box-shadow: 0px 0px 2px grey;
   height: 53vh;
   max-height: 65vh;
   width: 60px;
   overflow: hidden;
   position: relative;
   z-index: 1;
+  background-color: white;
 
 `;
 

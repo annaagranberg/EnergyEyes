@@ -30,7 +30,7 @@ export default function Topbar() {
   return (
 <ThemeProvider theme={themes}>
 <Box sx={{flexGrow:1}}>
-<AppBar position="static">
+<AppBar position="static" elevation = {0}>
 <Toolbar>
   <Box sx={{width: 30, height: 40,}}>
     <CardMedia

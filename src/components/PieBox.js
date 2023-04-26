@@ -20,7 +20,7 @@ export default function PieBox() {
 
   return (
     <Box sx={{ width: '90%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center' }}>
-      <Card onClick={handleOpen} color="success" variant='outlined' sx={{  boxShadow: '1px 1px 7px grey', textAlign: 'left', width: '100%', borderRadius: 2, padding: '5px'}}>
+      <Card onClick={handleOpen} color="success" variant='outlined' sx={{ boxShadow: '0px 0px 2px grey', textAlign: 'left', width: '100%', borderRadius: 2, padding: '5px'}}>
       <Typography variant='h10' ml={1.5} mt={2} >
               Uppdelning 
          </Typography>
