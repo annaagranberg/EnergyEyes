@@ -115,7 +115,7 @@ export function AuthProvider({ children }) {
                 kokparametrar: {antal: parseInt(kok)},
                 diskparametrar: {antal: parseInt(disk)},
                 tvattparametrar: {antal: parseInt(tvatt)},
-                mål: {dagligt: dag, veckovis: vecka}
+                mål: {dagligt: parseInt(dag), veckovis: parseInt(vecka)}
 
             })
         } catch (error) {
