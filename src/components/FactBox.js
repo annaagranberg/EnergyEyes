@@ -67,7 +67,7 @@ export default function FactBox() {
   return (
 
     <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', mb: 10 }}>
-      <Card variant='outlined' sx={{boxShadow: '1px 1px 7px grey', textAlign: 'left', width: '95%', borderRadius: 2, mb: 5 }}>
+      <Card variant='outlined' sx={{boxShadow: '0px 0px 2px grey', textAlign: 'left', width: '95%', borderRadius: 2, mb: 5 }}>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             Energy fact

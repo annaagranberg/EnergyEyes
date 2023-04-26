@@ -29,17 +29,19 @@ export default function Topbar() {
 
   return (
 <ThemeProvider theme={themes}>
-  <Box sx={{flexGrow:1}}>
-    <AppBar position="static" >
-      <Toolbar>
-        <Box sx={{width: 30, height: 40,}}>
-          <CardMedia
-            component="img"
-            sx={{ width: "100%", height: "100%"}}
-            src ={Logo}
-            alt="Logga"
-          />
-        </Box>
+
+<Box sx={{flexGrow:1}}>
+<AppBar position="static" elevation = {0}>
+<Toolbar>
+  <Box sx={{width: 30, height: 40,}}>
+    <CardMedia
+      component="img"
+      sx={{ width: "100%", height: "100%"}}
+      src ={Logo}
+      alt="Logga"
+    />
+  </Box>
+
 
         <Box sx={{marginLeft: 'auto'}}>
           <Button onClick={handleOpen}color="success">

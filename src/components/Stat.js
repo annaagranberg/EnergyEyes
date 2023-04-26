@@ -9,7 +9,6 @@ import WeekBox from './WeekBox'
 import { useAuth } from '../contexts/AuthContext'
 import { db } from '../firebase'
 
-
 /*<Progressbar spendingAmount={70} total={100} goalAmount={80} timeUnit='dag' />  */
 
 
@@ -37,7 +36,6 @@ export default function Stat() {
     });
   }, [currentUser.uid]);
 
-
   return (
     <>
     {/* <ElecPriceChart/> */}
@@ -59,8 +57,11 @@ export default function Stat() {
         </Box>
 
         <Box sx={{ display: 'flex', width: '40%',  flexDirection:'row', justifyContent: 'space-around', alignItems: 'center', zIndex:0 }} >
+
+
           <Progressbar spendingAmount={4} total={15} goalAmount={dagligt} timeUnit='dag' />
           <Progressbar spendingAmount={30} total={50} goalAmount={veckovis} timeUnit='vecka' /> 
+
         </Box>
       </Box>
 

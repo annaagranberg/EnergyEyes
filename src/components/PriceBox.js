@@ -21,7 +21,7 @@ export default function PriceBox() {
   return (
 
     <Box sx={{width:'100%'}} flexDirection='column' display='flex' justifyContent='space-evenly' alignItems='center'>
-    <Card onClick={handleOpen} variant='outlined' sx={{boxShadow: '1px 1px 7px grey', textAlign:'left', width:'95%', borderRadius:2, marginTop: 1}}>
+    <Card onClick={handleOpen} variant='outlined' sx={{boxShadow: '0px 0px 2px grey', textAlign:'left', width:'95%', borderRadius:2, marginTop: 1}}>
         <Typography variant='h5' ml={1.5} mt={1.5} >
               Elpris
          </Typography>
