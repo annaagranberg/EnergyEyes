@@ -5,6 +5,7 @@ import { VictoryChart } from 'victory';
 import { useBootstrapBreakpoints } from 'react-bootstrap/esm/ThemeProvider';
 
 import EnergyGraph from './EnergyGraph';
+import WeekSpendChart from './WeekSpendChart';
 
 
 const getRandomInRange = (min, max, area, dusch) => {
@@ -29,11 +30,12 @@ const NewData = () => {
   const [area, setArea] = useState("")
   const [dusch, setDusch] = useState("");
 
-  const [dayArray, setDayArray] = useState("");
+
   const [hourArray, setHourArray] = useState([]);
   const [numDays, setNumDays] = useState("");
 
 
+  const [dayArray, setDayArray] = useState("");
   var docRef = db.collection("user_collection").doc(currentUser.uid);
 
   docRef.get("name.firstname").then((doc) => {
@@ -52,50 +54,30 @@ const NewData = () => {
 
   useEffect(() => {
     const now = new Date();
-
-    const numDays = 1; // Set number of days 
-    const numHours = 24; // Set number of hours to 24
-
+  
+    const numDays = 7; // Set number of days to 7
+  
     setNumDays(numDays);
-
-    const hourArray = Array.from({ length: numDays }, (_, i) => {
+  
+    const dayArray = Array.from({ length: numDays }, (_, i) => {
       const day = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i, 0, 0, 0, 0);
-      const hourArray = Array.from({ length: numHours }, (_, j) => {
-        const date = new Date(day.getFullYear(), day.getMonth(), day.getDate(), j, 0, 0, 0);
-        const randomValue = getRandomInRange(0, 1, area, dusch, date);
-
-        return { date, value: randomValue };
+      const dailyTotal = Array.from({ length: 1 }, (_) => {
+        const randomValue = getRandomInRange(0, 24, area, dusch, day); // Get random value for the day
+  
+        return { date: day, value: randomValue };
       });
-
-      return hourArray;
-    }).flat(); // Flatten the array of arrays into a single array
-
-    // Map over the hourArray and update the value property based on the hour of the day
-    const updatedHourArray = hourArray.map(hourObj => {
-      const currentHour = hourObj.date.getHours();
-
-      // Increase value by 50% for hours between 6 AM and 8 AM
-      if (currentHour >= 18 && currentHour <= 22) {
-        return { ...hourObj, value: hourObj.value * 1.5 };
-      } else {
-        return hourObj;
-      }
+  
+      return dailyTotal;
     });
-
-    setHourArray(updatedHourArray);
-    console.log(updatedHourArray);
-
+  
+    setDayArray(dayArray);
+    console.log(dayArray);
+  
   }, []);
-
-
-
-
-
+  
+  
   return (
-    <div>
-      <h1>senaste {numDays} dagarna!</h1>
-      <EnergyGraph hourArray={hourArray} />
-    </div>
+    <WeekSpendChart dayArray = {dayArray}/>
   )
 
 }
