@@ -95,7 +95,7 @@ export default function Dashboard() {
   return (
     <>
 
-    <Box sx={{position: 'fixed', top: 0, left: 0, right: 0 }}>
+    <Box sx={{position: 'fixed', top: 0, left: 0, right: 0, zIndex:'10001 !important' }}>
                 <Topbar sx={{width:'100%'}}/>
     </Box>
 
