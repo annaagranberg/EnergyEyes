@@ -94,7 +94,8 @@ export default function Dashboard() {
     </Box>
 
     <ThemeProvider theme={theme}>
-    
+
+
         <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll', mb:6}}>
             <Card sx={{ minWidth: 270 }} elevation={0}>
                 <CardContent>
@@ -129,18 +130,18 @@ export default function Dashboard() {
                 
                 <Box sx={{width:'90%', ml:'auto', mr:'auto' }} display='flex' flexDirection="column" alignItems='center'>
                     <Box display='flex' flexDirection='row' justifyContent='space-between' sx={{width:'95%', mb:3}}>
-                        <Card variant='outlined' sx={{ textAlign:'center', boxShadow: '1px 1px 7px grey',  borderRadius: 3, width:'30%'}}>
+                        <Card variant='outlined' sx={{ textAlign:'center', boxShadow: '0px 0px 2px grey',  borderRadius: 3, width:'30%'}}>
                             <Typography  variant='h6' >{fname}<br/>{lname}</Typography>
                         </Card>
-                        <Card justify='center' variant='outlined' component='div' sx={{boxShadow: '1px 1px 7px grey', textAlign:'center', borderRadius: 3, width:'30%'}}>
+                        <Card justify='center' variant='outlined' component='div' sx={{boxShadow: '0px 0px 2px grey', textAlign:'center', borderRadius: 3, width:'30%'}}>
                             <Typography mt='15%' variant='h6'>{area} kvm</Typography>
                         </Card>
-                        <Card variant='outlined' sx={{boxShadow: '1px 1px 7px grey', textAlign:'center', borderRadius: 3, width:'30%' }}>
+                        <Card variant='outlined' sx={{boxShadow: '0px 0px 2px grey', textAlign:'center', borderRadius: 3, width:'30%' }}>
                             <Typography mt='15%' variant='h6'>{people} i bostad</Typography>
                         </Card>
                     </Box>
 
-                    <Box sx={{width:'95%', borderRadius: 3, boxShadow: '1px 1px 7px grey'}} flexWrap='wrap' flexDirection='row' display='flex' alignItems='center'>
+                    <Box sx={{width:'95%', borderRadius: 3, boxShadow: '0px 0px 2px grey'}} flexWrap='wrap' flexDirection='row' display='flex' alignItems='center'>
                         <Card  sx={{ textAlign:'left', width:'45%', m:1}} elevation={0}>
                             <CardContent>
                                 <Box sx={{mb:2}}>
@@ -177,7 +178,7 @@ export default function Dashboard() {
                                 variant='standard'
                                 onChange={handleProfil}
                                 fullWidth
-                                sx={{mt: 3, justifyItems:'stretch', boxShadow: '1px 1px 7px grey' }}
+                                sx={{mt: 3, justifyItems:'stretch', boxShadow: '0px 0px 2px grey' }}
                                 >
                                     <ToggleButton value="Miljö" >
                                         <NaturePeopleIcon/>

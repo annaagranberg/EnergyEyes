@@ -39,7 +39,7 @@ export default function Home() {
         <Topbar sx={{width:'100%'}} />
       </Box>
 
-      <Box sx={{overflowX:'hidden', overflowY:'scroll',  mt: '7vh' }}>
+      <Box sx={{overflowX:'hidden', overflowY:'scroll',  mt: '7vh', backgroundColor: "#F0F4F4" }}>
           <TypeBox value={5} type={profil} />
 
             <Box sx={{flexDirection:'column', display:'flex', width: '95%', marginLeft:'auto', marginRight:'auto'}}>  

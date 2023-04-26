@@ -45,7 +45,7 @@ export default function Stat() {
     </Box>
 
 
-    <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll', mb:8, mt:8}}>
+    <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll', mb:8, mt:8, backgroundColor: "#F0F4F4"}}>
       <PriceBox mb={2}/>
 
       <Box sx={{ display: 'flex', mt:2, mb:2, width: '100%', flexDirection:'row', justifyContent: 'space-around', alignItems: 'center', zIndex:0, height: '100%' }} >
@@ -59,8 +59,8 @@ export default function Stat() {
         <Box sx={{ display: 'flex', width: '40%',  flexDirection:'row', justifyContent: 'space-around', alignItems: 'center', zIndex:0 }} >
 
 
-          <Progressbar spendingAmount={4} total={15} goalAmount={dagligt} timeUnit='dag' />
-          <Progressbar spendingAmount={30} total={50} goalAmount={veckovis} timeUnit='vecka' /> 
+          <Progressbar spendingAmount={4} total={dagligt*1.6} goalAmount={dagligt} timeUnit='dag' />
+          <Progressbar spendingAmount={30} total={veckovis*1.6} goalAmount={veckovis} timeUnit='vecka' /> 
 
         </Box>
       </Box>
