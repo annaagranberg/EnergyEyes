@@ -39,38 +39,38 @@ export function AuthProvider({ children }) {
     }
 
     //Update name
-    async function updateName(first, last){
-        try {
-            await db.collection("user_collection").doc(currentUser.uid).update({
-                name: { firstname: first, lastname: last },
-            })
-            console.log("Document successfully written!")
-        } catch (error) {
-            console.error("Error writing document: ", error)
-        }
-        console.log(first)
-    }
+    // async function updateName(first, last){
+    //     try {
+    //         await db.collection("user_collection").doc(currentUser.uid).update({
+    //             name: { firstname: first, lastname: last },
+    //         })
+    //         console.log("Document successfully written!")
+    //     } catch (error) {
+    //         console.error("Error writing document: ", error)
+    //     }
+    //     console.log(first)
+    // }
     //Update area
-    async function updateArea(area){
-        try {
-            await db.collection("user_collection").doc(currentUser.uid).update({
-                boendeyta: area,
-            })
-        } catch (error) {
-            console.error("Error writing document: ", error)
-        }
-        console.log(area)
-    }
+    // async function updateArea(area){
+    //     try {
+    //         await db.collection("user_collection").doc(currentUser.uid).update({
+    //             boendeyta: area,
+    //         })
+    //     } catch (error) {
+    //         console.error("Error writing document: ", error)
+    //     }
+    //     console.log(area)
+    // }
     //Update people
-    async function updatePeople(people){
-        try {
-            await db.collection("user_collection").doc(currentUser.uid).update({
-                antalPersoner: people,
-            })
-        } catch (error) {
-            console.error("Error writing document: ", error)
-        }
-    }
+    // async function updatePeople(people){
+    //     try {
+    //         await db.collection("user_collection").doc(currentUser.uid).update({
+    //             antalPersoner: people,
+    //         })
+    //     } catch (error) {
+    //         console.error("Error writing document: ", error)
+    //     }
+    // }
 
     async function updateProfil(profiltyp){
         try {
@@ -82,24 +82,27 @@ export function AuthProvider({ children }) {
         }
     }
 
-    async function setNewUser(fname,lname, area, people, profiltyp, duschAntal, duschTid, kok, disk, tvatt){
+    async function setNewUser(fname,lname, area, people, profiltyp, duschAntal, duschTid, kok, disk, tvatt, dag, vecka){
         try {
             await db.collection("user_collection").doc(currentUser.uid).set({
                 name: { firstname: fname, lastname: lname },
                 boendeyta: parseInt(area) ,
                 antalPersoner:  parseInt(people),
                 profiltyp: profiltyp,
+
                 duschparametrar: {antal:  parseInt(duschAntal), tid:  parseInt(duschTid)},
                 kokparametrar: {antal:  parseInt(kok)},
                 diskparametrar: {antal:  parseInt(disk)},
                 tvattparametrar: {antal:  parseInt(tvatt)},
+                mål: {dagligt: dag, veckovis: vecka}
+
             })
         } catch (error) {
             console.error("Error adding document: ", error)
         }
     }
 
-    async function updateUser(fname, lname, area, people, profiltyp, duschAntal, duschTid, kok, disk, tvatt){
+    async function updateUser(fname, lname, area, people, profiltyp, duschAntal, duschTid, kok, disk, tvatt, dag, vecka){
         
         try {
             await db.collection("user_collection").doc(currentUser.uid).update({
@@ -107,10 +110,13 @@ export function AuthProvider({ children }) {
                 boendeyta: parseInt(area), 
                 antalPersoner: parseInt(people),
                 profiltyp: profiltyp,
+
                 duschparametrar: {antal: parseInt(duschAntal), tid: parseInt(duschTid) },
                 kokparametrar: {antal: parseInt(kok)},
                 diskparametrar: {antal: parseInt(disk)},
                 tvattparametrar: {antal: parseInt(tvatt)},
+                mål: {dagligt: dag, veckovis: vecka}
+
             })
         } catch (error) {
             console.error("Error adding document: ", error)
@@ -134,9 +140,6 @@ export function AuthProvider({ children }) {
         signup,
         resetPassword,
         updateEmail,
-        updateName,
-        updateArea,
-        updatePeople,
         updateProfil,
         updatePassword,
         updateUser,

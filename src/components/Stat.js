@@ -40,8 +40,8 @@ export default function Stat() {
     <>
     {/* <ElecPriceChart/> */}
     {/* <NewData/> */}
-    <Box sx={{position: 'fixed', top: 0, left: 0, right: 0, }}>
-        <Topbar sx={{width:'100%', zIndex:10}} />
+    <Box sx={{position: 'fixed', top: 0, left: 0, right: 0, zIndex:'10001 !important' }}>
+        <Topbar sx={{width:'100%'}} />
     </Box>
 
 
@@ -57,8 +57,11 @@ export default function Stat() {
         </Box>
 
         <Box sx={{ display: 'flex', width: '40%',  flexDirection:'row', justifyContent: 'space-around', alignItems: 'center', zIndex:0 }} >
-          <Progressbar spendingAmount={85} total={dagligt*1.5} goalAmount={dagligt} timeUnit='dag' />
-          <Progressbar spendingAmount={50} total={veckovis*1.5} goalAmount={veckovis} timeUnit='vecka' /> 
+
+
+          <Progressbar spendingAmount={4} total={15} goalAmount={dagligt} timeUnit='dag' />
+          <Progressbar spendingAmount={30} total={50} goalAmount={veckovis} timeUnit='vecka' /> 
+
         </Box>
       </Box>
 
