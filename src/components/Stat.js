@@ -42,8 +42,8 @@ export default function Stat() {
     <>
     {/* <ElecPriceChart/> */}
     {/* <NewData/> */}
-    <Box sx={{position: 'fixed', top: 0, left: 0, right: 0, }}>
-        <Topbar sx={{width:'100%', zIndex:10}} />
+    <Box sx={{position: 'fixed', top: 0, left: 0, right: 0, zIndex:'10001 !important' }}>
+        <Topbar sx={{width:'100%'}} />
     </Box>
 
 
