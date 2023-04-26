@@ -8,6 +8,8 @@ import PieBox from './PieBox'
 import WeekBox from './WeekBox'
 import { useAuth } from '../contexts/AuthContext'
 import { db } from '../firebase'
+import NewData from './NewData'
+import WeekSpendChart from './WeekSpendChart'
 
 /*<Progressbar spendingAmount={70} total={100} goalAmount={80} timeUnit='dag' />  */
 
@@ -19,6 +21,9 @@ export default function Stat() {
   const [dagligt, setDagligt] = useState('0')
   const [veckovis, setVeckovis] = useState('0')
   const { currentUser } = useAuth();
+
+const dayArray = NewData();
+console.log(dayArray);
 
   useEffect(() => {
     const docRef = db.collection("user_collection").doc(currentUser.uid);
