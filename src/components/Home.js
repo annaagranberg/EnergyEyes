@@ -12,16 +12,28 @@ import { db } from '../firebase'
 import { useAuth } from '../contexts/AuthContext'
 
 //   <TypeBox value={42} type="plant" />
-export default function Home() {
+
+const Getdb = () =>{
+  const { currentUser } = useAuth();
+  const [dusch, setDusch] = useState([])
+  const [disk, setDisk] = useState()
+  const [kok, setKok] = useState()
+  const [tvatt, setTvatt] = useState()
+  const [person, setPerson] = useState()
   const [profil, setProfil] = useState()
-  const { currentUser } = useAuth()
 
   useEffect(() => {
     const docRef = db.collection("user_collection").doc(currentUser.uid);
     docRef.get().then((doc) => {
       if (doc.exists) {
         const data = doc.data();
+        setPerson(data.antalPersoner)
+        setDusch({antal: data.duschparametrar.antal, tid: data.duschparametrar.tid})
+        setDisk(data.diskparametrar.antal);
+        setKok(data.kokparametrar.antal);
+        setTvatt(data.tvattparametrar.antal);
         setProfil(data.profiltyp)
+        console.log('hej')
 
       } else {
         console.log("No such document!");
@@ -30,6 +42,19 @@ export default function Home() {
       console.log("Error getting document:", error);
     });
   }, [currentUser.uid]);
+
+  const sum = (kok*(1/2) + disk*(2) + (dusch['tid']*dusch['antal']*0.3) + tvatt) / person
+
+  return [sum, profil]
+}
+
+export default function Home() {
+  const info = Getdb();
+  const profil = info[1]
+  const sum = info[0]
+
+  console.log(profil)
+  console.log(sum)
 
   return (
 
@@ -40,7 +65,7 @@ export default function Home() {
       </Box>
 
       <Box sx={{overflowX:'hidden', overflowY:'scroll',  mt: '7vh', backgroundColor: "#F0F4F4" }}>
-          <TypeBox value={5} type={profil} />
+          <TypeBox value={sum} type={profil} />
 
             <Box sx={{flexDirection:'column', display:'flex', width: '95%', marginLeft:'auto', marginRight:'auto'}}>  
               <Button component={Link} to='/update-profile' variant='contained' sx={{mb:3, borderRadius: 2}}>

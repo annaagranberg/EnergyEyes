@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import Plant from './Plant';
 import Money from './Money';
 import Curious from './Curious';
+import { db } from '../firebase'
+import { useAuth } from '../contexts/AuthContext'
 
 // Calls on different component depending on which type is selected
 // export default function PlantBox({ value, type }) {
@@ -14,7 +16,9 @@ import Curious from './Curious';
 //     const { src, text } = Component(value);
 
 // Takes in two arguments, one number value and a type value
+
 export default function TypeBox({ value, type }) {
+
   let Component;
   switch (type) {
     case 'Miljö':

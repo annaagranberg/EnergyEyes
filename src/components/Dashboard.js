@@ -94,22 +94,21 @@ export default function Dashboard() {
     </Box>
 
     <ThemeProvider theme={theme}>
-
-
-        <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll', mb:6}}>
+        
+        <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll', mb:6, bgcolor: "#F0F4F4"}}>
             <Card sx={{ minWidth: 270 }} elevation={0}>
                 <CardContent>
                     {error && <Alert varient = "danger">{error}</Alert> }
 
                     {/* <strong>Email:</strong> {currentUser.email} <br></br>
-                    <strong>ID:</strong> {currentUser.uid} */}
+                    <strong>ID:</strong> {currentUser.uid} , backgroundColor: "#F0F4F4" */}
 
                     {/* <Link to="/update-profile" className="btn btn-primary w-100 mt-3">Update profile</Link> */}
 
                 </CardContent>
             </Card>
 
-            <Card sx={{ /*display: 'flex',*/ borderRadius:0}} elevation={0}>
+            <Card sx={{ /*display: 'flex',*/ borderRadius:0 }} elevation={0}>
                 <Box  sx={{ display: 'flex', flexDirection: 'column', width:'100%', overflowY:'scroll'}}>
                     <CardHeader sx={{ height:'18vh', bgcolor:'#092A23'}}>
 
@@ -196,20 +195,17 @@ export default function Dashboard() {
                     </Box>
                 </Box>
 
-            
-
                 <div className='w-100 text-center mt-2'>
                     <Button variant="contained" onClick={handleLogout} sx={{borderRadius:2, pl:5,pr:5, mt:2, mb:3}}>  
                         Logga ut
                     </Button>
-                </div>
-                
+                </div>   
         </Card>
     </Box>
     <Box sx={{position: 'fixed', bottom: 0, left: 0, right: 0 }}>
                 <BottomBar sx={{width:'100%'}}/>
     </Box>
-
+    
     </ThemeProvider>
     </>
   )

@@ -11,7 +11,7 @@ const theme = createTheme({
             main: '#D9B44A',
         },
         background:{
-            default: "#fff",
+            main: "#F0F4F4",
         },
         action:{
             active: '#D9B44A',
