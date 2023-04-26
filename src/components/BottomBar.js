@@ -19,7 +19,7 @@ export default function BottomBar() {
   return (
     <>
     <ThemeProvider theme={theme}>
-        <Box sx={{borderTop: '1px solid #ACD0C0'}}>
+        <Box>
             <BottomNavigation
                 showLabels
                 value={clicked}
