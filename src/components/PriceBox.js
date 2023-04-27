@@ -6,6 +6,7 @@ import ElecPriceChart from './ElecPriceChart';
 import {Dialog, DialogContent,DialogContentText} from "@mui/material";
 
 
+
 // MUI comp that shows the ElecPriceChart graph
 export default function PriceBox() {
 

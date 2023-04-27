@@ -17,11 +17,12 @@ const MyLabel = (props) => {
 };
 
 const Getdb = () =>{
-  const { currentUser, logout, updateProfil } = useAuth();
+  const { currentUser } = useAuth();
   const [dusch, setDusch] = useState([])
   const [disk, setDisk] = useState()
   const [kok, setKok] = useState()
   const [tvatt, setTvatt] = useState()
+  
 
   useEffect(() => {
     const docRef = db.collection("user_collection").doc(currentUser.uid);
@@ -32,7 +33,7 @@ const Getdb = () =>{
         setDisk(data.diskparametrar.antal);
         setKok(data.kokparametrar.antal);
         setTvatt(data.tvattparametrar.antal);
-        console.log('hej')
+        //console.log('hej')
 
       } else {
         console.log("No such document!");
