@@ -7,10 +7,10 @@ import img5 from '../images/smiley5.PNG';
 // Takes one argument and depending on the value returns an image
 function Curious(value) {
   const images = [
-    { src: img1, min: 0, max: 4, text: "Förväntansfull" },
+    { src: img1, min: 0, max: 5, text: "Förväntansfull" },
     { src: img2, min: 5, max: 9, text: "Glad" },
-    { src: img3, min: 9, max: 13, text: "Neutral" },
-    { src: img4, min: 14, max: 18, text: "Uppretad" },
+    { src: img3, min: 9, max: 14, text: "Neutral" },
+    { src: img4, min: 14, max: 19, text: "Uppretad" },
     { src: img5, min: 19, max: 100, text: "Arg" },
   ];
 
