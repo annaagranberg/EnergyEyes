@@ -4,15 +4,15 @@ import { db } from '../firebase';
 
 const NewData = () => {
     const { currentUser, logout } = useAuth();
-    const [people, setPeople] = useState(0)
-    const [area, setArea] = useState(0)
+    const [people, setPeople] = useState()
+    const [area, setArea] = useState()
     const [profil, setProfil] = useState('')
-    const [dusch, setDusch] = useState(0)
-    const [duschtid, setDuschTid] = useState(0)
-    const [disk, setDisk] = useState(0)
-    const [kok, setKok] = useState(0)
+    const [dusch, setDusch] = useState()
+    const [duschtid, setDuschTid] = useState()
+    const [disk, setDisk] = useState()
+    const [kok, setKok] = useState()
     const [tvatt, setTvatt] = useState(0)
-
+    
     useEffect(() => {
     var docRef = db.collection("user_collection").doc(currentUser.uid);
 
@@ -34,9 +34,11 @@ const NewData = () => {
     console.log("Error getting document:", error);
   });
 }, [currentUser.uid]);
-
+    
     const now = new Date();
+    const dayOfWeek = now.getDay();
     const numDays = 7;
+    const remove = 7 - dayOfWeek;
     const dayArray = Array.from({ length: numDays }, (_, i) => {
       const day = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i, 0, 0, 0, 0);
       const dailyTotal = Array.from({ length: 1 }, (_) => {
@@ -45,9 +47,11 @@ const NewData = () => {
       });
       return dailyTotal;
     });
-    return(
-        {dayArray}
-    )
+
+    // Set the last "remove" number of elements in dayArray to 0
+    dayArray.splice(-remove, remove, Array(remove).fill({ date: null, value: 0 }));
+
+    return { dayArray };
 }
 
 function calculateDailyEnergyUsage(people, area, dusch,duschtid, disk, kok, tvatt) {
