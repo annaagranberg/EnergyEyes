@@ -59,7 +59,7 @@ const WeekData = () => {
     const diskCost = disk * (2);
     const duschCost = dusch['tid'] * dusch['antal'] * (0.3);
     const tvattCost = tvatt * (1/4);
-    const areaCost = area * 0.086;
+    const areaCost = area * 0.086 * 7;
     const totalkWh = kokCost + diskCost + duschCost + tvattCost + areaCost;
 
     return { kokCost, diskCost, duschCost, tvattCost, areaCost, totalkWh };

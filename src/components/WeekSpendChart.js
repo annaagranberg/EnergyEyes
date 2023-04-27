@@ -53,9 +53,9 @@ import WeekData from './WeekData';
 
 // Example of the data it takes, the day and its respective spending amount
 const testData = [    
-  {day: 1, energyUsage: 5.3},    
-  {day: 2, energyUsage: 4.6},    
-  {day: 3, energyUsage: 4.9},    
+  {day: 1, energyUsage: 8.3},    
+  {day: 2, energyUsage: 10.6},    
+  {day: 3, energyUsage: 9.9},    
   {day: 4, energyUsage: 0},    
   {day: 5, energyUsage: 0},    
   {day: 6, energyUsage: 0},    
@@ -96,7 +96,7 @@ function WeekSpendChart() {
                     data={testData.map(({ day, energyUsage }) => ({
                     day,
                     energyUsage,
-                    color: energyUsage > 5 ? "#D9B44A" : "#125447"
+                    color: energyUsage > 10 ? "#D9B44A" : "#125447"
                     }))}
                     x="day"
                     y="energyUsage"
