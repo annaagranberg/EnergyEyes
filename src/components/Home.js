@@ -43,7 +43,7 @@ const Getdb = () =>{
     });
   }, [currentUser.uid]);
 
-  const sum = (kok*(1.3) + disk*(2) + (dusch['tid']*dusch['antal']*0.3)*person + tvatt*(1/4) + area*(0.086)*7) / 7
+  const sum = (kok*(1.3) + disk*(2) + (dusch['tid']*dusch['antal']*0.3)*person + tvatt*(1/4) + area*(0.086)*7) / (7*person) 
 
   return [sum, profil]
 }

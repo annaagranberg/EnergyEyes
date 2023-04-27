@@ -95,7 +95,7 @@ export default function Dashboard() {
 
     <ThemeProvider theme={theme}>
         
-        <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll', mb:6, bgcolor: "#F0F4F4"}}>
+        <Box component='div' sx={{overflowX:'hidden', overflowY:'scroll', mb:6}}>
             <Card sx={{ minWidth: 270 }} elevation={0}>
                 <CardContent>
                     {error && <Alert varient = "danger">{error}</Alert> }
@@ -108,7 +108,7 @@ export default function Dashboard() {
                 </CardContent>
             </Card>
 
-            <Card sx={{ /*display: 'flex',*/ borderRadius:0 }} elevation={0}>
+            <Card sx={{ /*display: 'flex',*/ borderRadius:0, backgroundColor: "#F0F4F4" }} elevation={0}>
                 <Box  sx={{ display: 'flex', flexDirection: 'column', width:'100%', overflowY:'scroll'}}>
                     <CardHeader sx={{ height:'18vh', bgcolor:'#092A23'}}>
 
@@ -128,7 +128,7 @@ export default function Dashboard() {
                 </Box>
                 
                 <Box sx={{width:'90%', ml:'auto', mr:'auto' }} display='flex' flexDirection="column" alignItems='center'>
-                    <Box display='flex' flexDirection='row' justifyContent='space-between' sx={{width:'95%', mb:3}}>
+                    <Box display='flex' flexDirection='row' justifyContent='space-between' sx={{width:'95%', mb:3 }}>
                         <Card variant='outlined' sx={{ textAlign:'center', boxShadow: '0px 0px 2px grey',  borderRadius: 3, width:'30%'}}>
                             <Typography  variant='h6' >{fname}<br/>{lname}</Typography>
                         </Card>
@@ -140,9 +140,9 @@ export default function Dashboard() {
                         </Card>
                     </Box>
 
-                    <Box sx={{width:'95%', borderRadius: 3, boxShadow: '0px 0px 2px grey'}} flexWrap='wrap' flexDirection='row' display='flex' alignItems='center'>
-                        <Card  sx={{ textAlign:'left', width:'45%', m:1}} elevation={0}>
-                            <CardContent>
+                    <Box sx={{width:'95%', borderRadius: 3, boxShadow: '0px 0px 2px grey', backgroundColor: "#FFFF"}} flexWrap='wrap' flexDirection='row' display='flex' alignItems='center'>
+                        <Card  sx={{ textAlign:'left', width:'45%', m:1 }} elevation={0}>
+                            <CardContent bgcolor='#ffff'>
                                 <Box sx={{mb:2}}>
                                     <Typography variant='h6' fontWeight ='520'>
                                     <ShowerIcon color='secondary'/> {dusch['tid']}</Typography>
@@ -170,14 +170,14 @@ export default function Dashboard() {
                             </CardContent>
                         </Card>
                     </Box>
-                    <Box sx={{width:'95%'}}>
+                    <Box sx={{width:'95%', backgroundColor:'#ffff', mt:3}} >
                         <ToggleButtonGroup 
                                 value={profil}
                                 exclusive
                                 variant='standard'
                                 onChange={handleProfil}
                                 fullWidth
-                                sx={{mt: 3, justifyItems:'stretch', boxShadow: '0px 0px 2px grey' }}
+                                sx={{ justifyItems:'stretch', boxShadow: '0px 0px 2px grey' }}
                                 >
                                     <ToggleButton value="Miljö" >
                                         <NaturePeopleIcon/>
