@@ -21,6 +21,7 @@ const Getdb = () =>{
   const [tvatt, setTvatt] = useState()
   const [person, setPerson] = useState()
   const [profil, setProfil] = useState()
+  const [area, setArea] = useState()
 
   useEffect(() => {
     const docRef = db.collection("user_collection").doc(currentUser.uid);
@@ -33,7 +34,7 @@ const Getdb = () =>{
         setKok(data.kokparametrar.antal);
         setTvatt(data.tvattparametrar.antal);
         setProfil(data.profiltyp)
-        console.log('hej')
+        setArea(data.boendeyta)
 
       } else {
         console.log("No such document!");
@@ -43,7 +44,7 @@ const Getdb = () =>{
     });
   }, [currentUser.uid]);
 
-  const sum = (kok*(1/2) + disk*(2) + (dusch['tid']*dusch['antal']*0.3) + tvatt) / person
+  const sum = (kok*(1.3) + disk*(2) + (dusch['tid']*dusch['antal']*0.3)*person + tvatt*(1/4) + area*(0.086)*7) / 7
 
   return [sum, profil]
 }
@@ -53,7 +54,6 @@ export default function Home() {
   const profil = info[1]
   const sum = info[0]
 
-  console.log(profil)
   console.log(sum)
 
   return (
