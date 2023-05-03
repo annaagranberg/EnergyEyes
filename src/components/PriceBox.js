@@ -22,9 +22,9 @@ export default function PriceBox() {
   return (
 
     <Box sx={{width:'100%'}} flexDirection='column' display='flex' justifyContent='space-evenly' alignItems='center'>
-    <Card onClick={handleOpen} variant='outlined' sx={{boxShadow: '0px 0px 2px grey', textAlign:'left', width:'95%', borderRadius:2, marginTop: 1}}>
-        <Typography variant='h5' sx={{ ml: 2, mt: 1.5, fontFamily: 'Barlow' }} >
-              Elpris
+    <Card onClick={handleOpen} variant='outlined' sx={{boxShadow: '0px 0px 2px grey', textAlign:'center', width:'95%', borderRadius:2, marginTop: 1}}>
+        <Typography variant='h5' sx={{ mt: 1.5, fontFamily: 'Barlow' }} >
+              Elpris under dygnet
          </Typography>
          <ElecPriceChart />
 
