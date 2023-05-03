@@ -20,8 +20,8 @@ export default function PieBox() {
 
   return (
     <Box sx={{ width: '90%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center' }}>
-      <Card onClick={handleOpen} color="success" variant='outlined' sx={{ boxShadow: '0px 0px 2px grey', textAlign: 'left', width: '100%', borderRadius: 2, padding: '5px'}}>
-      <Typography variant='h10' ml={1.5} mt={2} >
+      <Card onClick={handleOpen} color="success" variant='outlined' sx={{ boxShadow: '0px 0px 2px grey', textAlign: 'center', width: '100%', borderRadius: 2, padding: '5px'}}>
+      <Typography variant='h10'sx={{ mt: 2, fontFamily: 'Barlow'}} >
               Uppdelning 
          </Typography>
             <AppliancePie/>
@@ -37,8 +37,8 @@ export default function PieBox() {
                  {"Om Energyeyes"}
             </DialogTitle> */}
             <DialogContent sx={{backgroundColor:'#ffff', color:'white'}}>
-                <DialogContentText id="alert-dialog-description" sx={{backgroundColor:'#ffff', color:'black'}}> 
-                <Typography variant='h6' sx={{textAlign: 'center'}}>
+                <DialogContentText id="alert-dialog-description" sx={{backgroundColor:'#ffff', color:'black', fontFamily: 'Barlow'}}> 
+                <Typography variant='h6' sx={{textAlign: 'center', fontFamily: 'Barlow'}}>
                     Uppdelning av elförbrukning
                 </Typography>
               <AppliancePie/>

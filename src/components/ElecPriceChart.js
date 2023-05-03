@@ -28,6 +28,7 @@ function ElecPriceChart() {
     
       fetchData();
     }, []);
+
     
 
     // Plottining tha values in a Vicotry graph

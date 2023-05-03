@@ -21,8 +21,8 @@ export default function WeekBox() {
 
   return (
     <Box sx={{ width: '90%', display: 'flex', mt:1 ,flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center'}}>
-      <Card onClick={handleOpen} variant='outlined' sx={{boxShadow: '0px 0px 2px grey', textAlign: 'left', width: '100%', borderRadius: 2, padding: '10px' }}>
-        <Typography variant='h10' ml={1} mt={1} >
+      <Card onClick={handleOpen} variant='outlined' sx={{boxShadow: '0px 0px 2px grey', textAlign: 'center', width: '100%', borderRadius: 2, padding: '10px' }}>
+        <Typography variant='h10' sx={{ mt: 1, fontFamily: 'Barlow' }} >
               Veckoförbrukning
          </Typography>
             <WeekSpendChart/>  
@@ -33,9 +33,9 @@ export default function WeekBox() {
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
             >
-            <DialogContent sx={{backgroundColor:'#ffff', color:'white'}}>
-                <DialogContentText id="alert-dialog-description" sx={{backgroundColor:'#ffff', color:'black'}}> 
-                  <Typography variant='h5' sx={{textAlign: 'center'}} >
+            <DialogContent sx={{backgroundColor:'#ffff', color:'white', }}>
+                <DialogContentText id="alert-dialog-description" sx={{backgroundColor:'#ffff', color:'black', fontFamily: 'Barlow'}}> 
+                  <Typography variant='h5' sx={{textAlign: 'center',  fontFamily: 'Barlow'}} >
                     Veckoförbrukning
                   </Typography>
                 <WeekSpendChart />  

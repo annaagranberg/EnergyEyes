@@ -80,7 +80,8 @@ function WeekSpendChart() {
                 tickFormat={["M", "T", "O", "T", "F", "L", "S"]}
                 style={{
                     axisLabel: {fontSize: 16},
-                    tickLabels: {fontSize: 35}
+                    tickLabels: {fontSize: 35},
+                    fontFamily: 'Barlow'
                 }}
             />
             <VictoryAxis

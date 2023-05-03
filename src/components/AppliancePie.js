@@ -5,13 +5,13 @@ import { db } from '../firebase'
 import { useAuth } from '../contexts/AuthContext'
 
 
-const myColorScale = ["#092A23", "#D9B44A", "#125447", "#C4D4D4"];
+const myColorScale = ["#092A23", "#8FB69C", "#125447", "#C4D4D4"];
 
 const MyLabel = (props) => {
   return (
     <VictoryLabel
       {...props}
-      style={{ fill: '#FFFFFF' }}
+      style={{ fill: '#FFFFFF', fontFamily: 'Barlow' }}
     />
   );
 };
@@ -76,7 +76,7 @@ const AppliancePie = () => {
         labelComponent={<MyLabel />}
         labels={() => null} />
     </div>
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Barlow'  }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gridGap: '1rem', marginTop: '1rem', marginBottom: '1rem' }}>
           {sampleData.map((datum, index) => (
             <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>

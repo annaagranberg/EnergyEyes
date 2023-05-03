@@ -67,7 +67,7 @@ export default function Home() {
           <TypeBox value={sum} type={profil} />
 
             <Box sx={{flexDirection:'column', display:'flex', width: '95%', marginLeft:'auto', marginRight:'auto'}}>  
-              <Button component={Link} to='/update-profile' variant='contained' sx={{mb:3, borderRadius: 2}}>
+              <Button component={Link} to='/update-profile' variant='contained' sx={{mb:3, borderRadius: 2, fontFamily: 'Barlow'}}>
                   Ändra Vanor
               </Button>
             </Box>

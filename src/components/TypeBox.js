@@ -9,6 +9,7 @@ import Money from './Money';
 import Curious from './Curious';
 import { db } from '../firebase'
 import { useAuth } from '../contexts/AuthContext'
+import HealthBar from './HealthBar';
 
 // Calls on different component depending on which type is selected
 // export default function PlantBox({ value, type }) {
@@ -34,16 +35,20 @@ export default function TypeBox({ value, type }) {
       return <div />
   }
 
-  const { src, text } = Component(value);
+  const { src, text, interval} = Component(value);
 
 return (
   <Box sx={{height: '400px', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center' }}>
     <Card variant="outlined" sx={{ boxShadow: '0px 0px 2px grey', textAlign: 'left', width: '95%', borderRadius: 2, p: 0.5, height: 350, backgroundColor: '#FEF5F0' }}>
       <CardMedia component="img" height="250" src={src} alt="flower" sx={{ objectFit: 'contain' }} />
-      <CardContent sx={{ p: 0.5, mt: 4 }}>
-        <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'center' }}>
+      <CardContent sx={{ p: 0.5, mt: 1 }}>
+        
+      <HealthBar value={interval} />
+
+        <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'center', mt: '15px', fontFamily: 'Barlow' }}>
         {text}
         </Typography>
+        
       </CardContent>
     </Card>
   </Box>

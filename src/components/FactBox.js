@@ -69,13 +69,13 @@ export default function FactBox() {
     <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', mb: 10 }}>
       <Card variant='outlined' sx={{boxShadow: '0px 0px 2px grey', textAlign: 'left', width: '95%', borderRadius: 2, mb: 5 }}>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" component="div" sx={{ fontFamily: 'Barlow' }}>
             Energy fact
-            <button onClick={handleRefreshClick} style={{ marginLeft: '10px', border: 'none', background: 'none', cursor: 'pointer' }}>
+            <button onClick={handleRefreshClick} style={{ marginLeft: '10px', marginBottom: '2px', border: 'none', background: 'none', cursor: 'pointer' }}>
               <img src={refreshIcon} alt="Refresh" />
             </button>
           </Typography>
-          <Typography variant="body2" color="text.secondary" style={{ height: '100px', overflow: 'hidden' }}>
+          <Typography variant="body2" color="text.secondary" style={{ height: '100px', overflow: 'hidden' }} sx={{ fontFamily: 'Barlow' }}>
             <Facts key={refreshKey} />
           </Typography>
         </CardContent>

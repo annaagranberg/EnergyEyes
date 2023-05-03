@@ -65,6 +65,11 @@ const WeekData = () => {
     return { kokCost, diskCost, duschCost, tvattCost, areaCost, totalkWh };
   };
 
+//   const now = new Date();
+//   const dayOfWeek = now.getDay();
+//   const remove = 7 - dayOfWeek;
+
+//   sampleData.splice(-remove, remove, Array(remove).fill({ date: null, value: 0 }));
   console.log(sampleData);
   return sampleData;
 };
