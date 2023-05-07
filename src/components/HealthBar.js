@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import img1 from '../images/smiley1.PNG';
+import img5 from '../images/smiley5.PNG';
 
 const HealthBarContainer = styled.div`
   display: flex;
@@ -35,6 +37,7 @@ const HealthBar = ({ value }) => {
   const filledSections = Math.min(value, 5);
   const emptySections = 5 - filledSections;
   const isLow = value <= 2;
+
 
   return (
     <HealthBarContainer>

@@ -36,6 +36,8 @@ export default function TypeBox({ value, type }) {
   }
 
   const { src, text, interval} = Component(value);
+  console.log(type);
+  
 
 return (
   <Box sx={{height: '400px', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center' }}>
