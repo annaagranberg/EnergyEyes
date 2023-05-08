@@ -8,68 +8,76 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
-import Home from "./Home";
+import Home from "./Home.js";
+
 import Stat from "./Stat";
-import Welcome from "./Welcome"
+import Welcome from "./Welcome";
 import NewUser from "./NewUser";
 // import { ThemeProvider } from '@mui/material/styles';
 // import theme from '../contexts/Theme';
 
-
 function App() {
   return (
-    
     // <ThemeProvider theme={theme}>
-    <Container className="d-flex align-item-center justify-content-center w-100%"
-    style = {{minHeight: "100vh", padding:0}}>
-
-      <div className="w-100"style={{maxWidth: '470px'}}>
+    <Container
+      className="d-flex align-item-center justify-content-center w-100%"
+      style={{ minHeight: "100vh", padding: 0 }}
+    >
+      <div className="w-100" style={{ maxWidth: "470px" }}>
         <Router>
-        <AuthProvider>
-          <Routes>
+          <AuthProvider>
+            <Routes>
+              <Route
+                path="/profile"
+                element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>
+                }
+              ></Route>
 
-            <Route path="/profile" element = {
-              <PrivateRoute>
-                <Dashboard/>
-              </PrivateRoute>
-            }
-            ></Route>
+              <Route
+                path="/update-profile"
+                element={
+                  <PrivateRoute>
+                    <UpdateProfile />
+                  </PrivateRoute>
+                }
+              ></Route>
 
-            <Route path="/update-profile" element = {
-              <PrivateRoute>
-                <UpdateProfile/>
-              </PrivateRoute>
-            }
-            ></Route>
+              <Route
+                path="/home"
+                element={
+                  <PrivateRoute>
+                    <Home />
+                  </PrivateRoute>
+                }
+              ></Route>
 
-            <Route path="/home" element = {
-              <PrivateRoute>
-                <Home/>
-              </PrivateRoute>
-            }
-            ></Route>
+              <Route
+                path="/stat"
+                element={
+                  <PrivateRoute>
+                    <Stat />
+                  </PrivateRoute>
+                }
+              ></Route>
 
-            <Route path="/stat" element = {
-              <PrivateRoute>
-                <Stat/>
-              </PrivateRoute>
-            }
-            ></Route>
+              <Route
+                path="/newuser"
+                element={
+                  <PrivateRoute>
+                    <NewUser />
+                  </PrivateRoute>
+                }
+              ></Route>
 
-            <Route path="/newuser" element = {
-              <PrivateRoute>
-                <NewUser/>
-              </PrivateRoute>
-            }
-            ></Route>
-
-            <Route path="/" element={<Welcome />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-
-          </Routes>
-        </AuthProvider>
+              <Route path="/" element={<Welcome />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+            </Routes>
+          </AuthProvider>
         </Router>
       </div>
     </Container>

@@ -1,9 +1,8 @@
-import img1 from '../images/smiley1.PNG';
-import img2 from '../images/smiley2.PNG';
-import img3 from '../images/smiley3.PNG';
-import img4 from '../images/smiley4.PNG';
-import img5 from '../images/smiley5.PNG';
-
+import img1 from "../images/smiley1.PNG";
+import img2 from "../images/smiley2.PNG";
+import img3 from "../images/smiley3.PNG";
+import img4 from "../images/smiley4.PNG";
+import img5 from "../images/smiley5.PNG";
 
 // Takes one argument and depending on the value returns an image
 function Curious(value) {
@@ -15,7 +14,9 @@ function Curious(value) {
     { src: img5, min: 19, max: 100, text: "Arg", interval: 1 },
   ];
 
-  const { src, text, interval } = images.find(({ min, max }) => value >= min && value < max) || { src: '', text: 'Unknown' };
+  const { src, text, interval } = images.find(
+    ({ min, max }) => value >= min && value < max
+  ) || { src: "", text: "Unknown" };
 
   return { src, text, interval };
 }
