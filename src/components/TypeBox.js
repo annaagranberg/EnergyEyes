@@ -3,30 +3,28 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import Plant from "./Plant";
-import Money from "./Money";
-import Curious from "./Curious";
 import HealthBar from "./HealthBar";
+import { Type } from "./Type";
 
 // Takes in two arguments, one number value and a type value
 
 export default function TypeBox({ value, type }) {
-  let Component;
+  // I have no idea why this still need to be here
+  // But if I remove it the code breaks
   switch (type) {
     case "Miljö":
-      Component = Plant;
       break;
     case "Sparsam":
-      Component = Money;
       break;
     case "Nyfiken":
-      Component = Curious;
       break;
     default:
-      return <div />;
+      return "<div />";
   }
 
-  const { src, text, interval } = Component(value);
+  // const { src, text, interval } = Component(value);
+
+  const { src, text, interval } = Type(value, type);
 
   return (
     <Box

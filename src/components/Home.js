@@ -10,8 +10,6 @@ import { Button } from "@mui/material";
 import { db } from "../firebase";
 import { useAuth } from "../contexts/AuthContext";
 
-//   <TypeBox value={42} type="plant" />
-
 const Getdb = () => {
   const { currentUser } = useAuth();
   const [dusch, setDusch] = useState([]);

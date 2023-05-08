@@ -2,17 +2,16 @@ import imagesMoney from "../data/money.json";
 import imagesFlower from "../data/flower.json";
 import imagesCurious from "../data/curious.json";
 
-function Type(value, type) {
-  console.log(type);
+export function Type(value, type) {
+  // Takes in two arguments, one type that decides which json file to call
+  // and then uses the value which object in the json file to pick
   let imagesData;
-  if (type === "Sparsam") {
-    imagesData = imagesMoney;
-  } else if (type === "Miljö") {
-    imagesData = imagesFlower;
+  if (type === "Miljö") {
+    imagesData = imagesFlower.flower;
+  } else if (type === "Sparsam") {
+    imagesData = imagesMoney.money;
   } else if (type === "Nyfiken") {
-    imagesData = imagesCurious;
-  } else {
-    throw new Error(`Unknown type: ${type}`);
+    imagesData = imagesCurious.curious;
   }
 
   const { src, text, interval } = imagesData.find(
@@ -21,5 +20,3 @@ function Type(value, type) {
 
   return { src, text, interval };
 }
-
-export default Type;
