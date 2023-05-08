@@ -9,7 +9,6 @@ import WeekBox from "./WeekBox";
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../firebase";
 import NewData from "./NewData";
-import WeekSpendChart from "./WeekSpendChart";
 
 /*<Progressbar spendingAmount={70} total={100} goalAmount={80} timeUnit='dag' />  */
 
