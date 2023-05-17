@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   CardContent,
   FormControl,
@@ -10,13 +10,11 @@ import {
   Alert,
   TextField,
   InputAdornment,
-  Typography,
   Select,
   MenuItem,
   InputLabel,
   ToggleButtonGroup,
   ToggleButton,
-  FormControlLabel,
   FormLabel,
   Box,
   Stack,
@@ -24,8 +22,8 @@ import {
 } from "@mui/material";
 import theme from "../contexts/Theme";
 import Card from "@mui/material/Card";
-import { Person, Password, Nat } from "@mui/icons-material";
-import { db } from "../firebase";
+import { Person } from "@mui/icons-material";
+
 import NaturePeopleIcon from "@mui/icons-material/NaturePeople";
 import MoneyIcon from "@mui/icons-material/Money";
 import SearchIcon from "@mui/icons-material/Search";
@@ -106,7 +104,7 @@ export default function NewUser() {
         dag.current.value,
         vecka.current.value
       );
-      navigate("/profile");
+      navigate("/home");
     } catch {
       setError("Failed to create an account");
     }

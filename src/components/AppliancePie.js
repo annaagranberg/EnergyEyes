@@ -122,20 +122,4 @@ const AppliancePie = () => {
   );
 };
 
-// const Pietext = () =>{
-//   return(
-//     <div style={{ display: 'flex', justifyContent: 'center' }}>
-//       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gridGap: '1rem', marginTop: '1rem' , marginBottom: '1rem'}}>
-//         {sampleData.map((datum, index) => (
-//           <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-//             <div style={{ width: '1rem', height: '1rem', backgroundColor: myColorScale[index] }} />
-//             <div style={{ fontSize: '0.7rem' }}>{datum.x}</div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-
-//   )
-
-// }
 export { AppliancePie };

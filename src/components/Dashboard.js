@@ -90,7 +90,6 @@ export default function Dashboard() {
           setDisk(data.diskparametrar.antal);
           setKok(data.kokparametrar.antal);
           setTvatt(data.tvattparametrar.antal);
-          console.log("hej");
         } else {
           console.log("No such document!");
         }
@@ -165,7 +164,7 @@ export default function Dashboard() {
 
                   <Link to="/update-profile" style={{ textDecoration: "none" }}>
                     <Button variant="contained" sx={{ borderRadius: 2 }}>
-                      Ändra
+                      Uppdatera
                     </Button>
                   </Link>
                 </Box>
