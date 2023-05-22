@@ -1,5 +1,5 @@
-import { Box } from "@mui/material";
 import React, { useState, useEffect } from "react";
+import { Box } from "@mui/material";
 import BottomBar from "./BottomBar";
 import Topbar from "./Topbar";
 import Progressbar from "./ProgressBar";
@@ -9,8 +9,6 @@ import WeekBox from "./WeekBox";
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../firebase";
 import NewData from "./NewData";
-
-/*<Progressbar spendingAmount={70} total={100} goalAmount={80} timeUnit='dag' />  */
 
 export default function Stat() {
   const [dagligt, setDagligt] = useState("0");
@@ -40,31 +38,34 @@ export default function Stat() {
 
   return (
     <>
-      {/* <ElecPriceChart/> */}
-      {/* <NewData/> */}
       <Box
         sx={{
           position: "fixed",
           top: 0,
           left: 0,
           right: 0,
-          zIndex: "10001 !important",
+          zIndex: 10001,
         }}
       >
-        <Topbar sx={{ width: "100%" }} />
+        <Topbar />
       </Box>
 
       <Box
         component="div"
         sx={{
           overflowX: "hidden",
-          overflowY: "scroll",
-          mb: 8,
-          mt: 8,
+          overflowY: "hidden",
+          mb: 6,
+          mt: 7,
           backgroundColor: "#F0F4F4",
+          position: "relative",
+          minHeight: "calc(100vh - 112px)",
+          paddingTop: "12px",
         }}
       >
-        <PriceBox mb={2} />
+        <Box sx={{ mb: 2 }}>
+          <PriceBox />
+        </Box>
 
         <Box
           sx={{
@@ -126,30 +127,3 @@ export default function Stat() {
     </>
   );
 }
-
-<Box
-  sx={{
-    display: "flex",
-    mt: 2,
-    mb: 1,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    zIndex: 0,
-  }}
->
-  <Box
-    sx={{
-      display: "flex",
-      width: "60%",
-      flexDirection: "column",
-      justifyContent: "space-around",
-      alignItems: "center",
-      zIndex: 0,
-    }}
-  >
-    <PieBox />
-    <WeekBox />
-  </Box>
-</Box>;

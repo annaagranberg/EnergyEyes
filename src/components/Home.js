@@ -1,5 +1,5 @@
-import { Box, ThemeProvider } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { Box, ThemeProvider } from "@mui/material";
 import BottomBar from "./BottomBar";
 import FactBox from "./FactBox";
 import TypeBox from "./TypeBox";
@@ -65,56 +65,48 @@ export default function Home() {
   console.log(sum);
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <Box
-          sx={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            zIndex: "10001 !important",
-          }}
-        >
-          <Topbar sx={{ width: "100%" }} />
-        </Box>
+    <ThemeProvider theme={theme}>
+      <Box sx={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 10001 }}>
+        <Topbar sx={{ width: "100%" }} />
+      </Box>
+
+      <Box
+        sx={{
+          overflowX: "hidden",
+          overflowY: "scroll",
+          mt: "6vh",
+          backgroundColor: "#F0F4F4",
+          position: "relative",
+          minHeight: "calc(100vh - 112px)", // Based on the layout fix
+        }}
+      >
+        <TypeBox value={sum} type={profil} />
 
         <Box
           sx={{
-            overflowX: "hidden",
-            overflowY: "scroll",
-            mt: "7vh",
-            backgroundColor: "#F0F4F4",
+            flexDirection: "column",
+            display: "flex",
+            width: "95%",
+            marginLeft: "auto",
+            marginRight: "auto",
           }}
         >
-          <TypeBox value={sum} type={profil} />
-
-          <Box
-            sx={{
-              flexDirection: "column",
-              display: "flex",
-              width: "95%",
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
+          <Button
+            component={Link}
+            to="/update-profile"
+            variant="contained"
+            sx={{ mb: 3, borderRadius: 2 }}
           >
-            <Button
-              component={Link}
-              to="/update-profile"
-              variant="contained"
-              sx={{ mb: 3, borderRadius: 2 }}
-            >
-              Ändra Vanor
-            </Button>
-          </Box>
-
-          <FactBox />
+            Ändra Vanor
+          </Button>
         </Box>
 
-        <Box sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}>
-          <BottomBar sx={{ width: "100%" }} />
-        </Box>
-      </ThemeProvider>
-    </>
+        <FactBox />
+      </Box>
+
+      <Box sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}>
+        <BottomBar sx={{ width: "100%" }} />
+      </Box>
+    </ThemeProvider>
   );
 }

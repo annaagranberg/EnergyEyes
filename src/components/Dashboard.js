@@ -13,7 +13,6 @@ import {
   ToggleButton,
 } from "@mui/material";
 import Card from "@mui/material/Card";
-//import { auth } from '../firebase'
 import theme from "../contexts/Theme";
 import Box from "@mui/material/Box";
 import { db } from "../firebase";
@@ -116,19 +115,23 @@ export default function Dashboard() {
       <ThemeProvider theme={theme}>
         <Box
           component="div"
-          sx={{ overflowX: "hidden", overflowY: "scroll", mb: 6 }}
+          sx={{
+            overflowX: "hidden",
+            overflowY: "scroll",
+            mb: 6,
+            backgroundColor: "#F0F4F4",
+            minHeight: "calc(100vh - 112px)",
+          }}
         >
           <Card sx={{ minWidth: 270 }} elevation={0}>
             <CardContent>
               {error && <Alert varient="danger">{error}</Alert>}
-
               {/* <strong>Email:</strong> {currentUser.email} <br></br>
                     <strong>ID:</strong> {currentUser.uid} , backgroundColor: "#F0F4F4" */}
 
               {/* <Link to="/update-profile" className="btn btn-primary w-100 mt-3">Update profile</Link> */}
             </CardContent>
           </Card>
-
           <Card
             sx={{
               /*display: 'flex',*/ borderRadius: 0,
@@ -163,7 +166,10 @@ export default function Dashboard() {
                   <Avatar {...stringAvatar(fname + " " + lname)} />
 
                   <Link to="/update-profile" style={{ textDecoration: "none" }}>
-                    <Button variant="contained" sx={{ borderRadius: 2 }}>
+                    <Button
+                      variant="contained"
+                      sx={{ borderRadius: 2, fontFamily: "Barlow" }}
+                    >
                       Uppdatera
                     </Button>
                   </Link>
@@ -172,7 +178,12 @@ export default function Dashboard() {
             </Box>
 
             <Box
-              sx={{ width: "90%", ml: "auto", mr: "auto" }}
+              sx={{
+                width: "100%",
+                ml: "auto",
+                mr: "auto",
+                fontFamily: "Barlow",
+              }} // 90% before
               display="flex"
               flexDirection="column"
               alignItems="center"
@@ -181,7 +192,7 @@ export default function Dashboard() {
                 display="flex"
                 flexDirection="row"
                 justifyContent="space-between"
-                sx={{ width: "95%", mb: 3 }}
+                sx={{ width: "95%", mb: 3, textAlign: "center" }}
               >
                 <Card
                   variant="outlined"
@@ -192,7 +203,12 @@ export default function Dashboard() {
                     width: "30%",
                   }}
                 >
-                  <Typography variant="h6">
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontFamily: "barlow",
+                    }}
+                  >
                     {fname}
                     <br />
                     {lname}
@@ -209,7 +225,13 @@ export default function Dashboard() {
                     width: "30%",
                   }}
                 >
-                  <Typography mt="15%" variant="h6">
+                  <Typography
+                    mt="15%"
+                    variant="h6"
+                    sx={{
+                      fontFamily: "barlow",
+                    }}
+                  >
                     {area} kvm
                   </Typography>
                 </Card>
@@ -222,7 +244,13 @@ export default function Dashboard() {
                     width: "30%",
                   }}
                 >
-                  <Typography mt="15%" variant="h6">
+                  <Typography
+                    mt="15%"
+                    variant="h6"
+                    sx={{
+                      fontFamily: "barlow",
+                    }}
+                  >
                     {people} i bostad
                   </Typography>
                 </Card>
@@ -279,7 +307,13 @@ export default function Dashboard() {
                   </CardContent>
                 </Card>
               </Box>
-              <Box sx={{ width: "95%", backgroundColor: "#ffff", mt: 3 }}>
+              <Box
+                sx={{
+                  width: "95%",
+                  backgroundColor: "#ffff",
+                  mt: 3,
+                }}
+              >
                 <ToggleButtonGroup
                   value={profil}
                   exclusive
@@ -291,15 +325,30 @@ export default function Dashboard() {
                     boxShadow: "0px 0px 2px grey",
                   }}
                 >
-                  <ToggleButton value="Miljö">
+                  <ToggleButton
+                    value="Miljö"
+                    sx={{
+                      fontFamily: "barlow",
+                    }}
+                  >
                     <NaturePeopleIcon />
                     Miljö
                   </ToggleButton>
-                  <ToggleButton value="Sparsam">
+                  <ToggleButton
+                    value="Sparsam"
+                    sx={{
+                      fontFamily: "barlow",
+                    }}
+                  >
                     <MoneyIcon />
                     Sparsam
                   </ToggleButton>
-                  <ToggleButton value="Nyfiken">
+                  <ToggleButton
+                    value="Nyfiken"
+                    sx={{
+                      fontFamily: "barlow",
+                    }}
+                  >
                     <SearchIcon />
                     Nyfiken
                   </ToggleButton>
@@ -311,7 +360,14 @@ export default function Dashboard() {
               <Button
                 variant="contained"
                 onClick={handleLogout}
-                sx={{ borderRadius: 2, pl: 5, pr: 5, mt: 2, mb: 3 }}
+                sx={{
+                  borderRadius: 2,
+                  pl: 5,
+                  pr: 5,
+                  mt: 2,
+                  mb: 3,
+                  fontFamily: "Barlow",
+                }}
               >
                 Logga ut
               </Button>

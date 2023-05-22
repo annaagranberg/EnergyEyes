@@ -32,7 +32,11 @@ export default function Topbar() {
   return (
     <ThemeProvider theme={themes}>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" elevation={0}>
+        <AppBar
+          position="static"
+          elevation={0}
+          style={{ borderBottom: "0.5px solid #ccc" }}
+        >
           <Toolbar>
             <Box sx={{ width: 30, height: 40 }}>
               <CardMedia
@@ -59,7 +63,11 @@ export default function Topbar() {
               >
                 <DialogTitle
                   id="alert-dialog-title"
-                  sx={{ backgroundColor: "#092A23", color: "white" }}
+                  sx={{
+                    backgroundColor: "#092A23",
+                    color: "white",
+                    fontFamily: "Barlow",
+                  }}
                 >
                   {"Om Energyeyes"}
                 </DialogTitle>
@@ -68,7 +76,11 @@ export default function Topbar() {
                 >
                   <DialogContentText
                     id="alert-dialog-description"
-                    sx={{ backgroundColor: "#092A23", color: "white" }}
+                    sx={{
+                      backgroundColor: "#092A23",
+                      color: "white",
+                      fontFamily: "Barlow",
+                    }}
                   >
                     EnergyEyes är en app för dig som vill se din
                     energiförbrukning i syfte att spara pengar eller i ett

@@ -22,7 +22,7 @@ export default function BottomBar() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Box>
+        <Box style={{ borderTop: "0.5px solid #ccc" }}>
           <BottomNavigation
             showLabels
             value={clicked}
@@ -31,7 +31,7 @@ export default function BottomBar() {
             }}
           >
             <BottomNavigationAction
-              label="Home"
+              label="Hem"
               component={Link}
               to="/home"
               icon={
@@ -43,7 +43,7 @@ export default function BottomBar() {
               }
             />
             <BottomNavigationAction
-              label="Stat"
+              label="Statistik"
               component={Link}
               to="/stat"
               icon={
@@ -55,7 +55,7 @@ export default function BottomBar() {
               }
             />
             <BottomNavigationAction
-              label="Profile"
+              label="Profil"
               component={Link}
               to="/profile"
               icon={

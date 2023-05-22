@@ -45,7 +45,7 @@ export default function FactBox() {
             component="div"
             sx={{ fontFamily: "Barlow" }}
           >
-            Energy fact
+            Energifakta
             <button
               onClick={handleRefreshClick}
               style={{
