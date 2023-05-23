@@ -41,7 +41,7 @@ export default function Topbar() {
             <Box sx={{ width: 30, height: 40 }}>
               <CardMedia
                 component="img"
-                sx={{ width: "100%", height: "100%" }}
+                sx={{ width: "100%", height: "100%", ml: 1.5 }}
                 src={Logo}
                 alt="Logga"
               />

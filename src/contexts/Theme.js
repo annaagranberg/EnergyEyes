@@ -9,11 +9,14 @@ const theme = createTheme({
     secondary: {
       main: "#D9B44A",
     },
+    third: {
+      main: "#125447",
+    },
     background: {
       main: "#FFFFF",
     },
     action: {
-      active: "#D9B44A",
+      active: "#125447",
       activeOpacity: 0.1,
       hover: "#ACD0C0",
       hoverOpacity: 0.5,

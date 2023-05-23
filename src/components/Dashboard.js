@@ -44,7 +44,7 @@ export default function Dashboard() {
   function stringAvatar(name) {
     return {
       sx: {
-        bgcolor: "#D9B44A",
+        bgcolor: "#8FB69C",
         height: 90,
         width: 90,
         fontSize: 35,
@@ -117,10 +117,9 @@ export default function Dashboard() {
           component="div"
           sx={{
             overflowX: "hidden",
-            overflowY: "scroll",
+            overflowY: "hidden",
             mb: 6,
             backgroundColor: "#F0F4F4",
-            minHeight: "calc(100vh - 112px)",
           }}
         >
           <Card sx={{ minWidth: 270 }} elevation={0}>
@@ -134,7 +133,7 @@ export default function Dashboard() {
           </Card>
           <Card
             sx={{
-              /*display: 'flex',*/ borderRadius: 0,
+              borderRadius: 0,
               backgroundColor: "#F0F4F4",
             }}
             elevation={0}
@@ -144,14 +143,19 @@ export default function Dashboard() {
                 display: "flex",
                 flexDirection: "column",
                 width: "100%",
-                overflowY: "scroll",
               }}
             >
               <CardHeader
                 sx={{ height: "18vh", bgcolor: "#092A23" }}
               ></CardHeader>
 
-              <CardContent sx={{ flex: "1 0 auto", padding: 0, mb: 1 }}>
+              <CardContent
+                sx={{
+                  flex: "1 0 auto",
+                  padding: 0,
+                  mb: 1,
+                }}
+              >
                 <Box
                   sx={{
                     display: "flex",
@@ -168,7 +172,10 @@ export default function Dashboard() {
                   <Link to="/update-profile" style={{ textDecoration: "none" }}>
                     <Button
                       variant="contained"
-                      sx={{ borderRadius: 2, fontFamily: "Barlow" }}
+                      sx={{
+                        borderRadius: 2,
+                        fontFamily: "Barlow",
+                      }}
                     >
                       Uppdatera
                     </Button>
@@ -201,12 +208,15 @@ export default function Dashboard() {
                     boxShadow: "0px 0px 2px grey",
                     borderRadius: 3,
                     width: "30%",
+                    display: "flex",
+                    alignItems: "center",
                   }}
                 >
                   <Typography
                     variant="h6"
                     sx={{
                       fontFamily: "barlow",
+                      mx: "auto",
                     }}
                   >
                     {fname}
@@ -223,13 +233,15 @@ export default function Dashboard() {
                     textAlign: "center",
                     borderRadius: 3,
                     width: "30%",
+                    display: "flex",
+                    alignItems: "center",
                   }}
                 >
                   <Typography
-                    mt="15%"
                     variant="h6"
                     sx={{
                       fontFamily: "barlow",
+                      mx: "auto",
                     }}
                   >
                     {area} kvm
@@ -242,13 +254,15 @@ export default function Dashboard() {
                     textAlign: "center",
                     borderRadius: 3,
                     width: "30%",
+                    display: "flex",
+                    alignItems: "center",
                   }}
                 >
                   <Typography
-                    mt="15%"
                     variant="h6"
                     sx={{
                       fontFamily: "barlow",
+                      mx: "auto",
                     }}
                   >
                     {people} i bostad
@@ -256,32 +270,43 @@ export default function Dashboard() {
                 </Card>
               </Box>
 
+              {/* ------------------------------------------------------------------------------------- */}
               <Box
                 sx={{
                   width: "95%",
                   borderRadius: 3,
                   boxShadow: "0px 0px 2px grey",
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
                   backgroundColor: "#FFFF",
                 }}
                 flexWrap="wrap"
-                flexDirection="row"
-                display="flex"
-                alignItems="center"
               >
                 <Card
-                  sx={{ textAlign: "left", width: "45%", m: 1 }}
+                  sx={{
+                    textAlign: "left",
+                    width: "45%",
+                    m: 1,
+                  }}
                   elevation={0}
                 >
-                  <CardContent bgcolor="#ffff">
+                  <CardContent bgcolor="#FFFF">
                     <Box sx={{ mb: 2 }}>
-                      <Typography variant="h6" fontWeight="520">
-                        <ShowerIcon color="secondary" /> {dusch["tid"]}
+                      <Typography
+                        variant="h6"
+                        fontWeight="520"
+                        display="flex"
+                        alignItems="center"
+                      >
+                        <ShowerIcon color="third" /> {dusch["tid"]}
                       </Typography>
                       <Typography variant="h8">min per dusch</Typography>
                     </Box>
                     <Box>
                       <Typography variant="h6" fontWeight="520">
-                        <WashIcon color="secondary" /> {disk}
+                        <WashIcon color="third" /> {disk}
                       </Typography>
                       <Typography variant="h8">per vecka</Typography>
                     </Box>
@@ -294,24 +319,37 @@ export default function Dashboard() {
                   <CardContent>
                     <Box sx={{ mb: 2 }}>
                       <Typography variant="h6" fontWeight="520">
-                        <RestaurantIcon color="secondary" /> {kok}
+                        <RestaurantIcon color="third" /> {kok}
                       </Typography>
                       <Typography variant="h8">per vecka</Typography>
                     </Box>
                     <Box>
                       <Typography variant="h6" fontWeight="520">
-                        <LocalLaundryServiceIcon color="secondary" /> {tvatt}
+                        <LocalLaundryServiceIcon color="third" /> {tvatt}
                       </Typography>
                       <Typography variant="h8">per månad</Typography>
                     </Box>
                   </CardContent>
                 </Card>
               </Box>
+              {/* ------------------------------------------------------------------------------------- */}
+
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "barlow",
+                  mt: 2,
+                }}
+              >
+                Profiltyp
+              </Typography>
+
               <Box
                 sx={{
                   width: "95%",
                   backgroundColor: "#ffff",
-                  mt: 3,
+                  mt: 1,
+                  borderRadius: 3,
                 }}
               >
                 <ToggleButtonGroup
@@ -323,12 +361,14 @@ export default function Dashboard() {
                   sx={{
                     justifyItems: "stretch",
                     boxShadow: "0px 0px 2px grey",
+                    borderRadius: 3,
                   }}
                 >
                   <ToggleButton
                     value="Miljö"
                     sx={{
                       fontFamily: "barlow",
+                      borderRadius: 3,
                     }}
                   >
                     <NaturePeopleIcon />
@@ -338,6 +378,7 @@ export default function Dashboard() {
                     value="Sparsam"
                     sx={{
                       fontFamily: "barlow",
+                      borderRadius: 3,
                     }}
                   >
                     <MoneyIcon />
@@ -347,6 +388,7 @@ export default function Dashboard() {
                     value="Nyfiken"
                     sx={{
                       fontFamily: "barlow",
+                      borderRadius: 3,
                     }}
                   >
                     <SearchIcon />
@@ -365,7 +407,7 @@ export default function Dashboard() {
                   pl: 5,
                   pr: 5,
                   mt: 2,
-                  mb: 3,
+                  mb: 22,
                   fontFamily: "Barlow",
                 }}
               >

@@ -62,8 +62,6 @@ export default function Home() {
   const profil = info[1];
   const sum = info[0];
 
-  console.log(sum);
-
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 10001 }}>
@@ -73,8 +71,8 @@ export default function Home() {
       <Box
         sx={{
           overflowX: "hidden",
-          overflowY: "scroll",
-          mt: "6vh",
+          overflowY: "hidden",
+          mt: "5.8vh",
           backgroundColor: "#F0F4F4",
           position: "relative",
           minHeight: "calc(100vh - 112px)", // Based on the layout fix
